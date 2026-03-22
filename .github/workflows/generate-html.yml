@@ -1,0 +1,32 @@
+name: Generate HTML Reference
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.dbc'
+      - 'tools/generate_dbc_html.ps1'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate HTML from DBC
+        run: |
+          pwsh tools/generate_dbc_html.ps1 \
+            -DbcPath bmw_e9x_e8x1_merged.dbc \
+            -OutputPath can_ids_reference.html
+
+      - name: Commit generated HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add can_ids_reference.html
+          git diff --staged --quiet || git commit -m "chore: regenerate HTML reference from DBC"
+          git push
