@@ -647,6 +647,11 @@ BO_ 672 Central_locking_control: 8 CAS
  SG_ LockCmd_B0 : 0|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ LockCmd_B1 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ LockCmd_B2 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ LockState_B3 : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ LockState_B4 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ LockState_B5 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ LockState_B6 : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ LockState_B7 : 56|8@1+ (1,0) [0|255] "" Vector__XXX
 
 BO_ 674 Operation_of_climate_stand_functions: 8 CCC
 
@@ -1283,10 +1288,15 @@ CM_ BO_ 1472 "0x5C0: BMW K-CAN Services frame — CAS (Car Access System, node 0
 CM_ BO_ 1494 "0x5D6 (XXX): BMW K-CAN Services range message, rare (2 frames); seen in t1.log";
 CM_ BO_ 1511 "0x5E7 (XXX): BMW K-CAN Services range message (22 frames); seen in t1.log";
 CM_ BO_ 1528 "0x5F8 (XXX): BMW K-CAN Services range message (11 frames); seen in t1.log";
-CM_ BO_ 672 "Central locking command from CAS. B0-B1: command identifier (B0 always equals B1 - mirror/checksum unknown). B2: unknown, co-varies with command. B3-B7: unknown. B2-B7 flagged for HIL investigation. Source: idCanSend.txt empirical.";
-CM_ SG_ 672 LockCmd_B0 "Command type byte. 0x11=Unlock, 0x22=Lock, 0x88=TrunkOpen. Always identical to LockCmd_B1.";
-CM_ SG_ 672 LockCmd_B1 "Mirror of LockCmd_B0. Always identical. Purpose unknown.";
-CM_ SG_ 672 LockCmd_B2 "Byte 2. Empirical: 0x18 with Unlock, 0x28 with Lock, 0x80 with TrunkOpen. Encoding unknown, flagged for HIL investigation.";
+CM_ BO_ 672 "CAS central locking. Two operating modes on same ID. (1) Periodic heartbeat (~5 s interval): B0=B1=B2=0x88 constant, B3=0x01 constant, B4-B7 encode current lock state. Confirmed from real 10-min drive log (E90 LCI N47D20O1 ZF6HP19, 2026-03-22): unlocked state = B4-B7: 0x06 0x40 0x06 0x00; locked state (auto-lock at 5 km/h) = B4-B7: 0x08 0x43 0x1B 0x03. Trunk was closed for entire capture — B0-B2=0x88 is NOT a trunk-open status. (2) Momentary command frame (single burst on key press): B0-B1=command code (0x11=unlock, 0x22=lock, 0x88=trunk-open — empirical bench test). B4-B7 bit-level encoding unknown — HIL test LOCK-01 required. Source: idCanSend.txt empirical + 10minutes_run.log 2026-03-22.";
+CM_ SG_ 672 LockCmd_B0 "Command type byte in momentary key-press frame. 0x11=Unlock, 0x22=Lock, 0x88=TrunkOpen. In periodic heartbeat frames this byte is always 0x88 regardless of lock state. Always identical to LockCmd_B1.";
+CM_ SG_ 672 LockCmd_B1 "Mirror of LockCmd_B0 in command frames. In periodic heartbeat frames always 0x88.";
+CM_ SG_ 672 LockCmd_B2 "Byte 2. In command frames (empirical bench): 0x18 with Unlock, 0x28 with Lock, 0x80 with TrunkOpen. In periodic heartbeat frames always 0x88.";
+CM_ SG_ 672 LockState_B3 "Always 0x01 in both unlocked and locked heartbeat captures. Purpose unknown.";
+CM_ SG_ 672 LockState_B4 "Lock state byte 4. Heartbeat: 0x06=unlocked, 0x08=locked (confirmed from drive log auto-lock at 5 km/h). Bit encoding unknown — HIL LOCK-01 required.";
+CM_ SG_ 672 LockState_B5 "Lock state byte 5. Heartbeat: 0x40=unlocked, 0x43=locked. Bit encoding unknown — HIL LOCK-01 required.";
+CM_ SG_ 672 LockState_B6 "Lock state byte 6. Heartbeat: 0x06=unlocked, 0x1B=locked. Bit encoding unknown — HIL LOCK-01 required.";
+CM_ SG_ 672 LockState_B7 "Lock state byte 7. Heartbeat: 0x00=unlocked, 0x03=locked. Bit encoding unknown — HIL LOCK-01 required.";
 CM_ BO_ 1987 "0x7C3: CAS Application Message 2. Sender: CAS (Car Access System) / end-of-line calibration tool. Trace DLC=8 (E65 table says DLC=3, loopybunny says DLC=8 — 8 retained from trace). Keyfob security, comfort and CBS (Condition Based Service) data; byte 0 always 0xE2 in t1.log. Sources: loopybunny.co.uk/CarPC, rusefi.com BMW E65 Tool32 K-CAN table";
 
 VAL_ 168 ST_TORQ_AVL 0 "intervention request executed" 1 "intervention ignition request not executed" 2 "intervention injection request not executed" 3 "intervention ignition and injection request not executed" 15 "signal invalid";
