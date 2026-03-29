@@ -41,7 +41,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-29 20:24:34</span>
+<span>Generated: 2026-03-29 20:59:43</span>
 <span>Messages: 371</span>
 <span>Signals: 331</span>
 </div>
@@ -4297,7 +4297,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>7 signals</span>
 </div>
 </div>
-<div class='comment'>0x1D2 (EGS): Transmission display data. ShiftLeverPosition HIL-validated: 1=P, 2=R, 4=N, 8=D. DS mode uses ShiftLeverMode=1(Sport). Actual drive gear while moving in 0x304 (Status_Gang). Source: clima_temp_fan.log HIL capture</div>
+<div class='comment'>0x1D2 (EGS): Transmission display data. ShiftLeverPosition HIL-validated: 1=P, 2=R, 4=N, 8=D. ShiftLeverMode (B4 bits 0-1): 0=Drive/Normal (B4=0xF0), 2=Sport/Manual (B4=0xF2). GearAct (B1 high nibble, bits 12-15) CONFIRMED HIL 2026-03-29: raw 5=1st, 6=2nd, 7=3rd, 8=4th, 9=5th, A=6th (formula raw-4=gear). Raw 0 = signal not populated (Drive mode only). GearAct ONLY active in Sport/Manual mode (B4=0xF2). Represents COMMANDED/REQUESTED gear (leads 0x304 by ~100-200ms; in standing m1-m6 test GearAct reached 6 while 0x304 stayed at C6 due to EGS protection). 0x304 Status_Gang = ENGAGED gear. Source: gearbox_modes, mlog1, mlog2, m1-m6_shift.log, city run 2026-03-27 HIL captures; GearAct confirmed 2026-03-29</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -4331,7 +4331,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <tr>
 <td>
 <strong>GearAct</strong>
-<div class='signal-comment'>TransmissionDataDisplay</div>
+<div class='signal-comment'>EGS commanded/requested gear. Only valid in Sport/Manual mode (ShiftLeverMode=2, B4=0xF2). Raw 5-10 = gears 1-6 (formula raw-4). Raw 0 = not available (Drive mode). All 6 gears confirmed HIL 2026-03-29.</div>
 </td>
 <td><code>12|4</code></td>
 <td>Intel (little-endian)<br>Unsigned</td>
@@ -4367,7 +4367,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <tr>
 <td>
 <strong>ShiftLeverMode</strong>
-<div class='signal-comment'>On the dashboard, there are displayed:  D1...D7 in Normal. S1...S6 in Sport.  M1..M7 in Manual</div>
+<div class='signal-comment'>Gear selector mode. 0=Drive/Normal (B4=0xF0), 2=Sport/Manual (B4=0xF2). Dashboard shows D1-D6 in Normal, S1-S6 in Sport, M1-M6 in Manual. Confirmed HIL 2026-03-29.</div>
 <ul class="enum-list">
 <li><code>0</code> = Normal</li>
 <li><code>1</code> = Sport</li>
