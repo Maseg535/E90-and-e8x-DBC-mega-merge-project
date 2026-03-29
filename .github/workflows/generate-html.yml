@@ -21,7 +21,7 @@ jobs:
         run: |
           pwsh tools/generate_dbc_html.ps1 \
             -DbcPath bmw_e9x_e8x1_merged.dbc \
-            -OutputPath can_ids_reference.html
+            -OutputPath ./can_ids_reference.html
 
       - name: Commit generated HTML
         run: |

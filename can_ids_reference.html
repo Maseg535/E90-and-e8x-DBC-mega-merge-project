@@ -41,9 +41,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-21 01:24:48</span>
-<span>Messages: 367</span>
-<span>Signals: 322</span>
+<span>Generated: 2026-03-29 20:24:34</span>
+<span>Messages: 371</span>
+<span>Signals: 331</span>
 </div>
 </section>
 <section class="toc">
@@ -207,6 +207,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-622'>0x26E &middot; Control_FH_SHD_central_comfort</a>
 <a href='#msg-627'>0x273 &middot; CIC_Status_for_Idrive</a>
 <a href='#msg-631'>0x277 &middot; Idrive_Emu_Response_277</a>
+<a href='#msg-632'>0x278 &middot; CIC_278</a>
 <a href='#msg-634'>0x27A &middot; NavGraph_Sync_27A</a>
 <a href='#msg-635'>0x27B &middot; Status_Shiftlights</a>
 <a href='#msg-637'>0x27D &middot; Status_convertible_top_manual_convertible</a>
@@ -363,6 +364,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-964'>0x3C4 &middot; Status_EDCK_CKM</a>
 <a href='#msg-967'>0x3C7 &middot; Access_radio</a>
 <a href='#msg-968'>0x3C8 &middot; Operation_push_button_radio</a>
+<a href='#msg-972'>0x3CC &middot; NavGraph_3CC</a>
 <a href='#msg-974'>0x3CE &middot; Radio_audio_control_interface_display</a>
 <a href='#msg-975'>0x3CF &middot; Acknowledgment_access_radio_audio_control_interface</a>
 <a href='#msg-979'>0x3D3 &middot; Status_solar_sensor</a>
@@ -383,6 +385,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-996'>0x3E4 &middot; Configuration_rear_view_camera_CKM</a>
 <a href='#msg-1007'>0x3EF &middot; EngineOBD_data</a>
 <a href='#msg-1009'>0x3F1 &middot; LightExtStatus_CKM_3F1</a>
+<a href='#msg-1015'>0x3F7 &middot; NavGraph_3F7</a>
 <a href='#msg-1043'>0x413 &middot; Unknown_413</a>
 <a href='#msg-1045'>0x415 &middot; Unknown_415</a>
 <a href='#msg-1152'>0x480 &middot; NetworkMgmt_KGM_480</a>
@@ -408,6 +411,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-1472'>0x5C0 &middot; Services_CAS_5C0</a>
 <a href='#msg-1494'>0x5D6 &middot; Services_5D6</a>
 <a href='#msg-1504'>0x5E0 &middot; Services_Kombi_5E0</a>
+<a href='#msg-1506'>0x5E2 &middot; ZBE_Button_5E2</a>
 <a href='#msg-1511'>0x5E7 &middot; Services_ZBE_5E7</a>
 <a href='#msg-1522'>0x5F2 &middot; Services_KBM_5F2</a>
 <a href='#msg-1528'>0x5F8 &middot; Services_IHKA_5F8</a>
@@ -493,7 +497,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>17 signals</span>
 </div>
 </div>
-<div class='comment'>0x0A8 (DME): Engine torque, brake and clutch status</div>
+<div class='comment'>0x0A8 (DME): Engine torque, brake and clutch status. TORQ_AVL (B2 signed, repeated in B4) is torque demand: ~0x02 at idle, +0x2E (~47) heavy acceleration, 0xFA–0xFD (~−3 to −6) during engine braking/overrun fuel cut. HIL-confirmed in 5min_run_for_testing.log 2026-03-26: highest values (0x27–0x2F) during sustained acceleration in 6th gear.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -1955,7 +1959,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x0CE (DSC): Wheel speeds</div>
+<div class='comment'>0x0CE (DSC): Wheel speed pulse counters — 4 wheels, 16-bit little-endian pairs: FL=B1:B0, FR=B3:B2, RL=B5:B4, RR=B7:B6. IMPORTANT: these are ABS ring pulse COUNTS per 100ms frame, NOT direct km/h. Frame is all-zeros when engine is off. At idle standstill (engine running): ~334–342 counts (vibration noise floor). At peak observed speed (~55–60 km/h city): ~903–913 counts. Rough formula: (raw_16LE − 338) &#215; 0.1 ≈ km/h — offset and scale need one confirmed km/h calibration point to pin exactly. DBC signal factor 0.0625 is UNCONFIRMED — do not use until validated. Was all-zeros in all previous static/idle HIL logs; first confirmed active in 5min_run_for_testing.log 2026-03-26.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -2217,7 +2221,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x0E2 (Gate1): Central locking status BFT (front-left door area)</div>
+<div class='comment'>0x0E2 (Gate1): Door status — FR (Beifahrert&#252;r vorne, BFT, passenger front-right). B3=DoorOpenState: 0xFC=closed, 0xFD=open. B0=LockState: 0x81=unlocked, 0x82=locked, 0x83=armed (increments on ignition/session transition). B1=0xFF constant. B2=0xE7 constant. B4-B7=0xFF constant. B3=0xFD CONFIRMED: HIL-3 2026-03-24 at t=2748881ms (FR door opened second in FL→FR→RL→RR sequential 4-door test, held ~10s, event-driven burst of 6 groups). Door ID mapping confirmed by sequential hold test: FL=0x0EA, FR=0x0E2, RL=0x0EE, RR=0x0E6. Source: HIL session 2026-03-24 (10minutes_run_Wheel_doors_tests.log)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -2281,7 +2285,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x0E6 (Gate1): Central locking status BFTH (rear-left door area)</div>
+<div class='comment'>0x0E6 (Gate1): Door status — RR (Beifahrert&#252;r hinten, BFTH, passenger rear-right). Same byte layout as 0x0E2/0x0EA/0x0EE: B0=LockState (0x81=unlocked, 0x82=locked, 0x83=armed), B3=DoorOpenState (0xFC=closed, 0xFD=open), B1=0xFF, B2=0xE7 constant. B3=0xFD CONFIRMED: HIL-3 2026-03-24 at t=2778797ms (RR door opened fourth in FL→FR→RL→RR sequential 4-door test, held ~10s, event-driven burst of 2 groups). Door ID mapping confirmed by sequential hold test: FL=0x0EA, FR=0x0E2, RL=0x0EE, RR=0x0E6. Source: HIL session 2026-03-24 (10minutes_run_Wheel_doors_tests.log)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -2328,7 +2332,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x0EA (Gate1): Central locking status FAT (front-right door area)</div>
+<div class='comment'>0x0EA (Gate1): Door status — FL driver front (Fahrert&#252;r vorne, FAT). B0=LockState: 0x81=unlocked, 0x82=locked, 0x83=armed. B3=DoorOpenState: 0xFC=closed, 0xFD=open. B1=0xFF, B2=0xE7 constant. B3=0xFD CONFIRMED twice: (1) HIL 2026-03-23: B3=0xFD when driver entered car. (2) keyless-restart log 2026-03-24: B3=0xFD at t+26.4s when driver exited running keyless car (held ~5s, then 0xFC). Simultaneously with 0x130 B0 transition to 0x05 (security-alert state). This is the driver door — highest event density, most reliable for door-open detection. B0 lock state changes in real-time: 0x81→0x82 at keyfob lock (simultaneous with 0x2A0 command frame). Source: HIL 2026-03-23 + keyless-restart 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -2375,7 +2379,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x0EE (Gate1): Central locking status FATH (rear-right door area)</div>
+<div class='comment'>0x0EE (Gate1): Door status — RL driver rear (Fahrert&#252;r hinten, FATH). Same byte layout as 0x0E2/0x0E6/0x0EA: B0=LockState (0x81=unlocked, 0x82=locked, 0x83=armed), B3=DoorOpenState (0xFC=closed, 0xFD=open). B3=0xFD CONFIRMED: captured at t=2765496ms in 10minutes_run_Wheel_doors_tests.log 2026-03-24 (door held open ~10s, B0=0x81 unlocked). This is the only door frame with open state directly captured in HIL logs to date — confirms the 0xFC/0xFD decode is correct. B1=0xFF, B2=0xE7 constant. Source: HIL 2026-03-23 + HIL doors log 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -2500,7 +2504,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class='comment'>0x0F6: Exterior mirror control / mirror position status. Sender: KGM (Body Gateway Module, node 0x00). 2-byte, static 0xF3 0xF3 in t1.log (idle/no-command state). Follows the body-module door-status +4 sequence: 0x0E2 BFT (passenger front door), 0x0E6 BFH (passenger rear door), 0x0EA FAT (driver front door), 0x0EE FAH (driver rear door), 0x0F2 HK (boot/tailgate), 0x0F6 mirrors. Source: MorGuux BMW E90 K-CAN gist</div>
+<div class='comment'>0x0F6: Exterior mirror control / mirror position status. Sender: KGM (Body Gateway Module, node 0x00). 2-byte, static 0xF3 0xF3 in t1.log (idle/no-command state). Follows the body-module door-status +4 sequence: 0x0E2 BFT (passenger front door), 0x0E6 BFH (passenger rear door), 0x0EA FAT (driver front door), 0x0EE FAH (driver rear door), 0x0F2 HK (boot/tailgate), 0x0F6 mirrors. Source: MorGuux BMW E90 K-CAN gist. ** IMPORTANT: Mirror motor control on E90 goes via LIN bus (FRM Footwell Module -&gt; LIN -&gt; mirror motor actuators). The joystick input on K-CAN may trigger an FRM frame, but the actual mirror movement commands are LIN-bus-only and will NOT appear in a K-CAN capture. 0x0F6 = 0 frames confirmed in 10-min real drive log (10minutes_run.log) even though mirror adjustments were physically performed. K-CAN only sees 0xF3 0xF3 (idle/no-command state) periodically. To capture mirror commands: tap LIN bus at FRM connector, or read mirror position via UDS (0x7C3 FRM diagnostic frames observed at ts=76575-78642ms before vehicle movement may be position readout). **</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -2744,7 +2748,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>10 signals</span>
 </div>
 </div>
-<div class='comment'>0x130 (CAS): Terminal status — ignition, key, KL15</div>
+<div class='comment'>0x130 (CAS — Car Access System): Ignition/key/terminal status frame at ~10 Hz. Confirmed decode (HIL keyfobless_restart_lock.log 2026-03-24): B0=IgnitionMode: 0x45=KL15_RUN (normal running), 0x55=CRANKING/starting (engineStarting), 0x41=ACCESSORY (KL15 on, engine off), 0x40=transitional/shutdown (ignition winding down, keeps previous state in decoder), 0x05=SECURITY_ALERT (engine running without authorised key — persists when car is locked externally with engine on). B1 encodes key presence and door/security context: 0x40=key_present_normal (bit6=1), 0x1A=key_absent_door_closed, 0x0D=key_absent_door_open_or_security_event. B2/B3=variable (clutch nibble in B2 hi-nibble: 0xA=unknown, decodes unchanged). KEYLESS RESTART CONFIRMED: B0=0x55 + B1=0x1A observed when engine cranks without physical key — CAS allows restart within security window after key removal. CRANK TIMING (N47D20O1): B0=0x55 fires → 0x21A engine_running bit in 13ms → RPM measurable in 264ms → B0 settles to 0x45 in ~800ms total. LOCKED-RUNNING STATE: after driver exits and keyfob-locks running car, B0 stays at 0x05, B1=0x0D indefinitely — distinct from all normal run states. Source: HIL sessions 2026-03-23 + keyless-restart 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -3107,6 +3111,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>1 signals</span>
 </div>
 </div>
+<div class='comment'>0x175 (DME): Engine RPM. B0=rolling counter (0x00–0x0E, 15-step). B2=RPM_HIGH byte: formula B2 &#215; 40 = RPM (resolution &#177;40 RPM). Full 16-bit (B2&lt;&lt;8|B1) encodes finer precision. HIL calibration points from 5min_run_for_testing.log 2026-03-26: B2=0x15(21)→~840 RPM (N47 diesel idle), B2=0x18(24)→~960 RPM (light cruise), B2=0x2A(42)→~1680 RPM (acceleration), B2=0x38(56)→~2240 RPM (hard acceleration peak), B2=0x0C(12)→~480 RPM (overrun/fuel-cut). Existing DBC signals (CruiseControlSetpointSpeed etc.) are from loopybunny — RPM signal not previously mapped. Source: HIL 2026-03-26.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -4164,13 +4169,14 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>9 signals</span>
 </div>
 </div>
-<div class='comment'>0x1D0 (DME): Engine data — coolant temp, oil temp, idle target RPM</div>
+<div class='comment'>0x1D0 (DME): Engine data — coolant temp, oil temp (petrol/some diesel), idle target RPM. TEMP_EOI (B1) returns 0xFF on N47 diesel (signal not available — N47 does not expose oil temp via K-CAN gateway; OBD-II PID 0x5C or PT-CAN required). TEMP_EOI is valid on petrol engines (N43, N52, N54, etc.) using same raw-48=C formula as TEMP_ENG.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
 <tr>
 <td>
 <strong>TEMP_ENG</strong>
+<div class='signal-comment'>Coolant temperature. Formula: raw - 48 = degC. Confirmed on N47 diesel: 0x3E=14C cold start (ambient), rises to 0x62=50C after 10 min, 0x88=88C at operating temp. Source: HIL 2026-03-24 temp log.</div>
 </td>
 <td><code>0|8</code></td>
 <td>Intel (little-endian)<br>Unsigned<br>Unit: C</td>
@@ -4181,6 +4187,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <tr>
 <td>
 <strong>TEMP_EOI</strong>
+<div class='signal-comment'>Engine oil temperature. Formula: raw - 48 = degC. Valid on petrol engines (N43, N52, N54, etc.). NOT AVAILABLE on N47 diesel: returns 0xFF permanently after engine start (= 207 degC with formula — discard, signal absent). Use OBD-II PID 0x5C or PT-CAN for oil temp on N47. Validated HIL 2026-03-24: 10minutes_run_temp_24_16_28_24.log shows B1=0x30 briefly at cold start, 0x42 for ~30s, then 0xFF for remainder of run.</div>
 </td>
 <td><code>8|8</code></td>
 <td>Intel (little-endian)<br>Unsigned<br>Unit: C</td>
@@ -5257,7 +5264,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x21A (FRM — Footwell Module): Lamp / lighting status. LightsByte0: 0=all off, 4=sidelights, 5=dip, 7=main, 39=fog. LightsByte1: 0=all off, 1=reverse/tail, 16=interior, 18=interior+exterior. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x21A (FRM — Footwell Module): Lighting and engine-running status. CORRECTION (keyless-restart log 2026-03-24): B0 bit7 is NOT KL15_Active — it is BRAKE_LIGHTS (brake pedal pressed). Evidence: bit7 clears to 0 immediately after start while engine is still running and KL15 is active (driver lifts foot off brake). The earlier correlation with ignition events was because diesel start requires brake pedal held, so brake-on and KL15-on events coincide. B0 bit0: reflects engine running state (1=engine running) but also correlates with dipped-beam (see full lighting decode). B0 bit2=SideLights. Confirmed B0 patterns: 0x04=sidelights_only (engine off, no brake), 0x84=brake+sidelights (brake pressed, engine off — restart prep), 0x85=brake+sidelights+engine_flag (cranking/just_started), 0x05=sidelights+engine_running_no_brake (normal driving), 0x05=also seen post-lock with engine on. B1=0x12 constant when KL15 active (from HIL-2). B2=0xF7 constant. [PARTIAL] Loopybunny exterior light decode (unconfirmed for this car): B0 lo-nibble: 0=all off, 4=sidelights/auto, 5=dip, 7=main. B1: 0=off, 1=reverse/tail, 16=interior, 18=interior+exterior. Source: loopybunny.co.uk/CarPC + HIL 2026-03-23 + keyless-restart 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -5482,7 +5489,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x23A (CAS): Keyfob / remote key action. Byte 1: 0x30=idle/key in, 0x33=key state. Byte 2: 0x00=none, 0x01=unlock, 0x04=lock, 0x10=boot unlock. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x23A (CAS or CIC gateway): Keyfob/CIC interaction state. B3=0x60 constant. B1 state: 0x30=idle/home, 0x33=active menu/CIC interaction ongoing. B2 countdown: 0x04→0x01→0x00 during startup init; 0x00 during normal operation. HIL-3 2026-03-24: B1 transitions 0x30→0x33 within 5ms of MENU hard button release (t=2365334ms), confirming B1=0x33 marks CIC menu mode active. Also B2 runs 0x04→0x00 countdown at both session start AND session end (shutdown). Loopybunny source labels B2 as keyfob button command (0x04=lock, 0x01=unlock) — this appears incorrect for CIC-equipped E90 LCI; in our data B2 is an init/deinit counter, not a keyfob command. Source: loopybunny.co.uk/CarPC (partial); HIL-3 2026-03-24 (override)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -5651,7 +5658,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>1 signals</span>
 </div>
 </div>
-<div class='comment'>0x246 (IHKA — Automatic Climate Control): Climate setpoint for the currently-active zone. B0=0x3F, B1=0xF3 constant. B2=ClimaTempSetpoint raw (factor=0.5, offset=2.5 degC): valid range raw 0x1B=16.0C to raw 0x33=28.0C (0.5C step). Raw 0x00=LO, raw&gt;0x33=HI overdrive. B3 bit0=AC_mode flag (0xFC=off, 0xFD=on). Tracks whichever zone is being adjusted — use 0x2E6 B7 (driver) and 0x2EA B7 (passenger) for independent zone feedback. Source: clima_temp_fan.log + clima_modes_bottom_up.log HIL captures</div>
+<div class='comment'>0x246 (IHKA — Automatic Climate Control): Climate setpoint and AC status. B0=0x3F constant (purpose unknown). B1=0xF3 constant (purpose unknown). B2=TEMPERATURE SETPOINT (DBC signal ClimaTempSetpoint is CORRECT): formula raw*0.5+2.5 degC, range 0x1B-0x33 (16.0-28.0 degC). Validated at three setpoints in dedicated HIL capture 10minutes_run_temp_24_16_28_24.log 2026-03-24: 0x2B=24.0C, 0x1B=16.0C, 0x33=28.0C — all confirmed. Values 0x00=LO, 0x01-0x1A=below scale, 0x34+=HI (observed up to 0x3A when dial turned past maximum). B2=0x00 with AC-off seen at start/end of session (LO/AC-off state). NOTE: previous CM_ (HIL 2026-03-23) incorrectly identified B2 as a rolling counter — that analysis was from sessions with static setpoint and the apparent increment was coincidental. The original DBC signal name ClimaTempSetpoint was correct all along. B3=AC_Compressor flag: 0xFC=off, 0xFD=on (HIL-confirmed across multiple sessions). Source: 10minutes_run.log 2026-03-22 + HIL 2026-03-23 + HIL temp log 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -5843,31 +5850,41 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 6</span>
-<span class='badge'>2 signals</span>
+<span class='badge'>3 signals</span>
 </div>
 </div>
-<div class='comment'>0x264 (ZBE — iDrive Controller): iDrive controller rotary encoder. 6 bytes. Byte 2 = absolute position counter (0-254, increments per notch). Byte 3 = direction counter (0-254, up/down per rotation direction). Requires 0x273 activation. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x264 (ZBE — iDrive Controller): iDrive knob rotary encoder per-detent frame. B0=0xE1, B1=0xFD, B5=0x1E constants. B2=ByteCounter: shared incrementing frame-sequence counter (same counter as 0x267 B2 — both IDs share one global counter in firmware). B3=RotaryAbsoluteLow: low byte of 16-bit absolute encoder counter. B4=RotaryAbsoluteHigh: high byte of 16-bit encoder counter. Counter encoding: (B4&lt;&lt;8 | B3) as unsigned 16-bit. Initial/boot value [B3=0x00, B4=0x7F] = 0x7F00 = 32512 (mid-range). CW rotation = counter increments (B3++; if B3 overflows 0xFF→0x00, B4++). CCW rotation = counter decrements (B3--; if B3 underflows 0x00→0xFF, B4--). One physical detent = &#177;1 on counter. Event-driven: transmits only while knob is being turned; absent when knob is still. HIL-3 2026-03-24 confirmed: &#39;wobble&#39; sequence B3=0xFE→0xFD (one CCW click) →0xFE (one CW click) observed; rollover 0xFF→0x00 with B4 0x7F→0x80 carry confirmed. Only appears when CIC menu is active (0x5E7 B4=0x01). Source: idCanSend.txt firmware (idrive_backup, deep-tested); HIL-3 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
 <tr>
 <td>
-<strong>RotaryAbsolute_264</strong>
+<strong>ByteCounter_264</strong>
 </td>
 <td><code>16|8</code></td>
 <td>Intel (little-endian)<br>Unsigned</td>
 <td>Factor <code>1</code><br>Offset <code>0</code></td>
-<td><code>[0 .. 254]</code></td>
+<td><code>[0 .. 255]</code></td>
 <td>XXX</td>
 </tr>
 <tr>
 <td>
-<strong>RotaryDirection_264</strong>
+<strong>RotaryAbsoluteLow_264</strong>
 </td>
 <td><code>24|8</code></td>
 <td>Intel (little-endian)<br>Unsigned</td>
 <td>Factor <code>1</code><br>Offset <code>0</code></td>
-<td><code>[0 .. 254]</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>XXX</td>
+</tr>
+<tr>
+<td>
+<strong>RotaryAbsoluteHigh_264</strong>
+</td>
+<td><code>32|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
 <td>XXX</td>
 </tr>
 </tbody>
@@ -5884,7 +5901,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x267 (ZBE — iDrive Controller): iDrive controller buttons and joystick. 6 bytes. Bytes 0-1=E1 FD (static). Byte 2=counter. Byte 3 upper nibble=direction (1=up,2=right,4=down,8=left), lower nibble=press type (1=short,2=long). Byte 4=area (0xDE=menu/dir,0xDD=joystick,0xC0=multi). Byte 5=button bitmask. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x267 (ZBE — iDrive Controller): iDrive button/joystick event frame. B0=0xE1, B1=0xFD constants. B2=ByteCounter: shared sequence counter (same as 0x264 B2). B3=action byte: high nibble=joystick direction (0=none,1=up,2=right,4=down,8=left), low nibble=press state (0x1=pressed/short,0x2=long-press,0x0=released). B4=area context: 0xC0=panel hard buttons, 0xDE=knob center press, 0xDD=joystick. B5=button ID: for B4=0xC0 panel buttons bitmask: 0x01=Menu/Mode, 0x02=Back, 0x04=Option, 0x08=Radio, 0x10=CD/Media, 0x20=NAV, 0x40=Tel; for B4=0xDE knob-center: B5=0x01; for B4=0xDD joystick: B5=0x00 (direction in B3 high nibble). Protocol: press sends B3=0x01 frame then after hold B3=0x00 release frame; B2 increments between press and release. Long-press of knob-center (B4=DE, B5=0x01, B3=0x02): native BMW CIC behaviour. Long-press of Menu/Mode (B4=C0, B5=0x01, B3=0x02, 3s hold): NOT native BMW behaviour — this is a custom firmware trick in idCanSend.txt (TBit=15) used to switch video output to aftermarket MMI instead of CIC; observed in HIL-3 at t=2889271ms. HIL-3 2026-03-24 confirmed: Back(C0/02), NAV(C0/20), JoyPress/enter(DE/01), Menu/Mode(C0/01), Menu long-press (C0/01 B3=0x02 = MMI video switch, non-BMW). Source: idCanSend.txt firmware (idrive_backup, deep-tested); loopybunny.co.uk/CarPC (structure); HIL-3 2026-03-24 (bitmask values)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -6008,7 +6025,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class='comment'>0x26E (CAS): Rotary/iDrive encoder. Byte 2 RotaryAbsolute: 0-254 counts every notch regardless of direction. Byte 3 RotaryDirection: 0-254, up or down depending on rotation. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x26E (ZBE — iDrive controller): ZBE mode-state heartbeat, 2-second periodic. NOT the rotary encoder (encoder is 0x264). B3=0x00, B5-B7=0xFF constants. B2 mode flag: 0x3F=home/idle (bit6=0), 0x7F=CIC menu active (bit6=1 — transition observed at t=2375221ms during menu session). B1: 0x00=pre-menu idle, 0x40=menu interaction acknowledged (~22s after menu entry). B0: 0x00=idle, 0x40=extended/sustained menu state. Loopybunny source mislabels this as &#39;RotaryAbsolute per-notch counter&#39; — incorrect for E90 LCI CIC; B2 is a 2-state flag, not a counter. Source: HIL-3 2026-03-24 (override)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -6026,6 +6043,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
+<div class='comment'>0x273 (CCC — Car Communication Computer / CIC): CIC state event counter. B1=0xE1, B2=0x00, B3=0xF0, B4=0xFF, B5=0x7F, B6=0xDE constant. B7 = global event counter, increments by 1 on each significant CIC menu state transition (enter submenu, back-to-menu, mode change). NOT a per-knob-detent counter — too infrequent (~11 events over 9.8 min). B0 flag byte: 0x1D=normal CIC interaction, 0x5D=rapid/held interaction (bit6 set, observed during 78-92ms rapid button burst at t=2857995-2858165ms). HIL-3 2026-03-24: first 4 counter events at t=2365659-2375390ms coincide exactly with CIC menu navigation session (3 events ~250-750ms apart = scrolling through items; 4th event after 8.7s gap = returned from submenu). Counter range 0x01-0x0C observed in 9.8 min log. ID already referenced by CM_ BO_ 631 (0x277 = reply frame). Source: HIL-3 2026-03-24 (10minutes_run_Wheel_doors_tests.log)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -6043,7 +6061,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>1 signals</span>
 </div>
 </div>
-<div class='comment'>0x277 (iDrive controller): Reply to 0x273 (CCC/CIC). 4 bytes. Byte 3 bits 0-4 = screen number acknowledgement (TBC). Example: E1 9D 04 FF. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x277 (ZBE — iDrive controller reply to CCC 0x273): CIC screen/state acknowledgement frame. B0=0xE1, B1=0x9D (may encode active screen/context — constant at 0x9D throughout HIL-3 main-menu session), B3=0xFF constants. B2 = event counter echo: mirrors B7 of the triggering 0x273 frame (same value, confirms handshake). Sends 1-3 frames per 0x273 event at ~160ms intervals. First 0x277 frame arrives at the same millisecond as the 0x273 event. HIL-3 2026-03-24: B2 range 0x01-0x0C, skips values that arrived too close together (0x07 skipped when two 0x273 events fired 92ms apart). B1=0x9D may change per screen context — all observations in this log are within the same menu session so a different B1 value would indicate a different CIC screen. Source: loopybunny.co.uk/CarPC (extended); HIL-3 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -6057,6 +6075,24 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <td><code>[0 .. 31]</code></td>
 <td>XXX</td>
 </tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-632'>
+<div class="message-header">
+<div>
+<h2>0x278 &middot; CIC_278</h2>
+<div class='message-sub'>Decimal ID: 632 <span class='muted'>&middot;</span> Transmitter: CIC</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>0 signals</span>
+</div>
+</div>
+<div class='comment'>0x278 (CIC): Unknown CIC/NavGraph group message. DLC 8. B0: 7-bit rolling counter (0x0A-0x7E, 117 steps, shared with 0x3CC/0x3F7 — all three counters step in lockstep). B2: 12-step cycle counter (0x00-0x0B). B6: 6 observed values (0x1E=30, 0x29=41, 0x2E=46, 0x32=50, 0x3A=58, 0x3B=59) — temperature in degC (coolant or ambient as reported by CIC). B0/B1 vary proportionally (often within 1 unit of each other, occasionally diverge — may be paired sensor readings). Sender is CIC (iDrive CCC/NBT — same ID-space as 0x273 CIC_Status, 0x277 Idrive_Emu_Response, 0x27A NavGraph_Sync). Source: HIL intensive driving logs 2026-03-29</div>
+<table>
+<thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
 </tbody>
 </table>
 </section>
@@ -6307,13 +6343,116 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>8 signals</span>
 </div>
 </div>
-<div class='comment'>0x2A0 (CAS): Central locking control. Bytes 0-1 are the command identifier: 0x11 0x11 = unlock, 0x22 0x22 = lock, 0x88 0x88 = trunk open. Bytes 2-7 meaning is unknown — empirically observed values are: unlock B2=0x18 B3-7=0x00; lock B2=0x28 B3-7=0x00; trunk B2=0x80 B3=0x00 B4=0x16 B5=0x40 B6=0x86 B7=0x00. Source: idCanSend.txt empirical capture. B2-7 flagged for HIL investigation.</div>
+<div class='comment'>CAS central locking. Two operating modes on same ID. (1) Periodic heartbeat (~5 s interval): B0=B1=B2=0x88 constant. B3: observed 0x00 at session start, flips to 0x01 within first 20s — purpose unknown, possibly CAS ready flag. B4-B7 encode lock state. Confirmed lock states across two sessions: UNLOCKED B5-B7=0x40 0x06 0x00, LOCKED B5-B7=0x43 0x1B 0x03. B4 is a ROLLING COUNTER — increments by 2 per heartbeat cycle (observed 0x20, 0x22, 0x24, 0x26, 0x28, 0x2A, 0x2C in 10minutes_run_Wheel_doors_tests.log 2026-03-24). The previous hypothesis that B4 encodes door-open flags (XOR=0x3C between sessions) was INCORRECT — the XOR difference was due to counter state difference between sessions, not door status. Per-door open status is carried in the individual door frames 0x0E2/0x0E6/0x0EA/0x0EE (B3: 0xFC=closed, 0xFD=open), not in 0x2A0. B3 (of 0x2A0) is a single bit flag (0x00 vs 0x01) observed toggling ~20s into the session — possible generic door-open indicator, needs further testing. Third state observed at t=580s after ignition off: 88 88 88 00 00 44 05 04 — likely deep standby/sleep entry (~240s after KL15 off). (2) Momentary command frame (single burst on key press, 3 rapid frames): B0=B1=0x11=unlock, 0x22=lock, 0x88=trunk-open. B2=0x18 observed with lock command while engine running (keyless-restart log 2026-03-24). B3=0x01 (same as heartbeat B3 state at time of command). Note: B2=0x18 vs previously-assumed 0x28 for lock — may depend on engine-running context. LOCK-RUNNING-CAR CONFIRMED: 0x2A0 B0=B1=0x22 command burst observed at t+33s in keyless-restart scenario (driver locked running car from outside with keyfob) — all door frames simultaneously transition B0 from 0x81→0x82 (unlocked→locked). Source: idCanSend.txt + 10minutes_run.log 2026-03-22 + HIL 2026-03-23 + keyless-restart 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td>
+<strong>LockCmd_B0</strong>
+<div class='signal-comment'>Command type byte in momentary key-press frame. 0x11=Unlock, 0x22=Lock, 0x88=TrunkOpen. In periodic heartbeat frames this byte is always 0x88 regardless of lock state. Always identical to LockCmd_B1.</div>
+<ul class="enum-list">
+<li><code>17</code> = Unlock</li>
+<li><code>34</code> = Lock</li>
+<li><code>136</code> = TrunkOpen</li>
+</ul>
+</td>
+<td><code>0|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockCmd_B1</strong>
+<div class='signal-comment'>Mirror of LockCmd_B0 in command frames. In periodic heartbeat frames always 0x88.</div>
+<ul class="enum-list">
+<li><code>17</code> = Unlock_mirror</li>
+<li><code>34</code> = Lock_mirror</li>
+<li><code>136</code> = TrunkOpen_mirror</li>
+</ul>
+</td>
+<td><code>8|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockCmd_B2</strong>
+<div class='signal-comment'>Byte 2. In command frames (empirical bench): 0x18 with Unlock, 0x28 with Lock, 0x80 with TrunkOpen. In periodic heartbeat frames always 0x88.</div>
+<ul class="enum-list">
+<li><code>24</code> = Unlock_0x18</li>
+<li><code>40</code> = Lock_0x28</li>
+<li><code>128</code> = TrunkOpen_0x80</li>
+</ul>
+</td>
+<td><code>16|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockState_B3</strong>
+<div class='signal-comment'>Always 0x01 in both unlocked and locked heartbeat captures. Purpose unknown.</div>
+</td>
+<td><code>24|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockState_B4</strong>
+<div class='signal-comment'>Lock state byte 4. Heartbeat: 0x06=unlocked, 0x08=locked (confirmed from drive log auto-lock at 5 km/h). Bit encoding unknown — HIL LOCK-01 required.</div>
+</td>
+<td><code>32|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockState_B5</strong>
+<div class='signal-comment'>Lock state byte 5. Heartbeat: 0x40=unlocked, 0x43=locked. Bit encoding unknown — HIL LOCK-01 required.</div>
+</td>
+<td><code>40|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockState_B6</strong>
+<div class='signal-comment'>Lock state byte 6. Heartbeat: 0x06=unlocked, 0x1B=locked. Bit encoding unknown — HIL LOCK-01 required.</div>
+</td>
+<td><code>48|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
+<tr>
+<td>
+<strong>LockState_B7</strong>
+<div class='signal-comment'>Lock state byte 7. Heartbeat: 0x00=unlocked, 0x03=locked. Bit encoding unknown — HIL LOCK-01 required.</div>
+</td>
+<td><code>56|8</code></td>
+<td>Intel (little-endian)<br>Unsigned</td>
+<td>Factor <code>1</code><br>Offset <code>0</code></td>
+<td><code>[0 .. 255]</code></td>
+<td>Vector__XXX</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -6613,7 +6752,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class='comment'>0x2C0 (Kombi): LCD lighting</div>
+<div class='comment'>0x2C0 (Kombi): LCD lighting / rear window heater status. B0 lo-nibble: 0x1F=normal, 0x3F=at startup (settling). B1: 0x00=normal, 0x81=rear-window-heater-active [HYPOTHESIS — HIL 2026-03-23: B1 changed 0x00→0x81 at t=327s during rear window heater test, stayed 0x81 until ignition-off — single session, needs confirmation with explicit on/off cycle]. B2=0x01 constant. Source: HIL 2026-03-23</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -6762,6 +6901,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
+<div class='comment'>0x2D1 (FZD — Roof Functions Centre): Attributed to FZD (Dachfunktionszentrum — overhead console module). B0: slowly-varying temperature-like signal, range 0x83-0x9E (131-158 raw) in intensive driving session. Formula raw-48=degC gives 83-110 degC range, consistent with solar/IR-heated interior surface (headliner area) or FZD-mounted temperature sensor. At drive start: 0x9E=110C declining to 0x83=83C over ~110s, then stabilising ~83-87C (ambient cabin normalisation). N.B.: formula raw-48 is the same as DME TEMP_ENG/TEMP_EOI — possibly shared ECU convention. DBC name &#39;Status_fitting_window_V&#39; (Verglasung) may refer to glazing/glass temperature rather than mechanical window status. B1=0xF8 fixed (0xF8 = common &#39;data valid&#39; marker in K-CAN). No signals currently defined in DBC — signal decode unconfirmed, requires dedicated HIL session. Source: HIL intensive driving 2026-03-29</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -7045,6 +7185,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
+<div class='comment'>0x2F0: [HYPOTHESIS — UNVERIFIED] Original DBC: Status_air_condition_functions, sender IHKA, 8 bytes. CONFLICT: 10minutes_run.log shows DLC=2, payload always F7 FC (100% static across 195 frames, period ~2000 ms, no variation during or after mirror adjustments). DBC DLC claim of 8 bytes does not match observed DLC=2. Copilot hypothesis: Mirror Status from TSG (door module) to FRM3 — bit0=MirrorMoveActive, bits1-2=MirrorMoveDirection, bit3=MirrorSelect, bit4=MirrorHeaterStatus, bit5=MirrorFault. This hypothesis is NOT supported by the drive log: payload never changes from F7 FC even when mirrors were physically adjusted. Static heartbeat behaviour is inconsistent with a movement-status frame. True identity unknown — needs HIL capture with known sender isolation.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -7062,6 +7203,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
+<div class='comment'>0x2F1: [HYPOTHESIS — UNVERIFIED] Original DBC: Status_driver_detection, sender MRSZ (occupant detection / airbag), 3 bytes — DLC matches observed DLC=3. 10minutes_run.log: 412 frames, period ~1000 ms. B0 and B1 are rolling counters (incrementing mod 256, loosely correlated). B2 alternates FC/FD. Rolling counter pattern is consistent with a periodic MRSZ heartbeat — NOT consistent with Copilot hypothesis of Mirror Command (button press bits from TSG). Copilot hypothesis claims bit0=AdjustUp, bit1=AdjustDown, bit2=AdjustLeft, bit3=AdjustRight, bit4=SelectLeft, bit5=SelectRight — payload structure (counter + counter + status nibble) does not match button-press bitmask semantics. Most likely this is genuine MRSZ occupant detection status. Needs HIL confirmation.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -7244,7 +7386,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x2FA (ACSM): Seat belt / occupancy contact</div>
+<div class='comment'>0x2FA (ACSM): Seat belt / occupancy. 5 bytes. B0 bit0=Occupancy_Driver [HYPOTHESIS: 0=not detected, 1=detected — set briefly at entry t=17s then stable from t=24s]. B1 bit0=Belt_Driver [HYPOTHESIS: 0=unbuckled, 1=buckled — 0x90→0x91 observed just before lock event at t=312s, consistent with driver unbuckling]. B2-B4=0xFF throughout (passenger seat empty in all captures). Only appears during KL15-on phase (event-triggered, ~5s interval during activity). Observed payloads: FC 04 FF FF FF (ECU wake), FD 91 FF FF FF (occupied+buckled), FC 90 FF FF FF (occupied, unbuckled?), FD 90 FF FF FF (stable seated). [HYPOTHESIS — single HIL session, needs dedicated belt buckle/unbuckle test to confirm bit mapping]. Source: HIL 2026-03-23 (10minutes_run_start_stop_most_HIL2_tests.log)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -7401,7 +7543,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>1 signals</span>
 </div>
 </div>
-<div class='comment'>0x304 (EGS): Current drive gear. B0=GearDisplay. Correlated with 0x1D2 ShiftLeverPosition: 0xE3=Park, 0xC2=Reverse, 0xD1=Neutral, 0xC1=Gear_1, 0xC5-0xC8=Gears 5-8. 0xC3=brief P-&gt;R transient (~320ms). B1=0xFF constant. Source: gearbox_modes.log HIL capture</div>
+<div class='comment'>0x304 (EGS): Current drive gear / selector state. B0=GearDisplay. ZF6HP19 6-speed automatic. Selector states (confirmed): 0xE3=Park, 0xC2=Reverse, 0xD1=Neutral, 0xC3=P-&gt;R transient (~320ms), 0xE1=R-&gt;P transient (1 frame, seen between C1 and E3 during R-&gt;Park at 0 km/h). B1=0xFF constant. Drive gear encoding CONFIRMED by speed-correlation HIL 2026-03-28 (mlog1, mlog2 = manual/Sport mode; dlog1 = Drive mode — encoding identical in both): 0xC5=1st (0 km/h creep), 0xC6=2nd (0-36 km/h), 0xC7=3rd (0-66 km/h), 0xC8=4th (10-78 km/h), 0xC9=5th (47-56 km/h), 0xCA=6th (72.9-94.8 km/h, avg 83.7 km/h, CONFIRMED 2026-03-29 idrive-can-capture-20260329-143516.log). 0xC1=1st in sport/stall state (always 0 km/h, appears at stops and parking; may indicate TC stall or manual 1st selection — distinct from C5 but same physical gear). Encoding is the same in automatic Drive mode and manual Sport/M mode — no difference observed. Paddle shifts are non-CAN (EGS-direct hardwired). Standing manual shift test (m1-m6_shift.log 2026-03-29): EGS only permits C5(M1) and C6(M2) from standstill — M3-M6 silently rejected (transmission protection). Source: mlog1/mlog2/dlog1 2026-03-28 + city_run 2026-03-27 + driving/shift logs 2026-03-29 HIL captures.</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -7409,14 +7551,17 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <td>
 <strong>GearDisplay</strong>
 <ul class="enum-list">
-<li><code>193</code> = Gear_1</li>
+<li><code>193</code> = Gear1_Sport</li>
 <li><code>194</code> = Reverse</li>
 <li><code>195</code> = PR_Transient</li>
-<li><code>197</code> = Gear_5</li>
-<li><code>198</code> = Gear_6</li>
-<li><code>199</code> = Gear_7</li>
-<li><code>200</code> = Gear_8</li>
+<li><code>197</code> = Gear1</li>
+<li><code>198</code> = Gear2</li>
+<li><code>199</code> = Gear3</li>
+<li><code>200</code> = Gear4</li>
+<li><code>201</code> = Gear5</li>
+<li><code>202</code> = Gear6</li>
 <li><code>209</code> = Neutral</li>
+<li><code>225</code> = RP_Transient</li>
 <li><code>227</code> = Park</li>
 </ul>
 </td>
@@ -7873,7 +8018,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>3 signals</span>
 </div>
 </div>
-<div class='comment'>0x328 (IHKA — Automatic Climate Control): Climate internal control info — light sensor (0-16 dash dimming), IR temp sensor, solar sensor. Source: loopybunny.co.uk/CarPC</div>
+<div class='comment'>0x32E (IHKA — Automatic Climate Control): Climate internal control info. B0=LightSensor (dash dimming, 0-16). B3=IRTempSensor (interior cabin IR temp, formula raw*0.1+6=degC): HIL-observed 15.0C at cold start (14C ambient) rising to 16.5C after 10 min, 21.0C with cabin warmed by heater — physically consistent, best available interior temp signal on K-CAN. Formula and byte confirmed from loopybunny source + HIL 2026-03-24 cross-validation. B4=SolarSensor (0-255, raw lux proxy). NOTE: prior CM_ incorrectly cited this as 0x328 — correct hex ID is 0x32E. Source: loopybunny.co.uk/CarPC + HIL 2026-03-24</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -9484,6 +9629,24 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
+<section class='message' id='msg-972'>
+<div class="message-header">
+<div>
+<h2>0x3CC &middot; NavGraph_3CC</h2>
+<div class='message-sub'>Decimal ID: 972 <span class='muted'>&middot;</span> Transmitter: CCC_GW</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 7</span>
+<span class='badge'>0 signals</span>
+</div>
+</div>
+<div class='comment'>0x3CC (CCC_GW): NavGraph group dormant message. DLC 7. B0: rolling counter shared with 0x278/0x3F7 (7-bit, 0x0A-0x7E). B1=0xF6, B2-B4=0xFE fixed (data not available). B5: varies 0x00-0xFF (purpose unknown). B6: 3 states (0xF0, 0xF7, 0xFF — likely status flags). Consistently present in all driving sessions. Source: HIL 2026-03-29</div>
+<table>
+<thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+</tbody>
+</table>
+</section>
 <section class='message' id='msg-974'>
 <div class="message-header">
 <div>
@@ -9820,6 +9983,24 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x3F1: Extended Lighting Personalisation Status (CKM — Comfort Coding Module data). Sender: LM/FRM (Light Module / Footwell Module, node 0x70). Paired with 0x3F0 (Extended Lighting Personalisation Configuration from CCC_GW). Appears once at startup — FRM broadcasts current extended-lighting personalisation state. Source: MorGuux BMW E90 K-CAN gist (entry: 1009,0x3F1,Status Light Extended CKM [1],112,0x70,LM)</div>
+<table>
+<thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1015'>
+<div class="message-header">
+<div>
+<h2>0x3F7 &middot; NavGraph_3F7</h2>
+<div class='message-sub'>Decimal ID: 1015 <span class='muted'>&middot;</span> Transmitter: CCC_GW</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>0 signals</span>
+</div>
+</div>
+<div class='comment'>0x3F7 (CCC_GW): NavGraph group dormant message. DLC 8. B0: rolling counter shared with 0x278/0x3CC. B1: 3 states (0xE2, 0xE6, 0xEE). B3: 2 states (0x7F, 0xFF). B4: 2 states (0x15, 0xFF). Most bytes fixed 0xFF/0xFE. Mostly inactive — likely GPS or nav sub-message dormant when no active navigation. Source: HIL 2026-03-29</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -10289,6 +10470,24 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
+<section class='message' id='msg-1506'>
+<div class="message-header">
+<div>
+<h2>0x5E2 &middot; ZBE_Button_5E2</h2>
+<div class='message-sub'>Decimal ID: 1506 <span class='muted'>&middot;</span> Transmitter: ZBE</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>0 signals</span>
+</div>
+</div>
+<div class='comment'>0x5E2 (ZBE — iDrive controller): Hard button press/release event frame. B0=0x01 constant. B1 state: 0x03=button pressed, 0x02=button released. B2=variable (likely a checksum or noise, no decoded meaning). B3-B7=0xFF constant. Transmits on state change (event-driven), NOT periodic. HIL-3 2026-03-24 observations: (1) t=2361889ms B1=0x03 (button pressed, held ~3.44s — likely long-press to enter CIC main menu from anywhere); (2) t=2365329ms B1=0x02 (released); (3) t=2366780ms B1=0x03 (normal 0.65s press); (4) t=2367429ms B1=0x02 (released); (5) t=2880966ms B1=0x03 (press, no release in log). Two frames sent 10ms apart at each press event (debounce confirmation). Most likely encodes MENU/NAV/TEL hard button on CIC panel — exact button identity TBC. Source: HIL-3 2026-03-24 (10minutes_run_Wheel_doors_tests.log)</div>
+<table>
+<thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+</tbody>
+</table>
+</section>
 <section class='message' id='msg-1511'>
 <div class="message-header">
 <div>
@@ -10300,7 +10499,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class='comment'>0x5E7 (XXX): BMW K-CAN Services range message (22 frames); seen in t1.log</div>
+<div class='comment'>0x5E7 (ZBE — iDrive controller): ZBE operational state heartbeat, 2-second period. B0=0x99, B1=0xE1, B2=0xFE constant. B3 = rolling counter (increments +1 per 2s transmission). B4 = CIC/menu state flag: 0x06=home/idle screen (no active menu interaction), 0x01=CIC menu active (changed from 0x06 to 0x01 at t=2366232ms, ~4s after MENU hard button press). B5-B7=0xFF constant. HIL-3 2026-03-24: B4 remained 0x01 for the rest of the log after menu was entered (never returned to 0x06 within 9.8 min log). Source: HIL-3 2026-03-24 (10minutes_run_Wheel_doors_tests.log)</div>
 <table>
 <thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
