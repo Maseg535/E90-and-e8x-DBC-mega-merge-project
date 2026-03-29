@@ -1203,7 +1203,7 @@ CM_ BO_ 466 "0x1D2 (EGS): Transmission display data. ShiftLeverPosition HIL-vali
 CM_ SG_ 416 LongAcc "Longitudinal acceleration";
 CM_ SG_ 416 LatlAcc "Lateral acceleration";
 CM_ SG_ 466 GearAct "EGS commanded/requested gear. Only valid in Sport/Manual mode (ShiftLeverMode=2, B4=0xF2). Raw 5-10 = gears 1-6 (formula raw-4). Raw 0 = not available (Drive mode). All 6 gears confirmed HIL 2026-03-29.";
-CM_ SG_ 466 SportButtonState "Only selected powertrains. Makes throttle, overboost, suspension, steering, shiftpoints more aggressive";
+CM_ SG_ 466 SportButtonState "Only selected powertrains. Makes throttle, overboost, suspension, steering, shiftpoints more aggressive. NOTE: on N47 diesel E90 without a physical Sport/S button this bit is structurally always 1 — B3 low nibble is permanently 0xC (bits 2-3 always set). Either EGS hardcodes sport-shift profile as default for this powertrain, or bits 2-3 are XOR/framing bits misidentified as a signal. Not meaningful as a toggle on no-sport-button variants. Confirmed across all HIL logs 2026-03-29: bit2=1 in every frame.";
 CM_ SG_ 466 ShiftLeverMode "Gear selector mode. 0=Drive/Normal (B4=0xF0), 2=Sport/Manual (B4=0xF2). Dashboard shows D1-D6 in Normal, S1-S6 in Sport, M1-M6 in Manual. Confirmed HIL 2026-03-29.";
 CM_ BO_ 470 "0x1D6 (SZL): Steering wheel MFL buttons";
 CM_ BO_ 472 "0x1D8 (CCC): AC air distribution front";

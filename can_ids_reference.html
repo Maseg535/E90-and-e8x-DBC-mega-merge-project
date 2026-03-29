@@ -41,7 +41,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-29 20:59:43</span>
+<span>Generated: 2026-03-29 21:33:25</span>
 <span>Messages: 371</span>
 <span>Signals: 331</span>
 </div>
@@ -4342,7 +4342,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <tr>
 <td>
 <strong>SportButtonState</strong>
-<div class='signal-comment'>Only selected powertrains. Makes throttle, overboost, suspension, steering, shiftpoints more aggressive</div>
+<div class='signal-comment'>Only selected powertrains. Makes throttle, overboost, suspension, steering, shiftpoints more aggressive. NOTE: on N47 diesel E90 without a physical Sport/S button this bit is structurally always 1 — B3 low nibble is permanently 0xC (bits 2-3 always set). Either EGS hardcodes sport-shift profile as default for this powertrain, or bits 2-3 are XOR/framing bits misidentified as a signal. Not meaningful as a toggle on no-sport-button variants. Confirmed across all HIL logs 2026-03-29: bit2=1 in every frame.</div>
 <ul class="enum-list">
 <li><code>0</code> = Inactive</li>
 <li><code>1</code> = Active</li>
