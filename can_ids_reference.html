@@ -56,6 +56,33 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 .enum-dec{color:#94a3b8;font-size:11px;}
 .muted{color:#64748b;}
 @media (max-width:900px){.message-header{flex-direction:column;}}
+@media (prefers-color-scheme:dark){
+  body{background:#0f172a;color:#e2e8f0;}
+  .toc{background:#1e293b;box-shadow:0 10px 24px rgba(0,0,0,.4);}
+  .toc summary{color:#e2e8f0;}
+  .toc summary::before{color:#94a3b8;}
+  .toc a{background:#263450;color:#93c5fd;}
+  .toc a:hover{background:#1e3a5f;}
+  .message{background:#1e293b;box-shadow:0 12px 28px rgba(0,0,0,.4);}
+  .message h2{color:#f1f5f9;}
+  .message-sub{color:#94a3b8;}
+  .badge{background:#1e3a5f;border-color:#3b82f6;color:#93c5fd;}
+  .comment{background:#162032;border-left-color:#3b82f6;color:#cbd5e1;}
+  .byte-used{background:#162032;border-color:#3b82f6;}
+  .byte-empty{background:#141e2e;border-color:#334155;color:#64748b;}
+  .byte-idx{color:#60a5fa;}
+  .byte-empty .byte-idx{color:#64748b;}
+  .byte-sigs{color:#cbd5e1;}
+  .bytemap-label{color:#64748b;}
+  th,td{border-bottom-color:#334155;}
+  th{background:#162032;color:#94a3b8;}
+  td code{background:#162032;color:#e2e8f0;}
+  .human-pos{color:#f1f5f9;}
+  .formula{color:#34d399;}
+  .signal-comment{color:#94a3b8;}
+  .enum-list li{background:#162e22;border-color:#15803d;}
+  .enum-hex{color:#34d399;}
+}
 @media (max-width:700px){
   .page{padding:12px 10px 48px;max-width:100%;}
   .hero{border-radius:12px;padding:18px 16px;}
@@ -74,6 +101,11 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
   td::before{display:block;content:attr(data-label);font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}
   /* Signal (col 1) and Rx (col 6) span full width */
   td[data-label="Signal"],td[data-label="Rx"]{grid-column:1/-1;background:#fff;border-color:#bfdbfe;}
+  @media (prefers-color-scheme:dark){
+    tbody tr{border-bottom-color:#334155;}
+    td{background:#162032;border-color:#334155;}
+    td[data-label="Signal"],td[data-label="Rx"]{background:#1e293b;border-color:#3b82f6;}
+  }
   .bytemap{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
   .byte-cell{min-width:0;max-width:none;flex:none;}
 }
@@ -86,7 +118,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-30 23:16:40</span>
+<span>Generated: 2026-03-30 23:21:16</span>
 <span>Messages: 371</span>
 <span>Signals: 331</span>
 </div>
