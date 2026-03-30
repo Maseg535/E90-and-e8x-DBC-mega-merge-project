@@ -16,10 +16,15 @@ body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f3f5f7;color:#1d
 #search{width:100%;padding:12px 16px;font-size:16px;border:2px solid #334155;border-radius:12px;background:#1f2937;color:#f1f5f9;outline:none;box-sizing:border-box;}
 #search::placeholder{color:#64748b;}
 #search:focus{border-color:#60a5fa;}
-.toc{margin:24px 0 30px;padding:18px 20px;background:#ffffff;border-radius:16px;box-shadow:0 10px 24px rgba(15,23,42,.08);}
-.toc h2{margin:0 0 12px;font-size:20px;}
-.toc-list{display:flex;flex-wrap:wrap;gap:10px 12px;}
-.toc a{display:inline-block;padding:8px 10px;border-radius:10px;background:#e5eef7;color:#1f3b5b;text-decoration:none;font-size:14px;}
+.toc{margin:24px 0 30px;background:#ffffff;border-radius:16px;box-shadow:0 10px 24px rgba(15,23,42,.08);overflow:hidden;}
+.toc summary{padding:14px 20px;font-size:16px;font-weight:600;cursor:pointer;user-select:none;list-style:none;display:flex;align-items:center;gap:8px;}
+.toc summary::-webkit-details-marker{display:none;}
+.toc summary::before{content:"\25B6";font-size:11px;color:#64748b;transition:transform .2s;}
+.toc[open] summary::before{transform:rotate(90deg);}
+.toc-body{padding:4px 16px 16px;}
+.toc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 8px;}
+.toc a{display:block;padding:5px 8px;border-radius:8px;background:#f1f5f9;color:#1f3b5b;text-decoration:none;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.toc a:hover{background:#dbeafe;}
 .message{margin-top:22px;background:#ffffff;border-radius:18px;padding:22px 22px 24px;box-shadow:0 12px 28px rgba(15,23,42,.08);}
 .message.hidden{display:none;}
 .message-header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 18px;align-items:flex-start;}
@@ -60,7 +65,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-30 22:57:14</span>
+<span>Generated: 2026-03-30 23:02:16</span>
 <span>Messages: 371</span>
 <span>Signals: 331</span>
 </div>
@@ -68,382 +73,382 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
 </div>
 </section>
-<section class="toc">
-<h2>Message Index</h2>
-<div class="toc-list">
-<a href='#msg-128'>0x080 &middot; SYNC</a>
-<a href='#msg-133'>0x085 &middot; Synchronization_SC_VDA</a>
-<a href='#msg-168'>0x0A8 &middot; EngineAndBrake</a>
-<a href='#msg-169'>0x0A9 &middot; Torque2</a>
-<a href='#msg-170'>0x0AA &middot; AccPedal</a>
-<a href='#msg-172'>0x0AC &middot; WheelTorqueDrivetrain2</a>
-<a href='#msg-173'>0x0AD &middot; Delay_request_ACC</a>
-<a href='#msg-177'>0x0B1 &middot; Torque_request_steering</a>
-<a href='#msg-179'>0x0B3 &middot; Control_steering_assist</a>
-<a href='#msg-180'>0x0B4 &middot; WheelTorqueDriveTrain1</a>
-<a href='#msg-181'>0x0B5 &middot; Torque_request_EGS</a>
-<a href='#msg-182'>0x0B6 &middot; Torque_request_DSC</a>
-<a href='#msg-183'>0x0B7 &middot; Torque_request_ACC</a>
-<a href='#msg-184'>0x0B8 &middot; Torque_request_DCT</a>
-<a href='#msg-185'>0x0B9 &middot; Torque_request_AFS</a>
-<a href='#msg-186'>0x0BA &middot; TransmissionData</a>
-<a href='#msg-187'>0x0BB &middot; Target_torque_request</a>
-<a href='#msg-188'>0x0BC &middot; Status_target_torque_conversion</a>
-<a href='#msg-189'>0x0BD &middot; Torque_request_SSG</a>
-<a href='#msg-190'>0x0BE &middot; Alive_Counter</a>
-<a href='#msg-191'>0x0BF &middot; RequestedWheelTorqueDriveTrain</a>
-<a href='#msg-192'>0x0C0 &middot; Alive_Central_Gateway</a>
-<a href='#msg-193'>0x0C1 &middot; Alive_counter_telephone</a>
-<a href='#msg-196'>0x0C4 &middot; SteeringWheelAngle</a>
-<a href='#msg-200'>0x0C8 &middot; SteeringWheelAngle_slow</a>
-<a href='#msg-201'>0x0C9 &middot; SteeringWheelAngle_DSC</a>
-<a href='#msg-205'>0x0CD &middot; Accelerometer2</a>
-<a href='#msg-206'>0x0CE &middot; WheelSpeeds</a>
-<a href='#msg-209'>0x0D1 &middot; Accelerometer1</a>
-<a href='#msg-212'>0x0D4 &middot; Unknown_d4</a>
-<a href='#msg-213'>0x0D5 &middot; Request_wheel_torque_brake</a>
-<a href='#msg-215'>0x0D7 &middot; Alive_Counter_Security</a>
-<a href='#msg-216'>0x0D8 &middot; CLU1_VDA</a>
-<a href='#msg-225'>0x0E1 &middot; Wheel_torque_brake</a>
-<a href='#msg-226'>0x0E2 &middot; Status_central_locking_BFT</a>
-<a href='#msg-227'>0x0E3 &middot; CLU2_VDA</a>
-<a href='#msg-230'>0x0E6 &middot; Status_central_locking_BFTH</a>
-<a href='#msg-234'>0x0EA &middot; Status_central_locking_FAT</a>
-<a href='#msg-238'>0x0EE &middot; Central_locking_status_FATH</a>
-<a href='#msg-242'>0x0F2 &middot; Status_central_locking_HK</a>
-<a href='#msg-244'>0x0F4 &middot; CLU3_VDA</a>
-<a href='#msg-246'>0x0F6 &middot; MirrorControl_0F6</a>
-<a href='#msg-247'>0x0F7 &middot; lateral_dynamics_ARS_VDM</a>
-<a href='#msg-249'>0x0F9 &middot; Vertical_dynamics_VDM_ARS</a>
-<a href='#msg-250'>0x0FA &middot; Control_window_lifter_FAT</a>
-<a href='#msg-251'>0x0FB &middot; Control_window_lifter_BFT</a>
-<a href='#msg-252'>0x0FC &middot; Control_window_lifter_FATH</a>
-<a href='#msg-253'>0x0FD &middot; Control_window_lifter_BFTH</a>
-<a href='#msg-254'>0x0FE &middot; Voltage_level_sensors</a>
-<a href='#msg-280'>0x118 &middot; Exchange_AFS_DSC</a>
-<a href='#msg-286'>0x11E &middot; Control_interventions_DSC_AFS</a>
-<a href='#msg-288'>0x120 &middot; Status_partial_setpoints_AFS_DSC_2</a>
-<a href='#msg-298'>0x12A &middot; Sensor_data_ROSE</a>
-<a href='#msg-300'>0x12C &middot; input_data_ROSE</a>
-<a href='#msg-304'>0x130 &middot; TerminalStatus</a>
-<a href='#msg-309'>0x135 &middot; CrashDisconnectControl</a>
-<a href='#msg-320'>0x140 &middot; Unknown140</a>
-<a href='#msg-336'>0x150 &middot; Request_1_ACC</a>
-<a href='#msg-339'>0x153 &middot; Request_2_ACC</a>
-<a href='#msg-345'>0x159 &middot; Object_data_ACC</a>
-<a href='#msg-348'>0x15C &middot; Status_ACC</a>
-<a href='#msg-351'>0x15F &middot; Requirement_angle_FFP</a>
-<a href='#msg-357'>0x165 &middot; CLU_Status_VDA</a>
-<a href='#msg-370'>0x172 &middot; Acknowledgment_request_Kombination</a>
-<a href='#msg-373'>0x175 &middot; Display_motor_data</a>
-<a href='#msg-400'>0x190 &middot; display_ACC</a>
-<a href='#msg-402'>0x192 &middot; GearSelectorSwitch_1</a>
-<a href='#msg-403'>0x193 &middot; DynamicCruiseControlStatus</a>
-<a href='#msg-404'>0x194 &middot; CruiseControlStalk</a>
-<a href='#msg-405'>0x195 &middot; Operation_push_button_MSA</a>
-<a href='#msg-408'>0x198 &middot; GearSelectorSwitch</a>
-<a href='#msg-414'>0x19E &middot; StatusDSC_KCAN</a>
-<a href='#msg-416'>0x1A0 &middot; Speed</a>
-<a href='#msg-417'>0x1A1 &middot; SpeedKombi_1A1</a>
-<a href='#msg-418'>0x1A2 &middot; TransimissionData2</a>
-<a href='#msg-419'>0x1A3 &middot; Raw_data_longitudinal_acceleration</a>
-<a href='#msg-422'>0x1A6 &middot; DistanceRoute</a>
-<a href='#msg-423'>0x1A7 &middot; actuation_request_EMF</a>
-<a href='#msg-426'>0x1AA &middot; Effect_ErgoCommander</a>
-<a href='#msg-428'>0x1AC &middot; Status_ARS_module</a>
-<a href='#msg-436'>0x1B4 &middot; InstrumentClusterStatus_KOMBI</a>
-<a href='#msg-437'>0x1B5 &middot; HeatFlow_LoadTorqueClimate</a>
-<a href='#msg-438'>0x1B6 &middot; HeatFlowEngine</a>
-<a href='#msg-440'>0x1B8 &middot; Operation_ErgoCommander</a>
-<a href='#msg-450'>0x1C2 &middot; Distance_message_PDC</a>
-<a href='#msg-451'>0x1C3 &middot; Distance_message_2_PDC</a>
-<a href='#msg-454'>0x1C6 &middot; Acoustic_message_PDC</a>
-<a href='#msg-464'>0x1D0 &middot; EngineData</a>
-<a href='#msg-466'>0x1D2 &middot; TransmissionDataDisplay</a>
-<a href='#msg-470'>0x1D6 &middot; SteeringButtons</a>
-<a href='#msg-472'>0x1D8 &middot; Operation_air_conditioning_air_distribution_FA</a>
-<a href='#msg-473'>0x1D9 &middot; Operation_pushbutton_MDrive</a>
-<a href='#msg-474'>0x1DA &middot; Climate_control_remote_control</a>
-<a href='#msg-476'>0x1DC &middot; Operation_stratification_seat_heating</a>
-<a href='#msg-478'>0x1DE &middot; Air_conditioning_controls_rear</a>
-<a href='#msg-480'>0x1E0 &middot; Operation_air_conditioning_air_distribution_BF</a>
-<a href='#msg-481'>0x1E1 &middot; DoorStatus_Counter_1E1</a>
-<a href='#msg-482'>0x1E2 &middot; Operation_air_conditioning_front</a>
-<a href='#msg-483'>0x1E3 &middot; Operation_pushbutton_interior_lighting</a>
-<a href='#msg-487'>0x1E7 &middot; Operation_seat_heating_seat_climate_FA</a>
-<a href='#msg-488'>0x1E8 &middot; Operation_seat_heating_seat_climate_BF</a>
-<a href='#msg-490'>0x1EA &middot; Steering_column_adjustment_control</a>
-<a href='#msg-491'>0x1EB &middot; Operation_active_seat_FA</a>
-<a href='#msg-492'>0x1EC &middot; Operation_active_seat_BF</a>
-<a href='#msg-493'>0x1ED &middot; Operation_backrest_adjust_FA</a>
-<a href='#msg-494'>0x1EE &middot; Steering_column_switch_operation</a>
-<a href='#msg-495'>0x1EF &middot; Operation_backrest_adjust_BF</a>
-<a href='#msg-498'>0x1F2 &middot; Operation_seat_memory_BF</a>
-<a href='#msg-499'>0x1F3 &middot; Operation_seat_memory_FA</a>
-<a href='#msg-502'>0x1F6 &middot; TurnSignals</a>
-<a href='#msg-504'>0x1F8 &middot; Operation_SHD_MDS</a>
-<a href='#msg-507'>0x1FB &middot; Status_EPS</a>
-<a href='#msg-508'>0x1FC &middot; Status_AFS</a>
-<a href='#msg-509'>0x1FD &middot; Status_request_EMF_KCAN</a>
-<a href='#msg-510'>0x1FE &middot; Crash</a>
-<a href='#msg-512'>0x200 &middot; CruiseControlStatus</a>
-<a href='#msg-513'>0x201 &middot; Status_EMF_KCAN</a>
-<a href='#msg-514'>0x202 &middot; Dimming</a>
-<a href='#msg-517'>0x205 &middot; Acoustic_request_Kombi</a>
-<a href='#msg-518'>0x206 &middot; Control_Display_Shiftlights</a>
-<a href='#msg-523'>0x20B &middot; Memory_adjustment</a>
-<a href='#msg-524'>0x20C &middot; Steering_column_control</a>
-<a href='#msg-525'>0x20D &middot; Position_steering_column</a>
-<a href='#msg-528'>0x210 &middot; Operation_HUD</a>
-<a href='#msg-529'>0x211 &middot; Status_HUD</a>
-<a href='#msg-530'>0x212 &middot; Height_levels_air_spring</a>
-<a href='#msg-538'>0x21A &middot; LampStatus</a>
-<a href='#msg-540'>0x21C &middot; Operation_NightVision</a>
-<a href='#msg-542'>0x21E &middot; Status_NightVision</a>
-<a href='#msg-548'>0x224 &middot; Operation_push_button_NSW</a>
-<a href='#msg-550'>0x226 &middot; RainSensorWiperSpeed</a>
-<a href='#msg-552'>0x228 &middot; Operation_special_function</a>
-<a href='#msg-554'>0x22A &middot; Status_BFS</a>
-<a href='#msg-556'>0x22C &middot; Operation_push_button_NSL</a>
-<a href='#msg-562'>0x232 &middot; Status_FAS</a>
-<a href='#msg-566'>0x236 &middot; Status_FASH</a>
-<a href='#msg-570'>0x23A &middot; Status_radio_key</a>
-<a href='#msg-571'>0x23B &middot; Status_climate_front_extended</a>
-<a href='#msg-573'>0x23D &middot; Request_display_climate</a>
-<a href='#msg-574'>0x23E &middot; Status_Klima_Fond</a>
-<a href='#msg-578'>0x242 &middot; ClimateFrontStatus</a>
-<a href='#msg-582'>0x246 &middot; Status_air_conditioning_front_control_unit</a>
-<a href='#msg-584'>0x248 &middot; Status_rear_view_camera</a>
-<a href='#msg-585'>0x249 &middot; Control_rear_view_camera</a>
-<a href='#msg-586'>0x24A &middot; Status_PDC</a>
-<a href='#msg-587'>0x24B &middot; Status_door_sensors</a>
-<a href='#msg-594'>0x252 &middot; Wiper_status</a>
-<a href='#msg-598'>0x256 &middot; Challenge_Passive_Access</a>
-<a href='#msg-600'>0x258 &middot; Status_Transmission_Passive_Access</a>
-<a href='#msg-604'>0x25C &middot; Operation_of_climate_additional_programs</a>
-<a href='#msg-612'>0x264 &middot; iDrive_Rotary_264</a>
-<a href='#msg-615'>0x267 &middot; iDrive_Buttons_267</a>
-<a href='#msg-619'>0x26B &middot; Operation_blinds_BF</a>
-<a href='#msg-620'>0x26C &middot; Operation_blinds_FA</a>
-<a href='#msg-621'>0x26D &middot; Operation_blinds_MK</a>
-<a href='#msg-622'>0x26E &middot; Control_FH_SHD_central_comfort</a>
-<a href='#msg-627'>0x273 &middot; CIC_Status_for_Idrive</a>
-<a href='#msg-631'>0x277 &middot; Idrive_Emu_Response_277</a>
-<a href='#msg-632'>0x278 &middot; CIC_278</a>
-<a href='#msg-634'>0x27A &middot; NavGraph_Sync_27A</a>
-<a href='#msg-635'>0x27B &middot; Status_Shiftlights</a>
-<a href='#msg-637'>0x27D &middot; Status_convertible_top_manual_convertible</a>
-<a href='#msg-638'>0x27E &middot; Status_convertible_top_convertible</a>
-<a href='#msg-639'>0x27F &middot; Status_central_locking_convertible_top</a>
-<a href='#msg-642'>0x282 &middot; Control_security_vehicle_2</a>
-<a href='#msg-644'>0x284 &middot; Control_remote_start_safety_vehicle</a>
-<a href='#msg-646'>0x286 &middot; Electrochromic_control</a>
-<a href='#msg-652'>0x28C &middot; Pushbutton_vertical_dynamics</a>
-<a href='#msg-653'>0x28D &middot; Operation_pushbutton_sport</a>
-<a href='#msg-656'>0x290 &middot; Control_response_hydrogen_vehicle</a>
-<a href='#msg-658'>0x292 &middot; Control_high_beam_assistant</a>
-<a href='#msg-670'>0x29E &middot; Central_locking_control_for_security_vehicle</a>
-<a href='#msg-671'>0x29F &middot; Remote_control_FondCommander</a>
-<a href='#msg-672'>0x2A0 &middot; Central_locking_control</a>
-<a href='#msg-674'>0x2A2 &middot; Operation_of_climate_stand_functions</a>
-<a href='#msg-676'>0x2A4 &middot; Operation_personalization</a>
-<a href='#msg-678'>0x2A6 &middot; WiperSwitch</a>
-<a href='#msg-690'>0x2B2 &middot; WheelPressure_KCAN</a>
-<a href='#msg-691'>0x2B3 &middot; AccelerationData</a>
-<a href='#msg-692'>0x2B4 &middot; DWA_Alarm</a>
-<a href='#msg-694'>0x2B6 &middot; Control_horn_DWA</a>
-<a href='#msg-696'>0x2B8 &middot; Operation_onboard_computer</a>
-<a href='#msg-697'>0x2B9 &middot; Operation_RSE</a>
-<a href='#msg-698'>0x2BA &middot; Stopwatch</a>
-<a href='#msg-701'>0x2BD &middot; Request_switching_display</a>
-<a href='#msg-702'>0x2BE &middot; Switch_status_display</a>
-<a href='#msg-703'>0x2BF &middot; Water_valve_control</a>
-<a href='#msg-704'>0x2C0 &middot; LCD_lighting</a>
-<a href='#msg-706'>0x2C2 &middot; Temperatur_Ist_Fond</a>
-<a href='#msg-711'>0x2C7 &middot; Display_Kombination_extended</a>
-<a href='#msg-714'>0x2CA &middot; Outside_temperature</a>
-<a href='#msg-716'>0x2CC &middot; Control_monitor_rear</a>
-<a href='#msg-718'>0x2CE &middot; Control_monitor</a>
-<a href='#msg-719'>0x2CF &middot; Status_of_auxiliary_water_pump</a>
-<a href='#msg-720'>0x2D0 &middot; Status_Sensor_AUC</a>
-<a href='#msg-721'>0x2D1 &middot; Status_fitting_window_V</a>
-<a href='#msg-722'>0x2D2 &middot; Status_pressure_refrigeration_circuit</a>
-<a href='#msg-723'>0x2D3 &middot; Status_stratification_rear</a>
-<a href='#msg-725'>0x2D5 &middot; Status_heating_rear_window</a>
-<a href='#msg-726'>0x2D6 &middot; Status_valve_air_conditioning_compressor</a>
-<a href='#msg-730'>0x2DA &middot; Status_tailgate_lift</a>
-<a href='#msg-734'>0x2DE &middot; Switch_control_display</a>
-<a href='#msg-738'>0x2E2 &middot; Status_setting_video_night_vision</a>
-<a href='#msg-739'>0x2E3 &middot; Status_setting_video_rear_view_camera</a>
-<a href='#msg-740'>0x2E4 &middot; Status_trailer</a>
-<a href='#msg-742'>0x2E6 &middot; Status_of_air_distribution_FA</a>
-<a href='#msg-746'>0x2EA &middot; Status_air_distribution_BF</a>
-<a href='#msg-750'>0x2EE &middot; Status_climate_additional_programs</a>
-<a href='#msg-752'>0x2F0 &middot; Status_air_condition_functions</a>
-<a href='#msg-753'>0x2F1 &middot; Status_driver_detection</a>
-<a href='#msg-755'>0x2F3 &middot; Display_switching_instruction</a>
-<a href='#msg-756'>0x2F4 &middot; Air_conditioning_control_SH_ZH_auxiliary_water_pump</a>
-<a href='#msg-758'>0x2F6 &middot; LightControl</a>
-<a href='#msg-759'>0x2F7 &middot; Units</a>
-<a href='#msg-760'>0x2F8 &middot; Time_Date</a>
-<a href='#msg-762'>0x2FA &middot; OccupancySeatBeltContact</a>
-<a href='#msg-764'>0x2FC &middot; TrunkStatus</a>
-<a href='#msg-768'>0x300 &middot; Status_RSE</a>
-<a href='#msg-772'>0x304 &middot; Status_Gang</a>
-<a href='#msg-773'>0x305 &middot; Operation_button_convertible_top</a>
-<a href='#msg-774'>0x306 &middot; Vehicle_tilt</a>
-<a href='#msg-775'>0x307 &middot; Operation_button_flap_convertible_top</a>
-<a href='#msg-776'>0x308 &middot; Status_MSA</a>
-<a href='#msg-784'>0x310 &middot; AmbientTemperature_RelativeTime</a>
-<a href='#msg-785'>0x311 &middot; Refill_quantity</a>
-<a href='#msg-786'>0x312 &middot; Service_Call_Teleservice</a>
-<a href='#msg-787'>0x313 &middot; Status_Service_Call_Teleservice</a>
-<a href='#msg-788'>0x314 &middot; Status_driving_light</a>
-<a href='#msg-789'>0x315 &middot; Vehicle_mode</a>
-<a href='#msg-790'>0x316 &middot; OperationPushButtonDTC</a>
-<a href='#msg-791'>0x317 &middot; Operation_button_parking_aids</a>
-<a href='#msg-792'>0x318 &middot; Status_antennas_Passive_Access</a>
-<a href='#msg-793'>0x319 &middot; Operation_push_button_RDC</a>
-<a href='#msg-794'>0x31A &middot; Operation_button_HDC</a>
-<a href='#msg-795'>0x31B &middot; Operation_of_tailgate_interior_button</a>
-<a href='#msg-796'>0x31C &middot; Status_tire_pressure</a>
-<a href='#msg-797'>0x31D &middot; TirePressureStatus</a>
-<a href='#msg-801'>0x321 &middot; Operation_button_camera_BF</a>
-<a href='#msg-802'>0x322 &middot; Damper_current</a>
-<a href='#msg-806'>0x326 &middot; Status_damper_program</a>
-<a href='#msg-808'>0x328 &middot; Relativzeit</a>
-<a href='#msg-810'>0x32A &middot; Control_ALC</a>
-<a href='#msg-813'>0x32D &middot; Display_HDC</a>
-<a href='#msg-814'>0x32E &middot; Status_climate_internal_control_info</a>
-<a href='#msg-816'>0x330 &middot; Range_Mileage</a>
-<a href='#msg-817'>0x331 &middot; Programming_of_step_cruise_control</a>
-<a href='#msg-818'>0x332 &middot; Driver_display_speed_range</a>
-<a href='#msg-821'>0x335 &middot; ElectricFuelPumpStatus</a>
-<a href='#msg-822'>0x336 &middot; Display_check_control_message_role</a>
-<a href='#msg-823'>0x337 &middot; StatusFuelControl</a>
-<a href='#msg-824'>0x338 &middot; Control_display_check_control_message</a>
-<a href='#msg-825'>0x339 &middot; Status_display_climate</a>
-<a href='#msg-826'>0x33A &middot; Status_Monitor_Front</a>
-<a href='#msg-828'>0x33C &middot; Status_Monitor_Fond_1</a>
-<a href='#msg-830'>0x33E &middot; Status_Monitor_Fond_2</a>
-<a href='#msg-840'>0x348 &middot; NavGraph_Alignment_348</a>
-<a href='#msg-841'>0x349 &middot; Raw_data_level_tank</a>
-<a href='#msg-842'>0x34A &middot; GPS_34A</a>
-<a href='#msg-843'>0x34B &middot; Status_seat_back_lock_FA</a>
-<a href='#msg-844'>0x34C &middot; NavGraph_GPS2_34C</a>
-<a href='#msg-845'>0x34D &middot; Status_seat_back_lock_BF</a>
-<a href='#msg-846'>0x34E &middot; Navi_sys_info</a>
-<a href='#msg-847'>0x34F &middot; Status_contact_handbrake</a>
-<a href='#msg-858'>0x35A &middot; Appointment_Condition_Based_Service</a>
-<a href='#msg-860'>0x35C &middot; Status_onboard_computer</a>
-<a href='#msg-862'>0x35E &middot; Onboard_computer_data_trip_data</a>
-<a href='#msg-864'>0x360 &middot; Data_onboard_computer_start_of_journey</a>
-<a href='#msg-866'>0x362 &middot; Data_onboard_computer_average_values</a>
-<a href='#msg-868'>0x364 &middot; Data_onboard_computer_arrival</a>
-<a href='#msg-869'>0x365 &middot; Status_terminal_request</a>
-<a href='#msg-870'>0x366 &middot; Display_Kombination_external_display</a>
-<a href='#msg-871'>0x367 &middot; Control_display_of_demand_oriented_service</a>
-<a href='#msg-877'>0x36D &middot; Setting_the_driving_dynamics_switch</a>
-<a href='#msg-884'>0x374 &middot; WheelToleranceAdjustment</a>
-<a href='#msg-886'>0x376 &middot; Status_wear_lamella</a>
-<a href='#msg-893'>0x37D &middot; Status_DKG</a>
-<a href='#msg-894'>0x37E &middot; Temperatur_Bremse</a>
-<a href='#msg-895'>0x37F &middot; Range_of_diesel_exhaust_gas_additive</a>
-<a href='#msg-896'>0x380 &middot; chassis_number</a>
-<a href='#msg-897'>0x381 &middot; EngineOilLevel</a>
-<a href='#msg-898'>0x382 &middot; Electronic_engine_oil_dipstick_M</a>
-<a href='#msg-899'>0x383 &middot; Motor_data_2</a>
-<a href='#msg-904'>0x388 &middot; Vehicle_type</a>
-<a href='#msg-907'>0x38B &middot; Status_battery</a>
-<a href='#msg-910'>0x38E &middot; Start_speed</a>
-<a href='#msg-914'>0x392 &middot; Status_System_AFS</a>
-<a href='#msg-916'>0x394 &middot; RDA_request_data_storage</a>
-<a href='#msg-917'>0x395 &middot; Coding_power_management</a>
-<a href='#msg-920'>0x398 &middot; Operation_chassis</a>
-<a href='#msg-921'>0x399 &middot; Status_MDrive</a>
-<a href='#msg-926'>0x39E &middot; Operation_time_date</a>
-<a href='#msg-928'>0x3A0 &middot; Vehicle_state</a>
-<a href='#msg-931'>0x3A3 &middot; Request_Remote_Services</a>
-<a href='#msg-937'>0x3A9 &middot; Status_motor_control_CKM</a>
-<a href='#msg-939'>0x3AB &middot; Status_Shiftlights_CKM</a>
-<a href='#msg-940'>0x3AC &middot; RunOnTimeTerminal30</a>
-<a href='#msg-944'>0x3B0 &middot; Status_gear_reverse</a>
-<a href='#msg-945'>0x3B1 &middot; TransmissionData3</a>
-<a href='#msg-947'>0x3B3 &middot; PowerManagmentConsumptionControl</a>
-<a href='#msg-948'>0x3B4 &middot; PowerBatteryVoltage</a>
-<a href='#msg-949'>0x3B5 &middot; Status_water_valve</a>
-<a href='#msg-950'>0x3B6 &middot; Position_window_lifter_FAT</a>
-<a href='#msg-951'>0x3B7 &middot; Position_window_lifter_FATH</a>
-<a href='#msg-952'>0x3B8 &middot; Position_window_regulator_BFT</a>
-<a href='#msg-953'>0x3B9 &middot; Position_window_regulator_BFTH</a>
-<a href='#msg-954'>0x3BA &middot; Position_SHD</a>
-<a href='#msg-956'>0x3BC &middot; Position_window_lifter_security_vehicle</a>
-<a href='#msg-957'>0x3BD &middot; Status_consumer_shutdown</a>
-<a href='#msg-958'>0x3BE &middot; PowerRunningTime</a>
-<a href='#msg-959'>0x3BF &middot; Position_window_rear_window</a>
-<a href='#msg-960'>0x3C0 &middot; Configuration_FAS</a>
-<a href='#msg-961'>0x3C1 &middot; Configuration_BFS</a>
-<a href='#msg-964'>0x3C4 &middot; Status_EDCK_CKM</a>
-<a href='#msg-967'>0x3C7 &middot; Access_radio</a>
-<a href='#msg-968'>0x3C8 &middot; Operation_push_button_radio</a>
-<a href='#msg-972'>0x3CC &middot; NavGraph_3CC</a>
-<a href='#msg-974'>0x3CE &middot; Radio_audio_control_interface_display</a>
-<a href='#msg-975'>0x3CF &middot; Acknowledgment_access_radio_audio_control_interface</a>
-<a href='#msg-979'>0x3D3 &middot; Status_solar_sensor</a>
-<a href='#msg-980'>0x3D4 &middot; Configuration_of_central_locking_CKM</a>
-<a href='#msg-981'>0x3D5 &middot; Status_central_locking_CKM</a>
-<a href='#msg-982'>0x3D6 &middot; Configuration_DWA_CKM</a>
-<a href='#msg-983'>0x3D7 &middot; Status_DWA_CKM</a>
-<a href='#msg-984'>0x3D8 &middot; Configuration_RLS_CKM</a>
-<a href='#msg-985'>0x3D9 &middot; Status_RLS_CKM</a>
-<a href='#msg-986'>0x3DA &middot; Configuration_of_memory_positions_CKM</a>
-<a href='#msg-987'>0x3DB &middot; Status_memory_positions_CKM</a>
-<a href='#msg-988'>0x3DC &middot; Configuration_light_CKM</a>
-<a href='#msg-989'>0x3DD &middot; Status_light_CKM</a>
-<a href='#msg-990'>0x3DE &middot; Configuration_Climate_CKM</a>
-<a href='#msg-991'>0x3DF &middot; Status_Klima_CKM</a>
-<a href='#msg-994'>0x3E2 &middot; Configuration_of_tailgate_CKM</a>
-<a href='#msg-995'>0x3E3 &middot; Status_tailgate_CKM</a>
-<a href='#msg-996'>0x3E4 &middot; Configuration_rear_view_camera_CKM</a>
-<a href='#msg-1007'>0x3EF &middot; EngineOBD_data</a>
-<a href='#msg-1009'>0x3F1 &middot; LightExtStatus_CKM_3F1</a>
-<a href='#msg-1015'>0x3F7 &middot; NavGraph_3F7</a>
-<a href='#msg-1043'>0x413 &middot; Unknown_413</a>
-<a href='#msg-1045'>0x415 &middot; Unknown_415</a>
-<a href='#msg-1152'>0x480 &middot; NetworkMgmt_KGM_480</a>
-<a href='#msg-1153'>0x481 &middot; NetworkMgmt_ACSM_481</a>
-<a href='#msg-1170'>0x492 &middot; NetworkMgmt_DME_492</a>
-<a href='#msg-1175'>0x497 &middot; NetworkMgmt_EKP_497</a>
-<a href='#msg-1176'>0x498 &middot; NetworkMgmt_EGS_498</a>
-<a href='#msg-1193'>0x4A9 &middot; NetworkMgmt_DSC_4A9</a>
-<a href='#msg-1216'>0x4C0 &middot; NetworkMgmt_CAS_4C0</a>
-<a href='#msg-1238'>0x4D6 &middot; NetworkManagment_4D6</a>
-<a href='#msg-1246'>0x4DE &middot; NetworkMgmt_GWS_4DE</a>
-<a href='#msg-1248'>0x4E0 &middot; NetworkMgmt_Kombi_4E0</a>
-<a href='#msg-1250'>0x4E2 &middot; NetworkMgmt_CCC_4E2</a>
-<a href='#msg-1255'>0x4E7 &middot; NetworkMgmt_ZBE_4E7</a>
-<a href='#msg-1266'>0x4F2 &middot; NetworkMgmt_KBM_4F2</a>
-<a href='#msg-1267'>0x4F3 &middot; NetworkMgmt_CID_4F3</a>
-<a href='#msg-1272'>0x4F8 &middot; NetworkMgmt_IHKA_4F8</a>
-<a href='#msg-1408'>0x580 &middot; Services_KGM_580</a>
-<a href='#msg-1409'>0x581 &middot; Services_ACSM_581</a>
-<a href='#msg-1426'>0x592 &middot; Services_DME_592</a>
-<a href='#msg-1432'>0x598 &middot; Services_EGS_598</a>
-<a href='#msg-1449'>0x5A9 &middot; Services_DSC_5A9</a>
-<a href='#msg-1472'>0x5C0 &middot; Services_CAS_5C0</a>
-<a href='#msg-1494'>0x5D6 &middot; Services_5D6</a>
-<a href='#msg-1504'>0x5E0 &middot; Services_Kombi_5E0</a>
-<a href='#msg-1506'>0x5E2 &middot; ZBE_Button_5E2</a>
-<a href='#msg-1511'>0x5E7 &middot; Services_ZBE_5E7</a>
-<a href='#msg-1522'>0x5F2 &middot; Services_KBM_5F2</a>
-<a href='#msg-1528'>0x5F8 &middot; Services_IHKA_5F8</a>
-<a href='#msg-1554'>0x612 &middot; RES_612</a>
-<a href='#msg-1577'>0x629 &middot; Unknown_629</a>
-<a href='#msg-1632'>0x660 &middot; ACK_660</a>
-<a href='#msg-1777'>0x6F1 &middot; REQ_6F1</a>
-<a href='#msg-1987'>0x7C3 &middot; Keyfob_7C3</a>
-</div>
-</section>
+<details class="toc">
+<summary>Message Index <span style='color:#64748b;font-weight:400;font-size:13px;'>(371 messages)</span></summary>
+<div class="toc-body"><div class="toc-list">
+<a href='#msg-128' title='SYNC'>0x080 · SYNC</a>
+<a href='#msg-133' title='Synchronization_SC_VDA'>0x085 · Synchronization_SC_VDA</a>
+<a href='#msg-168' title='EngineAndBrake'>0x0A8 · EngineAndBrake</a>
+<a href='#msg-169' title='Torque2'>0x0A9 · Torque2</a>
+<a href='#msg-170' title='AccPedal'>0x0AA · AccPedal</a>
+<a href='#msg-172' title='WheelTorqueDrivetrain2'>0x0AC · WheelTorqueDrivetrain2</a>
+<a href='#msg-173' title='Delay_request_ACC'>0x0AD · Delay_request_ACC</a>
+<a href='#msg-177' title='Torque_request_steering'>0x0B1 · Torque_request_steering</a>
+<a href='#msg-179' title='Control_steering_assist'>0x0B3 · Control_steering_assist</a>
+<a href='#msg-180' title='WheelTorqueDriveTrain1'>0x0B4 · WheelTorqueDriveTrain1</a>
+<a href='#msg-181' title='Torque_request_EGS'>0x0B5 · Torque_request_EGS</a>
+<a href='#msg-182' title='Torque_request_DSC'>0x0B6 · Torque_request_DSC</a>
+<a href='#msg-183' title='Torque_request_ACC'>0x0B7 · Torque_request_ACC</a>
+<a href='#msg-184' title='Torque_request_DCT'>0x0B8 · Torque_request_DCT</a>
+<a href='#msg-185' title='Torque_request_AFS'>0x0B9 · Torque_request_AFS</a>
+<a href='#msg-186' title='TransmissionData'>0x0BA · TransmissionData</a>
+<a href='#msg-187' title='Target_torque_request'>0x0BB · Target_torque_request</a>
+<a href='#msg-188' title='Status_target_torque_conversion'>0x0BC · Status_target_torque_conversion</a>
+<a href='#msg-189' title='Torque_request_SSG'>0x0BD · Torque_request_SSG</a>
+<a href='#msg-190' title='Alive_Counter'>0x0BE · Alive_Counter</a>
+<a href='#msg-191' title='RequestedWheelTorqueDriveTrain'>0x0BF · RequestedWheelTorqueDriveTrain</a>
+<a href='#msg-192' title='Alive_Central_Gateway'>0x0C0 · Alive_Central_Gateway</a>
+<a href='#msg-193' title='Alive_counter_telephone'>0x0C1 · Alive_counter_telephone</a>
+<a href='#msg-196' title='SteeringWheelAngle'>0x0C4 · SteeringWheelAngle</a>
+<a href='#msg-200' title='SteeringWheelAngle_slow'>0x0C8 · SteeringWheelAngle_slow</a>
+<a href='#msg-201' title='SteeringWheelAngle_DSC'>0x0C9 · SteeringWheelAngle_DSC</a>
+<a href='#msg-205' title='Accelerometer2'>0x0CD · Accelerometer2</a>
+<a href='#msg-206' title='WheelSpeeds'>0x0CE · WheelSpeeds</a>
+<a href='#msg-209' title='Accelerometer1'>0x0D1 · Accelerometer1</a>
+<a href='#msg-212' title='Unknown_d4'>0x0D4 · Unknown_d4</a>
+<a href='#msg-213' title='Request_wheel_torque_brake'>0x0D5 · Request_wheel_torque_brake</a>
+<a href='#msg-215' title='Alive_Counter_Security'>0x0D7 · Alive_Counter_Security</a>
+<a href='#msg-216' title='CLU1_VDA'>0x0D8 · CLU1_VDA</a>
+<a href='#msg-225' title='Wheel_torque_brake'>0x0E1 · Wheel_torque_brake</a>
+<a href='#msg-226' title='Status_central_locking_BFT'>0x0E2 · Status_central_locking_BFT</a>
+<a href='#msg-227' title='CLU2_VDA'>0x0E3 · CLU2_VDA</a>
+<a href='#msg-230' title='Status_central_locking_BFTH'>0x0E6 · Status_central_locking_BFTH</a>
+<a href='#msg-234' title='Status_central_locking_FAT'>0x0EA · Status_central_locking_FAT</a>
+<a href='#msg-238' title='Central_locking_status_FATH'>0x0EE · Central_locking_status_FATH</a>
+<a href='#msg-242' title='Status_central_locking_HK'>0x0F2 · Status_central_locking_HK</a>
+<a href='#msg-244' title='CLU3_VDA'>0x0F4 · CLU3_VDA</a>
+<a href='#msg-246' title='MirrorControl_0F6'>0x0F6 · MirrorControl_0F6</a>
+<a href='#msg-247' title='lateral_dynamics_ARS_VDM'>0x0F7 · lateral_dynamics_ARS_VDM</a>
+<a href='#msg-249' title='Vertical_dynamics_VDM_ARS'>0x0F9 · Vertical_dynamics_VDM_ARS</a>
+<a href='#msg-250' title='Control_window_lifter_FAT'>0x0FA · Control_window_lifter_FAT</a>
+<a href='#msg-251' title='Control_window_lifter_BFT'>0x0FB · Control_window_lifter_BFT</a>
+<a href='#msg-252' title='Control_window_lifter_FATH'>0x0FC · Control_window_lifter_FATH</a>
+<a href='#msg-253' title='Control_window_lifter_BFTH'>0x0FD · Control_window_lifter_BFTH</a>
+<a href='#msg-254' title='Voltage_level_sensors'>0x0FE · Voltage_level_sensors</a>
+<a href='#msg-280' title='Exchange_AFS_DSC'>0x118 · Exchange_AFS_DSC</a>
+<a href='#msg-286' title='Control_interventions_DSC_AFS'>0x11E · Control_interventions_DSC_AFS</a>
+<a href='#msg-288' title='Status_partial_setpoints_AFS_DSC_2'>0x120 · Status_partial_setpoints_AFS_DSC_2</a>
+<a href='#msg-298' title='Sensor_data_ROSE'>0x12A · Sensor_data_ROSE</a>
+<a href='#msg-300' title='input_data_ROSE'>0x12C · input_data_ROSE</a>
+<a href='#msg-304' title='TerminalStatus'>0x130 · TerminalStatus</a>
+<a href='#msg-309' title='CrashDisconnectControl'>0x135 · CrashDisconnectControl</a>
+<a href='#msg-320' title='Unknown140'>0x140 · Unknown140</a>
+<a href='#msg-336' title='Request_1_ACC'>0x150 · Request_1_ACC</a>
+<a href='#msg-339' title='Request_2_ACC'>0x153 · Request_2_ACC</a>
+<a href='#msg-345' title='Object_data_ACC'>0x159 · Object_data_ACC</a>
+<a href='#msg-348' title='Status_ACC'>0x15C · Status_ACC</a>
+<a href='#msg-351' title='Requirement_angle_FFP'>0x15F · Requirement_angle_FFP</a>
+<a href='#msg-357' title='CLU_Status_VDA'>0x165 · CLU_Status_VDA</a>
+<a href='#msg-370' title='Acknowledgment_request_Kombination'>0x172 · Acknowledgment_request_Kombination</a>
+<a href='#msg-373' title='Display_motor_data'>0x175 · Display_motor_data</a>
+<a href='#msg-400' title='display_ACC'>0x190 · display_ACC</a>
+<a href='#msg-402' title='GearSelectorSwitch_1'>0x192 · GearSelectorSwitch_1</a>
+<a href='#msg-403' title='DynamicCruiseControlStatus'>0x193 · DynamicCruiseControlStatus</a>
+<a href='#msg-404' title='CruiseControlStalk'>0x194 · CruiseControlStalk</a>
+<a href='#msg-405' title='Operation_push_button_MSA'>0x195 · Operation_push_button_MSA</a>
+<a href='#msg-408' title='GearSelectorSwitch'>0x198 · GearSelectorSwitch</a>
+<a href='#msg-414' title='StatusDSC_KCAN'>0x19E · StatusDSC_KCAN</a>
+<a href='#msg-416' title='Speed'>0x1A0 · Speed</a>
+<a href='#msg-417' title='SpeedKombi_1A1'>0x1A1 · SpeedKombi_1A1</a>
+<a href='#msg-418' title='TransimissionData2'>0x1A2 · TransimissionData2</a>
+<a href='#msg-419' title='Raw_data_longitudinal_acceleration'>0x1A3 · Raw_data_longitudinal_acceleration</a>
+<a href='#msg-422' title='DistanceRoute'>0x1A6 · DistanceRoute</a>
+<a href='#msg-423' title='actuation_request_EMF'>0x1A7 · actuation_request_EMF</a>
+<a href='#msg-426' title='Effect_ErgoCommander'>0x1AA · Effect_ErgoCommander</a>
+<a href='#msg-428' title='Status_ARS_module'>0x1AC · Status_ARS_module</a>
+<a href='#msg-436' title='InstrumentClusterStatus_KOMBI'>0x1B4 · InstrumentClusterStatus_KOMBI</a>
+<a href='#msg-437' title='HeatFlow_LoadTorqueClimate'>0x1B5 · HeatFlow_LoadTorqueClimate</a>
+<a href='#msg-438' title='HeatFlowEngine'>0x1B6 · HeatFlowEngine</a>
+<a href='#msg-440' title='Operation_ErgoCommander'>0x1B8 · Operation_ErgoCommander</a>
+<a href='#msg-450' title='Distance_message_PDC'>0x1C2 · Distance_message_PDC</a>
+<a href='#msg-451' title='Distance_message_2_PDC'>0x1C3 · Distance_message_2_PDC</a>
+<a href='#msg-454' title='Acoustic_message_PDC'>0x1C6 · Acoustic_message_PDC</a>
+<a href='#msg-464' title='EngineData'>0x1D0 · EngineData</a>
+<a href='#msg-466' title='TransmissionDataDisplay'>0x1D2 · TransmissionDataDisplay</a>
+<a href='#msg-470' title='SteeringButtons'>0x1D6 · SteeringButtons</a>
+<a href='#msg-472' title='Operation_air_conditioning_air_distribution_FA'>0x1D8 · Operation_air_conditioning_air_distribution_FA</a>
+<a href='#msg-473' title='Operation_pushbutton_MDrive'>0x1D9 · Operation_pushbutton_MDrive</a>
+<a href='#msg-474' title='Climate_control_remote_control'>0x1DA · Climate_control_remote_control</a>
+<a href='#msg-476' title='Operation_stratification_seat_heating'>0x1DC · Operation_stratification_seat_heating</a>
+<a href='#msg-478' title='Air_conditioning_controls_rear'>0x1DE · Air_conditioning_controls_rear</a>
+<a href='#msg-480' title='Operation_air_conditioning_air_distribution_BF'>0x1E0 · Operation_air_conditioning_air_distribution_BF</a>
+<a href='#msg-481' title='DoorStatus_Counter_1E1'>0x1E1 · DoorStatus_Counter_1E1</a>
+<a href='#msg-482' title='Operation_air_conditioning_front'>0x1E2 · Operation_air_conditioning_front</a>
+<a href='#msg-483' title='Operation_pushbutton_interior_lighting'>0x1E3 · Operation_pushbutton_interior_lighting</a>
+<a href='#msg-487' title='Operation_seat_heating_seat_climate_FA'>0x1E7 · Operation_seat_heating_seat_climate_FA</a>
+<a href='#msg-488' title='Operation_seat_heating_seat_climate_BF'>0x1E8 · Operation_seat_heating_seat_climate_BF</a>
+<a href='#msg-490' title='Steering_column_adjustment_control'>0x1EA · Steering_column_adjustment_control</a>
+<a href='#msg-491' title='Operation_active_seat_FA'>0x1EB · Operation_active_seat_FA</a>
+<a href='#msg-492' title='Operation_active_seat_BF'>0x1EC · Operation_active_seat_BF</a>
+<a href='#msg-493' title='Operation_backrest_adjust_FA'>0x1ED · Operation_backrest_adjust_FA</a>
+<a href='#msg-494' title='Steering_column_switch_operation'>0x1EE · Steering_column_switch_operation</a>
+<a href='#msg-495' title='Operation_backrest_adjust_BF'>0x1EF · Operation_backrest_adjust_BF</a>
+<a href='#msg-498' title='Operation_seat_memory_BF'>0x1F2 · Operation_seat_memory_BF</a>
+<a href='#msg-499' title='Operation_seat_memory_FA'>0x1F3 · Operation_seat_memory_FA</a>
+<a href='#msg-502' title='TurnSignals'>0x1F6 · TurnSignals</a>
+<a href='#msg-504' title='Operation_SHD_MDS'>0x1F8 · Operation_SHD_MDS</a>
+<a href='#msg-507' title='Status_EPS'>0x1FB · Status_EPS</a>
+<a href='#msg-508' title='Status_AFS'>0x1FC · Status_AFS</a>
+<a href='#msg-509' title='Status_request_EMF_KCAN'>0x1FD · Status_request_EMF_KCAN</a>
+<a href='#msg-510' title='Crash'>0x1FE · Crash</a>
+<a href='#msg-512' title='CruiseControlStatus'>0x200 · CruiseControlStatus</a>
+<a href='#msg-513' title='Status_EMF_KCAN'>0x201 · Status_EMF_KCAN</a>
+<a href='#msg-514' title='Dimming'>0x202 · Dimming</a>
+<a href='#msg-517' title='Acoustic_request_Kombi'>0x205 · Acoustic_request_Kombi</a>
+<a href='#msg-518' title='Control_Display_Shiftlights'>0x206 · Control_Display_Shiftlights</a>
+<a href='#msg-523' title='Memory_adjustment'>0x20B · Memory_adjustment</a>
+<a href='#msg-524' title='Steering_column_control'>0x20C · Steering_column_control</a>
+<a href='#msg-525' title='Position_steering_column'>0x20D · Position_steering_column</a>
+<a href='#msg-528' title='Operation_HUD'>0x210 · Operation_HUD</a>
+<a href='#msg-529' title='Status_HUD'>0x211 · Status_HUD</a>
+<a href='#msg-530' title='Height_levels_air_spring'>0x212 · Height_levels_air_spring</a>
+<a href='#msg-538' title='LampStatus'>0x21A · LampStatus</a>
+<a href='#msg-540' title='Operation_NightVision'>0x21C · Operation_NightVision</a>
+<a href='#msg-542' title='Status_NightVision'>0x21E · Status_NightVision</a>
+<a href='#msg-548' title='Operation_push_button_NSW'>0x224 · Operation_push_button_NSW</a>
+<a href='#msg-550' title='RainSensorWiperSpeed'>0x226 · RainSensorWiperSpeed</a>
+<a href='#msg-552' title='Operation_special_function'>0x228 · Operation_special_function</a>
+<a href='#msg-554' title='Status_BFS'>0x22A · Status_BFS</a>
+<a href='#msg-556' title='Operation_push_button_NSL'>0x22C · Operation_push_button_NSL</a>
+<a href='#msg-562' title='Status_FAS'>0x232 · Status_FAS</a>
+<a href='#msg-566' title='Status_FASH'>0x236 · Status_FASH</a>
+<a href='#msg-570' title='Status_radio_key'>0x23A · Status_radio_key</a>
+<a href='#msg-571' title='Status_climate_front_extended'>0x23B · Status_climate_front_extended</a>
+<a href='#msg-573' title='Request_display_climate'>0x23D · Request_display_climate</a>
+<a href='#msg-574' title='Status_Klima_Fond'>0x23E · Status_Klima_Fond</a>
+<a href='#msg-578' title='ClimateFrontStatus'>0x242 · ClimateFrontStatus</a>
+<a href='#msg-582' title='Status_air_conditioning_front_control_unit'>0x246 · Status_air_conditioning_front_control_unit</a>
+<a href='#msg-584' title='Status_rear_view_camera'>0x248 · Status_rear_view_camera</a>
+<a href='#msg-585' title='Control_rear_view_camera'>0x249 · Control_rear_view_camera</a>
+<a href='#msg-586' title='Status_PDC'>0x24A · Status_PDC</a>
+<a href='#msg-587' title='Status_door_sensors'>0x24B · Status_door_sensors</a>
+<a href='#msg-594' title='Wiper_status'>0x252 · Wiper_status</a>
+<a href='#msg-598' title='Challenge_Passive_Access'>0x256 · Challenge_Passive_Access</a>
+<a href='#msg-600' title='Status_Transmission_Passive_Access'>0x258 · Status_Transmission_Passive_Access</a>
+<a href='#msg-604' title='Operation_of_climate_additional_programs'>0x25C · Operation_of_climate_additional_programs</a>
+<a href='#msg-612' title='iDrive_Rotary_264'>0x264 · iDrive_Rotary_264</a>
+<a href='#msg-615' title='iDrive_Buttons_267'>0x267 · iDrive_Buttons_267</a>
+<a href='#msg-619' title='Operation_blinds_BF'>0x26B · Operation_blinds_BF</a>
+<a href='#msg-620' title='Operation_blinds_FA'>0x26C · Operation_blinds_FA</a>
+<a href='#msg-621' title='Operation_blinds_MK'>0x26D · Operation_blinds_MK</a>
+<a href='#msg-622' title='Control_FH_SHD_central_comfort'>0x26E · Control_FH_SHD_central_comfort</a>
+<a href='#msg-627' title='CIC_Status_for_Idrive'>0x273 · CIC_Status_for_Idrive</a>
+<a href='#msg-631' title='Idrive_Emu_Response_277'>0x277 · Idrive_Emu_Response_277</a>
+<a href='#msg-632' title='CIC_278'>0x278 · CIC_278</a>
+<a href='#msg-634' title='NavGraph_Sync_27A'>0x27A · NavGraph_Sync_27A</a>
+<a href='#msg-635' title='Status_Shiftlights'>0x27B · Status_Shiftlights</a>
+<a href='#msg-637' title='Status_convertible_top_manual_convertible'>0x27D · Status_convertible_top_manual_convertible</a>
+<a href='#msg-638' title='Status_convertible_top_convertible'>0x27E · Status_convertible_top_convertible</a>
+<a href='#msg-639' title='Status_central_locking_convertible_top'>0x27F · Status_central_locking_convertible_top</a>
+<a href='#msg-642' title='Control_security_vehicle_2'>0x282 · Control_security_vehicle_2</a>
+<a href='#msg-644' title='Control_remote_start_safety_vehicle'>0x284 · Control_remote_start_safety_vehicle</a>
+<a href='#msg-646' title='Electrochromic_control'>0x286 · Electrochromic_control</a>
+<a href='#msg-652' title='Pushbutton_vertical_dynamics'>0x28C · Pushbutton_vertical_dynamics</a>
+<a href='#msg-653' title='Operation_pushbutton_sport'>0x28D · Operation_pushbutton_sport</a>
+<a href='#msg-656' title='Control_response_hydrogen_vehicle'>0x290 · Control_response_hydrogen_vehicle</a>
+<a href='#msg-658' title='Control_high_beam_assistant'>0x292 · Control_high_beam_assistant</a>
+<a href='#msg-670' title='Central_locking_control_for_security_vehicle'>0x29E · Central_locking_control_for_security_vehicle</a>
+<a href='#msg-671' title='Remote_control_FondCommander'>0x29F · Remote_control_FondCommander</a>
+<a href='#msg-672' title='Central_locking_control'>0x2A0 · Central_locking_control</a>
+<a href='#msg-674' title='Operation_of_climate_stand_functions'>0x2A2 · Operation_of_climate_stand_functions</a>
+<a href='#msg-676' title='Operation_personalization'>0x2A4 · Operation_personalization</a>
+<a href='#msg-678' title='WiperSwitch'>0x2A6 · WiperSwitch</a>
+<a href='#msg-690' title='WheelPressure_KCAN'>0x2B2 · WheelPressure_KCAN</a>
+<a href='#msg-691' title='AccelerationData'>0x2B3 · AccelerationData</a>
+<a href='#msg-692' title='DWA_Alarm'>0x2B4 · DWA_Alarm</a>
+<a href='#msg-694' title='Control_horn_DWA'>0x2B6 · Control_horn_DWA</a>
+<a href='#msg-696' title='Operation_onboard_computer'>0x2B8 · Operation_onboard_computer</a>
+<a href='#msg-697' title='Operation_RSE'>0x2B9 · Operation_RSE</a>
+<a href='#msg-698' title='Stopwatch'>0x2BA · Stopwatch</a>
+<a href='#msg-701' title='Request_switching_display'>0x2BD · Request_switching_display</a>
+<a href='#msg-702' title='Switch_status_display'>0x2BE · Switch_status_display</a>
+<a href='#msg-703' title='Water_valve_control'>0x2BF · Water_valve_control</a>
+<a href='#msg-704' title='LCD_lighting'>0x2C0 · LCD_lighting</a>
+<a href='#msg-706' title='Temperatur_Ist_Fond'>0x2C2 · Temperatur_Ist_Fond</a>
+<a href='#msg-711' title='Display_Kombination_extended'>0x2C7 · Display_Kombination_extended</a>
+<a href='#msg-714' title='Outside_temperature'>0x2CA · Outside_temperature</a>
+<a href='#msg-716' title='Control_monitor_rear'>0x2CC · Control_monitor_rear</a>
+<a href='#msg-718' title='Control_monitor'>0x2CE · Control_monitor</a>
+<a href='#msg-719' title='Status_of_auxiliary_water_pump'>0x2CF · Status_of_auxiliary_water_pump</a>
+<a href='#msg-720' title='Status_Sensor_AUC'>0x2D0 · Status_Sensor_AUC</a>
+<a href='#msg-721' title='Status_fitting_window_V'>0x2D1 · Status_fitting_window_V</a>
+<a href='#msg-722' title='Status_pressure_refrigeration_circuit'>0x2D2 · Status_pressure_refrigeration_circuit</a>
+<a href='#msg-723' title='Status_stratification_rear'>0x2D3 · Status_stratification_rear</a>
+<a href='#msg-725' title='Status_heating_rear_window'>0x2D5 · Status_heating_rear_window</a>
+<a href='#msg-726' title='Status_valve_air_conditioning_compressor'>0x2D6 · Status_valve_air_conditioning_compressor</a>
+<a href='#msg-730' title='Status_tailgate_lift'>0x2DA · Status_tailgate_lift</a>
+<a href='#msg-734' title='Switch_control_display'>0x2DE · Switch_control_display</a>
+<a href='#msg-738' title='Status_setting_video_night_vision'>0x2E2 · Status_setting_video_night_vision</a>
+<a href='#msg-739' title='Status_setting_video_rear_view_camera'>0x2E3 · Status_setting_video_rear_view_camera</a>
+<a href='#msg-740' title='Status_trailer'>0x2E4 · Status_trailer</a>
+<a href='#msg-742' title='Status_of_air_distribution_FA'>0x2E6 · Status_of_air_distribution_FA</a>
+<a href='#msg-746' title='Status_air_distribution_BF'>0x2EA · Status_air_distribution_BF</a>
+<a href='#msg-750' title='Status_climate_additional_programs'>0x2EE · Status_climate_additional_programs</a>
+<a href='#msg-752' title='Status_air_condition_functions'>0x2F0 · Status_air_condition_functions</a>
+<a href='#msg-753' title='Status_driver_detection'>0x2F1 · Status_driver_detection</a>
+<a href='#msg-755' title='Display_switching_instruction'>0x2F3 · Display_switching_instruction</a>
+<a href='#msg-756' title='Air_conditioning_control_SH_ZH_auxiliary_water_pump'>0x2F4 · Air_conditioning_control_SH_ZH_auxiliary_water_pump</a>
+<a href='#msg-758' title='LightControl'>0x2F6 · LightControl</a>
+<a href='#msg-759' title='Units'>0x2F7 · Units</a>
+<a href='#msg-760' title='Time_Date'>0x2F8 · Time_Date</a>
+<a href='#msg-762' title='OccupancySeatBeltContact'>0x2FA · OccupancySeatBeltContact</a>
+<a href='#msg-764' title='TrunkStatus'>0x2FC · TrunkStatus</a>
+<a href='#msg-768' title='Status_RSE'>0x300 · Status_RSE</a>
+<a href='#msg-772' title='Status_Gang'>0x304 · Status_Gang</a>
+<a href='#msg-773' title='Operation_button_convertible_top'>0x305 · Operation_button_convertible_top</a>
+<a href='#msg-774' title='Vehicle_tilt'>0x306 · Vehicle_tilt</a>
+<a href='#msg-775' title='Operation_button_flap_convertible_top'>0x307 · Operation_button_flap_convertible_top</a>
+<a href='#msg-776' title='Status_MSA'>0x308 · Status_MSA</a>
+<a href='#msg-784' title='AmbientTemperature_RelativeTime'>0x310 · AmbientTemperature_RelativeTime</a>
+<a href='#msg-785' title='Refill_quantity'>0x311 · Refill_quantity</a>
+<a href='#msg-786' title='Service_Call_Teleservice'>0x312 · Service_Call_Teleservice</a>
+<a href='#msg-787' title='Status_Service_Call_Teleservice'>0x313 · Status_Service_Call_Teleservice</a>
+<a href='#msg-788' title='Status_driving_light'>0x314 · Status_driving_light</a>
+<a href='#msg-789' title='Vehicle_mode'>0x315 · Vehicle_mode</a>
+<a href='#msg-790' title='OperationPushButtonDTC'>0x316 · OperationPushButtonDTC</a>
+<a href='#msg-791' title='Operation_button_parking_aids'>0x317 · Operation_button_parking_aids</a>
+<a href='#msg-792' title='Status_antennas_Passive_Access'>0x318 · Status_antennas_Passive_Access</a>
+<a href='#msg-793' title='Operation_push_button_RDC'>0x319 · Operation_push_button_RDC</a>
+<a href='#msg-794' title='Operation_button_HDC'>0x31A · Operation_button_HDC</a>
+<a href='#msg-795' title='Operation_of_tailgate_interior_button'>0x31B · Operation_of_tailgate_interior_button</a>
+<a href='#msg-796' title='Status_tire_pressure'>0x31C · Status_tire_pressure</a>
+<a href='#msg-797' title='TirePressureStatus'>0x31D · TirePressureStatus</a>
+<a href='#msg-801' title='Operation_button_camera_BF'>0x321 · Operation_button_camera_BF</a>
+<a href='#msg-802' title='Damper_current'>0x322 · Damper_current</a>
+<a href='#msg-806' title='Status_damper_program'>0x326 · Status_damper_program</a>
+<a href='#msg-808' title='Relativzeit'>0x328 · Relativzeit</a>
+<a href='#msg-810' title='Control_ALC'>0x32A · Control_ALC</a>
+<a href='#msg-813' title='Display_HDC'>0x32D · Display_HDC</a>
+<a href='#msg-814' title='Status_climate_internal_control_info'>0x32E · Status_climate_internal_control_info</a>
+<a href='#msg-816' title='Range_Mileage'>0x330 · Range_Mileage</a>
+<a href='#msg-817' title='Programming_of_step_cruise_control'>0x331 · Programming_of_step_cruise_control</a>
+<a href='#msg-818' title='Driver_display_speed_range'>0x332 · Driver_display_speed_range</a>
+<a href='#msg-821' title='ElectricFuelPumpStatus'>0x335 · ElectricFuelPumpStatus</a>
+<a href='#msg-822' title='Display_check_control_message_role'>0x336 · Display_check_control_message_role</a>
+<a href='#msg-823' title='StatusFuelControl'>0x337 · StatusFuelControl</a>
+<a href='#msg-824' title='Control_display_check_control_message'>0x338 · Control_display_check_control_message</a>
+<a href='#msg-825' title='Status_display_climate'>0x339 · Status_display_climate</a>
+<a href='#msg-826' title='Status_Monitor_Front'>0x33A · Status_Monitor_Front</a>
+<a href='#msg-828' title='Status_Monitor_Fond_1'>0x33C · Status_Monitor_Fond_1</a>
+<a href='#msg-830' title='Status_Monitor_Fond_2'>0x33E · Status_Monitor_Fond_2</a>
+<a href='#msg-840' title='NavGraph_Alignment_348'>0x348 · NavGraph_Alignment_348</a>
+<a href='#msg-841' title='Raw_data_level_tank'>0x349 · Raw_data_level_tank</a>
+<a href='#msg-842' title='GPS_34A'>0x34A · GPS_34A</a>
+<a href='#msg-843' title='Status_seat_back_lock_FA'>0x34B · Status_seat_back_lock_FA</a>
+<a href='#msg-844' title='NavGraph_GPS2_34C'>0x34C · NavGraph_GPS2_34C</a>
+<a href='#msg-845' title='Status_seat_back_lock_BF'>0x34D · Status_seat_back_lock_BF</a>
+<a href='#msg-846' title='Navi_sys_info'>0x34E · Navi_sys_info</a>
+<a href='#msg-847' title='Status_contact_handbrake'>0x34F · Status_contact_handbrake</a>
+<a href='#msg-858' title='Appointment_Condition_Based_Service'>0x35A · Appointment_Condition_Based_Service</a>
+<a href='#msg-860' title='Status_onboard_computer'>0x35C · Status_onboard_computer</a>
+<a href='#msg-862' title='Onboard_computer_data_trip_data'>0x35E · Onboard_computer_data_trip_data</a>
+<a href='#msg-864' title='Data_onboard_computer_start_of_journey'>0x360 · Data_onboard_computer_start_of_journey</a>
+<a href='#msg-866' title='Data_onboard_computer_average_values'>0x362 · Data_onboard_computer_average_values</a>
+<a href='#msg-868' title='Data_onboard_computer_arrival'>0x364 · Data_onboard_computer_arrival</a>
+<a href='#msg-869' title='Status_terminal_request'>0x365 · Status_terminal_request</a>
+<a href='#msg-870' title='Display_Kombination_external_display'>0x366 · Display_Kombination_external_display</a>
+<a href='#msg-871' title='Control_display_of_demand_oriented_service'>0x367 · Control_display_of_demand_oriented_service</a>
+<a href='#msg-877' title='Setting_the_driving_dynamics_switch'>0x36D · Setting_the_driving_dynamics_switch</a>
+<a href='#msg-884' title='WheelToleranceAdjustment'>0x374 · WheelToleranceAdjustment</a>
+<a href='#msg-886' title='Status_wear_lamella'>0x376 · Status_wear_lamella</a>
+<a href='#msg-893' title='Status_DKG'>0x37D · Status_DKG</a>
+<a href='#msg-894' title='Temperatur_Bremse'>0x37E · Temperatur_Bremse</a>
+<a href='#msg-895' title='Range_of_diesel_exhaust_gas_additive'>0x37F · Range_of_diesel_exhaust_gas_additive</a>
+<a href='#msg-896' title='chassis_number'>0x380 · chassis_number</a>
+<a href='#msg-897' title='EngineOilLevel'>0x381 · EngineOilLevel</a>
+<a href='#msg-898' title='Electronic_engine_oil_dipstick_M'>0x382 · Electronic_engine_oil_dipstick_M</a>
+<a href='#msg-899' title='Motor_data_2'>0x383 · Motor_data_2</a>
+<a href='#msg-904' title='Vehicle_type'>0x388 · Vehicle_type</a>
+<a href='#msg-907' title='Status_battery'>0x38B · Status_battery</a>
+<a href='#msg-910' title='Start_speed'>0x38E · Start_speed</a>
+<a href='#msg-914' title='Status_System_AFS'>0x392 · Status_System_AFS</a>
+<a href='#msg-916' title='RDA_request_data_storage'>0x394 · RDA_request_data_storage</a>
+<a href='#msg-917' title='Coding_power_management'>0x395 · Coding_power_management</a>
+<a href='#msg-920' title='Operation_chassis'>0x398 · Operation_chassis</a>
+<a href='#msg-921' title='Status_MDrive'>0x399 · Status_MDrive</a>
+<a href='#msg-926' title='Operation_time_date'>0x39E · Operation_time_date</a>
+<a href='#msg-928' title='Vehicle_state'>0x3A0 · Vehicle_state</a>
+<a href='#msg-931' title='Request_Remote_Services'>0x3A3 · Request_Remote_Services</a>
+<a href='#msg-937' title='Status_motor_control_CKM'>0x3A9 · Status_motor_control_CKM</a>
+<a href='#msg-939' title='Status_Shiftlights_CKM'>0x3AB · Status_Shiftlights_CKM</a>
+<a href='#msg-940' title='RunOnTimeTerminal30'>0x3AC · RunOnTimeTerminal30</a>
+<a href='#msg-944' title='Status_gear_reverse'>0x3B0 · Status_gear_reverse</a>
+<a href='#msg-945' title='TransmissionData3'>0x3B1 · TransmissionData3</a>
+<a href='#msg-947' title='PowerManagmentConsumptionControl'>0x3B3 · PowerManagmentConsumptionControl</a>
+<a href='#msg-948' title='PowerBatteryVoltage'>0x3B4 · PowerBatteryVoltage</a>
+<a href='#msg-949' title='Status_water_valve'>0x3B5 · Status_water_valve</a>
+<a href='#msg-950' title='Position_window_lifter_FAT'>0x3B6 · Position_window_lifter_FAT</a>
+<a href='#msg-951' title='Position_window_lifter_FATH'>0x3B7 · Position_window_lifter_FATH</a>
+<a href='#msg-952' title='Position_window_regulator_BFT'>0x3B8 · Position_window_regulator_BFT</a>
+<a href='#msg-953' title='Position_window_regulator_BFTH'>0x3B9 · Position_window_regulator_BFTH</a>
+<a href='#msg-954' title='Position_SHD'>0x3BA · Position_SHD</a>
+<a href='#msg-956' title='Position_window_lifter_security_vehicle'>0x3BC · Position_window_lifter_security_vehicle</a>
+<a href='#msg-957' title='Status_consumer_shutdown'>0x3BD · Status_consumer_shutdown</a>
+<a href='#msg-958' title='PowerRunningTime'>0x3BE · PowerRunningTime</a>
+<a href='#msg-959' title='Position_window_rear_window'>0x3BF · Position_window_rear_window</a>
+<a href='#msg-960' title='Configuration_FAS'>0x3C0 · Configuration_FAS</a>
+<a href='#msg-961' title='Configuration_BFS'>0x3C1 · Configuration_BFS</a>
+<a href='#msg-964' title='Status_EDCK_CKM'>0x3C4 · Status_EDCK_CKM</a>
+<a href='#msg-967' title='Access_radio'>0x3C7 · Access_radio</a>
+<a href='#msg-968' title='Operation_push_button_radio'>0x3C8 · Operation_push_button_radio</a>
+<a href='#msg-972' title='NavGraph_3CC'>0x3CC · NavGraph_3CC</a>
+<a href='#msg-974' title='Radio_audio_control_interface_display'>0x3CE · Radio_audio_control_interface_display</a>
+<a href='#msg-975' title='Acknowledgment_access_radio_audio_control_interface'>0x3CF · Acknowledgment_access_radio_audio_control_interface</a>
+<a href='#msg-979' title='Status_solar_sensor'>0x3D3 · Status_solar_sensor</a>
+<a href='#msg-980' title='Configuration_of_central_locking_CKM'>0x3D4 · Configuration_of_central_locking_CKM</a>
+<a href='#msg-981' title='Status_central_locking_CKM'>0x3D5 · Status_central_locking_CKM</a>
+<a href='#msg-982' title='Configuration_DWA_CKM'>0x3D6 · Configuration_DWA_CKM</a>
+<a href='#msg-983' title='Status_DWA_CKM'>0x3D7 · Status_DWA_CKM</a>
+<a href='#msg-984' title='Configuration_RLS_CKM'>0x3D8 · Configuration_RLS_CKM</a>
+<a href='#msg-985' title='Status_RLS_CKM'>0x3D9 · Status_RLS_CKM</a>
+<a href='#msg-986' title='Configuration_of_memory_positions_CKM'>0x3DA · Configuration_of_memory_positions_CKM</a>
+<a href='#msg-987' title='Status_memory_positions_CKM'>0x3DB · Status_memory_positions_CKM</a>
+<a href='#msg-988' title='Configuration_light_CKM'>0x3DC · Configuration_light_CKM</a>
+<a href='#msg-989' title='Status_light_CKM'>0x3DD · Status_light_CKM</a>
+<a href='#msg-990' title='Configuration_Climate_CKM'>0x3DE · Configuration_Climate_CKM</a>
+<a href='#msg-991' title='Status_Klima_CKM'>0x3DF · Status_Klima_CKM</a>
+<a href='#msg-994' title='Configuration_of_tailgate_CKM'>0x3E2 · Configuration_of_tailgate_CKM</a>
+<a href='#msg-995' title='Status_tailgate_CKM'>0x3E3 · Status_tailgate_CKM</a>
+<a href='#msg-996' title='Configuration_rear_view_camera_CKM'>0x3E4 · Configuration_rear_view_camera_CKM</a>
+<a href='#msg-1007' title='EngineOBD_data'>0x3EF · EngineOBD_data</a>
+<a href='#msg-1009' title='LightExtStatus_CKM_3F1'>0x3F1 · LightExtStatus_CKM_3F1</a>
+<a href='#msg-1015' title='NavGraph_3F7'>0x3F7 · NavGraph_3F7</a>
+<a href='#msg-1043' title='Unknown_413'>0x413 · Unknown_413</a>
+<a href='#msg-1045' title='Unknown_415'>0x415 · Unknown_415</a>
+<a href='#msg-1152' title='NetworkMgmt_KGM_480'>0x480 · NetworkMgmt_KGM_480</a>
+<a href='#msg-1153' title='NetworkMgmt_ACSM_481'>0x481 · NetworkMgmt_ACSM_481</a>
+<a href='#msg-1170' title='NetworkMgmt_DME_492'>0x492 · NetworkMgmt_DME_492</a>
+<a href='#msg-1175' title='NetworkMgmt_EKP_497'>0x497 · NetworkMgmt_EKP_497</a>
+<a href='#msg-1176' title='NetworkMgmt_EGS_498'>0x498 · NetworkMgmt_EGS_498</a>
+<a href='#msg-1193' title='NetworkMgmt_DSC_4A9'>0x4A9 · NetworkMgmt_DSC_4A9</a>
+<a href='#msg-1216' title='NetworkMgmt_CAS_4C0'>0x4C0 · NetworkMgmt_CAS_4C0</a>
+<a href='#msg-1238' title='NetworkManagment_4D6'>0x4D6 · NetworkManagment_4D6</a>
+<a href='#msg-1246' title='NetworkMgmt_GWS_4DE'>0x4DE · NetworkMgmt_GWS_4DE</a>
+<a href='#msg-1248' title='NetworkMgmt_Kombi_4E0'>0x4E0 · NetworkMgmt_Kombi_4E0</a>
+<a href='#msg-1250' title='NetworkMgmt_CCC_4E2'>0x4E2 · NetworkMgmt_CCC_4E2</a>
+<a href='#msg-1255' title='NetworkMgmt_ZBE_4E7'>0x4E7 · NetworkMgmt_ZBE_4E7</a>
+<a href='#msg-1266' title='NetworkMgmt_KBM_4F2'>0x4F2 · NetworkMgmt_KBM_4F2</a>
+<a href='#msg-1267' title='NetworkMgmt_CID_4F3'>0x4F3 · NetworkMgmt_CID_4F3</a>
+<a href='#msg-1272' title='NetworkMgmt_IHKA_4F8'>0x4F8 · NetworkMgmt_IHKA_4F8</a>
+<a href='#msg-1408' title='Services_KGM_580'>0x580 · Services_KGM_580</a>
+<a href='#msg-1409' title='Services_ACSM_581'>0x581 · Services_ACSM_581</a>
+<a href='#msg-1426' title='Services_DME_592'>0x592 · Services_DME_592</a>
+<a href='#msg-1432' title='Services_EGS_598'>0x598 · Services_EGS_598</a>
+<a href='#msg-1449' title='Services_DSC_5A9'>0x5A9 · Services_DSC_5A9</a>
+<a href='#msg-1472' title='Services_CAS_5C0'>0x5C0 · Services_CAS_5C0</a>
+<a href='#msg-1494' title='Services_5D6'>0x5D6 · Services_5D6</a>
+<a href='#msg-1504' title='Services_Kombi_5E0'>0x5E0 · Services_Kombi_5E0</a>
+<a href='#msg-1506' title='ZBE_Button_5E2'>0x5E2 · ZBE_Button_5E2</a>
+<a href='#msg-1511' title='Services_ZBE_5E7'>0x5E7 · Services_ZBE_5E7</a>
+<a href='#msg-1522' title='Services_KBM_5F2'>0x5F2 · Services_KBM_5F2</a>
+<a href='#msg-1528' title='Services_IHKA_5F8'>0x5F8 · Services_IHKA_5F8</a>
+<a href='#msg-1554' title='RES_612'>0x612 · RES_612</a>
+<a href='#msg-1577' title='Unknown_629'>0x629 · Unknown_629</a>
+<a href='#msg-1632' title='ACK_660'>0x660 · ACK_660</a>
+<a href='#msg-1777' title='REQ_6F1'>0x6F1 · REQ_6F1</a>
+<a href='#msg-1987' title='Keyfob_7C3'>0x7C3 · Keyfob_7C3</a>
+</div></div>
+</details>
 <section class='message' id='msg-128' data-search='0x080 128 sync xxx'>
 <div class="message-header">
 <div>

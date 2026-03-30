@@ -258,10 +258,15 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('#search{width:100%;padding:12px 16px;font-size:16px;border:2px solid #334155;border-radius:12px;background:#1f2937;color:#f1f5f9;outline:none;box-sizing:border-box;}')
 [void]$sb.AppendLine('#search::placeholder{color:#64748b;}')
 [void]$sb.AppendLine('#search:focus{border-color:#60a5fa;}')
-[void]$sb.AppendLine('.toc{margin:24px 0 30px;padding:18px 20px;background:#ffffff;border-radius:16px;box-shadow:0 10px 24px rgba(15,23,42,.08);}')
-[void]$sb.AppendLine('.toc h2{margin:0 0 12px;font-size:20px;}')
-[void]$sb.AppendLine('.toc-list{display:flex;flex-wrap:wrap;gap:10px 12px;}')
-[void]$sb.AppendLine('.toc a{display:inline-block;padding:8px 10px;border-radius:10px;background:#e5eef7;color:#1f3b5b;text-decoration:none;font-size:14px;}')
+[void]$sb.AppendLine('.toc{margin:24px 0 30px;background:#ffffff;border-radius:16px;box-shadow:0 10px 24px rgba(15,23,42,.08);overflow:hidden;}')
+[void]$sb.AppendLine('.toc summary{padding:14px 20px;font-size:16px;font-weight:600;cursor:pointer;user-select:none;list-style:none;display:flex;align-items:center;gap:8px;}')
+[void]$sb.AppendLine('.toc summary::-webkit-details-marker{display:none;}')
+[void]$sb.AppendLine('.toc summary::before{content:"\25B6";font-size:11px;color:#64748b;transition:transform .2s;}')
+[void]$sb.AppendLine('.toc[open] summary::before{transform:rotate(90deg);}')
+[void]$sb.AppendLine('.toc-body{padding:4px 16px 16px;}')
+[void]$sb.AppendLine('.toc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 8px;}')
+[void]$sb.AppendLine('.toc a{display:block;padding:5px 8px;border-radius:8px;background:#f1f5f9;color:#1f3b5b;text-decoration:none;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}')
+[void]$sb.AppendLine('.toc a:hover{background:#dbeafe;}')
 [void]$sb.AppendLine('.message{margin-top:22px;background:#ffffff;border-radius:18px;padding:22px 22px 24px;box-shadow:0 12px 28px rgba(15,23,42,.08);}')
 [void]$sb.AppendLine('.message.hidden{display:none;}')
 [void]$sb.AppendLine('.message-header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 18px;align-items:flex-start;}')
@@ -313,15 +318,15 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('</div>')
 [void]$sb.AppendLine('</section>')
 
-[void]$sb.AppendLine('<section class="toc">')
-[void]$sb.AppendLine('<h2>Message Index</h2>')
-[void]$sb.AppendLine('<div class="toc-list">')
+[void]$sb.AppendLine('<details class="toc">')
+[void]$sb.AppendLine("<summary>Message Index <span style='color:#64748b;font-weight:400;font-size:13px;'>($($orderedMessages.Count) messages)</span></summary>")
+[void]$sb.AppendLine('<div class="toc-body"><div class="toc-list">')
 foreach ($msg in $orderedMessages) {
     $anchor = "msg-$($msg.Id)"
-    [void]$sb.AppendLine("<a href='#$anchor'>$($msg.IdHex) &middot; $(Escape-Html $msg.Name)</a>")
+    [void]$sb.AppendLine("<a href='#$anchor' title='$(Escape-Html $msg.Name)'>$($msg.IdHex) $([char]0xB7) $(Escape-Html $msg.Name)</a>")
 }
-[void]$sb.AppendLine('</div>')
-[void]$sb.AppendLine('</section>')
+[void]$sb.AppendLine('</div></div>')
+[void]$sb.AppendLine('</details>')
 
 foreach ($msg in $orderedMessages) {
     $anchor   = "msg-$($msg.Id)"
