@@ -299,7 +299,22 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('.enum-hex{color:#065f46;font-weight:700;font-family:Consolas,Monaco,monospace;}')
 [void]$sb.AppendLine('.enum-dec{color:#94a3b8;font-size:11px;}')
 [void]$sb.AppendLine('.muted{color:#64748b;}')
-[void]$sb.AppendLine('@media (max-width:900px){.message-header{flex-direction:column;}table{display:block;overflow-x:auto;}}')
+[void]$sb.AppendLine('@media (max-width:900px){.message-header{flex-direction:column;}}')
+[void]$sb.AppendLine('@media (max-width:700px){')
+[void]$sb.AppendLine('  .page{padding:12px 10px 48px;}')
+[void]$sb.AppendLine('  .hero{border-radius:12px;padding:18px 16px;}')
+[void]$sb.AppendLine('  .hero h1{font-size:22px;}')
+[void]$sb.AppendLine('  .message{padding:14px 14px 18px;border-radius:12px;}')
+[void]$sb.AppendLine('  .message h2{font-size:20px;}')
+[void]$sb.AppendLine('  .message-sub{font-size:13px;}')
+[void]$sb.AppendLine('  .toc-list{grid-template-columns:repeat(2,1fr);}')
+[void]$sb.AppendLine('  table,thead,tbody,th,td,tr{display:block;}')
+[void]$sb.AppendLine('  thead tr{position:absolute;top:-9999px;left:-9999px;}')
+[void]$sb.AppendLine('  tr{border-bottom:2px solid #e5e7eb;margin-bottom:10px;}')
+[void]$sb.AppendLine('  td{position:relative;padding:5px 8px 5px 42%;border:none;border-bottom:1px solid #f1f5f9;min-height:28px;}')
+[void]$sb.AppendLine('  td::before{content:attr(data-label);position:absolute;left:8px;top:6px;width:36%;font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;}')
+[void]$sb.AppendLine('  .byte-cell{min-width:36px;}')
+[void]$sb.AppendLine('}')
 [void]$sb.AppendLine('</style>')
 [void]$sb.AppendLine('</head>')
 [void]$sb.AppendLine('<body>')
@@ -364,7 +379,7 @@ foreach ($msg in $orderedMessages) {
         [void]$sb.AppendLine('<tr>')
 
         # Signal name + comment + enum
-        [void]$sb.AppendLine('<td>')
+        [void]$sb.AppendLine('<td data-label="Signal">')
         [void]$sb.AppendLine("<strong>$(Escape-Html $sig.Name)</strong>")
         if ($sig.Multiplex) {
             [void]$sb.AppendLine("<div class='signal-comment'><code>$(Escape-Html $sig.Multiplex)</code></div>")
@@ -384,16 +399,16 @@ foreach ($msg in $orderedMessages) {
         [void]$sb.AppendLine('</td>')
 
         # Position — human-readable primary, DBC secondary
-        [void]$sb.AppendLine('<td>')
+        [void]$sb.AppendLine('<td data-label="Position">')
         [void]$sb.AppendLine("<div class='human-pos'>$(Escape-Html $humanPos)</div>")
         [void]$sb.AppendLine("<div class='dbc-pos'>DBC: $($sig.StartBit)|$($sig.Length)</div>")
         [void]$sb.AppendLine('</td>')
 
         # Format
-        [void]$sb.AppendLine("<td>$(Escape-Html $sig.Endian)<br>$(Escape-Html $sig.ValueType)$(if ($sig.Unit) { '<br>Unit: ' + (Escape-Html $sig.Unit) } else { '' })</td>")
+        [void]$sb.AppendLine("<td data-label=`"Format`">$(Escape-Html $sig.Endian)<br>$(Escape-Html $sig.ValueType)$(if ($sig.Unit) { '<br>Unit: ' + (Escape-Html $sig.Unit) } else { '' })</td>")
 
         # Scale / formula — human-readable primary, DBC secondary
-        [void]$sb.AppendLine('<td>')
+        [void]$sb.AppendLine('<td data-label="Scale">')
         if ($formula) {
             [void]$sb.AppendLine("<div class='formula'>$formula</div>")
         }
@@ -401,10 +416,10 @@ foreach ($msg in $orderedMessages) {
         [void]$sb.AppendLine('</td>')
 
         # Range
-        [void]$sb.AppendLine("<td><code>[$(Escape-Html $sig.Minimum) .. $(Escape-Html $sig.Maximum)]</code></td>")
+        [void]$sb.AppendLine("<td data-label=`"Range`"><code>[$(Escape-Html $sig.Minimum) .. $(Escape-Html $sig.Maximum)]</code></td>")
 
         # Receivers
-        [void]$sb.AppendLine("<td>$(Escape-Html $sig.Receivers)</td>")
+        [void]$sb.AppendLine("<td data-label=`"Rx`">$(Escape-Html $sig.Receivers)</td>")
 
         [void]$sb.AppendLine('</tr>')
     }
