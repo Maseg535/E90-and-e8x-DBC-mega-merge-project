@@ -485,5 +485,7 @@ if (-not [string]::IsNullOrWhiteSpace($outputDir) -and -not (Test-Path -Path $ou
     New-Item -ItemType Directory -Path $outputDir | Out-Null
 }
 
-[System.IO.File]::WriteAllText((Resolve-Path -Path (Split-Path -Path $OutputPath -Parent)).Path + '\' + (Split-Path -Path $OutputPath -Leaf), $sb.ToString(), [System.Text.Encoding]::UTF8)
+$resolvedDir  = if ([string]::IsNullOrWhiteSpace($outputDir)) { (Get-Location).Path } else { (Resolve-Path -Path $outputDir).Path }
+$resolvedPath = [IO.Path]::Combine($resolvedDir, (Split-Path -Path $OutputPath -Leaf))
+[System.IO.File]::WriteAllText($resolvedPath, $sb.ToString(), [System.Text.Encoding]::UTF8)
 Write-Host "Generated $OutputPath"
