@@ -318,7 +318,8 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('  td::before{display:block;content:attr(data-label);font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}')
 [void]$sb.AppendLine('  /* Signal (col 1) and Rx (col 6) span full width */')
 [void]$sb.AppendLine('  td[data-label="Signal"],td[data-label="Rx"]{grid-column:1/-1;background:#fff;border-color:#bfdbfe;}')
-[void]$sb.AppendLine('  .byte-cell{min-width:36px;}')
+[void]$sb.AppendLine('  .bytemap{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+  .byte-cell{min-width:0;max-width:none;flex:none;}')
 [void]$sb.AppendLine('}')
 [void]$sb.AppendLine('</style>')
 [void]$sb.AppendLine('</head>')
