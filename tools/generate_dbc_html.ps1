@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$DbcPath = '.\dbc\bmw_e9x_e8x1_merged.dbc',
     [string]$OutputPath = '.\docs\can_ids_reference.html'
 )
@@ -47,6 +47,7 @@ function New-Signal {
         StartBit = $StartBit
         Length = $Length
         Endian = $endian
+        EndianFlag = $EndianFlag
         ValueType = $valueType
         Factor = $Factor
         Offset = $Offset
@@ -64,14 +65,100 @@ function Escape-Html([string]$Value) {
     return [System.Net.WebUtility]::HtmlEncode($Value)
 }
 
+# Returns human-readable byte/bit position string for a signal
+function Get-HumanBitPos($sig) {
+    if ($sig.EndianFlag -eq '1') {
+        # Intel little-endian
+        $startByte = [math]::Floor($sig.StartBit / 8)
+        $loBit     = $sig.StartBit % 8
+        $endBitAbs = $sig.StartBit + $sig.Length - 1
+        $endByte   = [math]::Floor($endBitAbs / 8)
+        $hiBit     = $endBitAbs % 8
+
+        if ($startByte -eq $endByte) {
+            if ($sig.Length -eq 8)                          { return "B$startByte (full byte)" }
+            if ($sig.Length -eq 4 -and $loBit -eq 0)       { return "B${startByte}[3:0] lo-nibble" }
+            if ($sig.Length -eq 4 -and $loBit -eq 4)       { return "B${startByte}[7:4] hi-nibble" }
+            if ($sig.Length -eq 1)                          { return "B${startByte} bit$loBit" }
+            return "B${startByte}[$hiBit`:$loBit]"
+        } else {
+            $spanBytes = $endByte - $startByte + 1
+            return "B${startByte}..B${endByte} ($($sig.Length)b LE, $spanBytes bytes)"
+        }
+    } else {
+        # Motorola big-endian — DBC start bit is MSB position in Motorola notation
+        $startByte = [math]::Floor($sig.StartBit / 8)
+        if ($sig.Length -eq 8)  { return "B$startByte (full byte, BE)" }
+        if ($sig.Length -eq 16) { return "B${startByte}..B$([int]$startByte+1) (16b BE)" }
+        return "B${startByte}+ ($($sig.Length)b BE)"
+    }
+}
+
+# Returns human-readable formula string
+function Get-Formula($sig) {
+    $fStr = $sig.Factor.Trim()
+    $oStr = $sig.Offset.Trim()
+    $u    = $sig.Unit.Trim()
+
+    try { $f = [double]$fStr } catch { return '' }
+    try { $o = [double]$oStr } catch { return '' }
+
+    if ($f -eq 1 -and $o -eq 0) {
+        if ($u) { return "raw ($u)" } else { return 'raw value' }
+    }
+
+    $fDisp = if ($f -eq [math]::Truncate($f)) { [int]$f } else { $fStr }
+    $oDisp = if ($o -eq [math]::Truncate($o)) { [int]$o } else { $oStr }
+
+    $expr = if ($f -eq 1) { 'raw' } else { "raw &times; $fDisp" }
+    if ($o -gt 0)      { $expr += " + $oDisp" }
+    elseif ($o -lt 0)  { $expr += " &minus; $([math]::Abs($oDisp))" }
+    if ($u)            { $expr += " = <em>$([System.Net.WebUtility]::HtmlEncode($u))</em>" }
+    return $expr
+}
+
+# Returns HTML byte-map visual for a message
+function Get-ByteMap($msg) {
+    $dlc = $msg.Dlc
+    if ($dlc -le 0) { return '' }
+
+    # Collect signal names per byte slot
+    $byteSignals = @{}
+    for ($i = 0; $i -lt $dlc; $i++) { $byteSignals[$i] = [System.Collections.Generic.List[string]]::new() }
+
+    foreach ($sig in $msg.Signals) {
+        if ($sig.EndianFlag -eq '1') {
+            $startByte = [math]::Floor($sig.StartBit / 8)
+            $endByte   = [math]::Floor(($sig.StartBit + $sig.Length - 1) / 8)
+            for ($b = [int]$startByte; $b -le [math]::Min([int]$endByte, $dlc - 1); $b++) {
+                $byteSignals[$b].Add($sig.Name)
+            }
+        } else {
+            $b = [math]::Min([int][math]::Floor($sig.StartBit / 8), $dlc - 1)
+            $byteSignals[$b].Add($sig.Name)
+        }
+    }
+
+    $html = '<div class="bytemap">'
+    for ($i = 0; $i -lt $dlc; $i++) {
+        $sigs = $byteSignals[$i]
+        $isEmpty = ($sigs.Count -eq 0)
+        $label = if ($isEmpty) { '&mdash;' } else { [System.Net.WebUtility]::HtmlEncode(($sigs -join ', ')) }
+        $cellClass = if ($isEmpty) { 'byte-cell byte-empty' } else { 'byte-cell byte-used' }
+        $html += "<div class='$cellClass'><div class='byte-idx'>B$i</div><div class='byte-sigs'>$label</div></div>"
+    }
+    $html += '</div>'
+    return $html
+}
+
 $messages = New-Object 'System.Collections.Generic.Dictionary[int,object]'
 $currentMessage = $null
 
-$messageRegex = [regex]'^BO_\s+(\d+)\s+([^:]+):\s+(\d+)\s+(\S+)'
-$signalRegex = [regex]'^SG_\s+(\S+)(?:\s+(M|m\d+))?\s*:\s*(\d+)\|(\d+)@([01])([+-])\s+\(([^,]+),([^)]+)\)\s+\[([^|]+)\|([^\]]+)\]\s+"([^"]*)"\s+(.+)$'
+$messageRegex       = [regex]'^BO_\s+(\d+)\s+([^:]+):\s+(\d+)\s+(\S+)'
+$signalRegex        = [regex]'^SG_\s+(\S+)(?:\s+(M|m\d+))?\s*:\s*(\d+)\|(\d+)@([01])([+-])\s+\(([^,]+),([^)]+)\)\s+\[([^|]+)\|([^\]]+)\]\s+"([^"]*)"\s+(.+)$'
 $messageCommentRegex = [regex]'^CM_\s+BO_\s+(\d+)\s+"(.*)";$'
-$signalCommentRegex = [regex]'^CM_\s+SG_\s+(\d+)\s+(\S+)\s+"(.*)";$'
-$valRegex = [regex]'(-?\d+)\s+"([^"]*)"'
+$signalCommentRegex  = [regex]'^CM_\s+SG_\s+(\d+)\s+(\S+)\s+"(.*)";$'
+$valRegex           = [regex]'(-?\d+)\s+"([^"]*)"'
 
 foreach ($rawLine in [System.IO.File]::ReadLines((Resolve-Path $DbcPath))) {
     $line = $rawLine.Trim()
@@ -79,7 +166,7 @@ foreach ($rawLine in [System.IO.File]::ReadLines((Resolve-Path $DbcPath))) {
 
     $messageMatch = $messageRegex.Match($line)
     if ($messageMatch.Success) {
-        $id = [int]$messageMatch.Groups[1].Value
+        $id  = [int]$messageMatch.Groups[1].Value
         $msg = New-Message -Id $id -Name $messageMatch.Groups[2].Value.Trim() -Dlc ([int]$messageMatch.Groups[3].Value) -Transmitter $messageMatch.Groups[4].Value.Trim()
         $messages[$id] = $msg
         $currentMessage = $msg
@@ -115,7 +202,7 @@ foreach ($rawLine in [System.IO.File]::ReadLines((Resolve-Path $DbcPath))) {
 
     $signalCommentMatch = $signalCommentRegex.Match($line)
     if ($signalCommentMatch.Success) {
-        $id = [int]$signalCommentMatch.Groups[1].Value
+        $id         = [int]$signalCommentMatch.Groups[1].Value
         $signalName = $signalCommentMatch.Groups[2].Value
         if ($messages.ContainsKey($id)) {
             $signal = $messages[$id].Signals | Where-Object { $_.Name -eq $signalName } | Select-Object -First 1
@@ -127,15 +214,15 @@ foreach ($rawLine in [System.IO.File]::ReadLines((Resolve-Path $DbcPath))) {
     }
 
     if ($line.StartsWith('VAL_ ')) {
-        $trimmed = $line.Substring(5).TrimEnd(';')
-        $firstSpace = $trimmed.IndexOf(' ')
+        $trimmed     = $line.Substring(5).TrimEnd(';')
+        $firstSpace  = $trimmed.IndexOf(' ')
         if ($firstSpace -lt 0) { continue }
-        $id = [int]$trimmed.Substring(0, $firstSpace)
-        $rest = $trimmed.Substring($firstSpace + 1)
+        $id          = [int]$trimmed.Substring(0, $firstSpace)
+        $rest        = $trimmed.Substring($firstSpace + 1)
         $secondSpace = $rest.IndexOf(' ')
         if ($secondSpace -lt 0) { continue }
-        $signalName = $rest.Substring(0, $secondSpace)
-        $pairs = $rest.Substring($secondSpace + 1)
+        $signalName  = $rest.Substring(0, $secondSpace)
+        $pairs       = $rest.Substring($secondSpace + 1)
         if ($messages.ContainsKey($id)) {
             $signal = $messages[$id].Signals | Where-Object { $_.Name -eq $signalName } | Select-Object -First 1
             if ($null -ne $signal) {
@@ -148,9 +235,9 @@ foreach ($rawLine in [System.IO.File]::ReadLines((Resolve-Path $DbcPath))) {
 }
 
 $orderedMessages = $messages.Values | Sort-Object Id
-$signalCount = ($orderedMessages | ForEach-Object { $_.Signals.Count } | Measure-Object -Sum).Sum
-$generatedAt = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-$sourceName = Split-Path -Path $DbcPath -Leaf
+$signalCount     = ($orderedMessages | ForEach-Object { $_.Signals.Count } | Measure-Object -Sum).Sum
+$generatedAt     = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+$sourceName      = Split-Path -Path $DbcPath -Leaf
 
 $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('<!DOCTYPE html>')
@@ -167,24 +254,45 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('.hero p{margin:0;color:#cbd5e1;}')
 [void]$sb.AppendLine('.meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}')
 [void]$sb.AppendLine('.meta span{display:inline-block;background:#1f2937;color:#e5e7eb;padding:10px 12px;border-radius:999px;font-size:14px;}')
+[void]$sb.AppendLine('.search-wrap{margin:20px 0 0;}')
+[void]$sb.AppendLine('#search{width:100%;padding:12px 16px;font-size:16px;border:2px solid #334155;border-radius:12px;background:#1f2937;color:#f1f5f9;outline:none;box-sizing:border-box;}')
+[void]$sb.AppendLine('#search::placeholder{color:#64748b;}')
+[void]$sb.AppendLine('#search:focus{border-color:#60a5fa;}')
 [void]$sb.AppendLine('.toc{margin:24px 0 30px;padding:18px 20px;background:#ffffff;border-radius:16px;box-shadow:0 10px 24px rgba(15,23,42,.08);}')
 [void]$sb.AppendLine('.toc h2{margin:0 0 12px;font-size:20px;}')
 [void]$sb.AppendLine('.toc-list{display:flex;flex-wrap:wrap;gap:10px 12px;}')
 [void]$sb.AppendLine('.toc a{display:inline-block;padding:8px 10px;border-radius:10px;background:#e5eef7;color:#1f3b5b;text-decoration:none;font-size:14px;}')
 [void]$sb.AppendLine('.message{margin-top:22px;background:#ffffff;border-radius:18px;padding:22px 22px 24px;box-shadow:0 12px 28px rgba(15,23,42,.08);}')
+[void]$sb.AppendLine('.message.hidden{display:none;}')
 [void]$sb.AppendLine('.message-header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 18px;align-items:flex-start;}')
 [void]$sb.AppendLine('.message h2{margin:0;font-size:26px;color:#0f172a;}')
 [void]$sb.AppendLine('.message-sub{margin-top:6px;color:#475569;font-size:15px;}')
 [void]$sb.AppendLine('.badge-row{display:flex;flex-wrap:wrap;gap:10px;}')
 [void]$sb.AppendLine('.badge{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;padding:8px 10px;border-radius:999px;font-size:13px;font-weight:600;}')
-[void]$sb.AppendLine('.comment{margin-top:14px;padding:12px 14px;border-left:4px solid #60a5fa;background:#f8fbff;color:#334155;border-radius:8px;}')
+[void]$sb.AppendLine('.comment{margin-top:14px;padding:12px 14px;border-left:4px solid #60a5fa;background:#f8fbff;color:#334155;border-radius:8px;font-size:14px;}')
+# Byte map styles
+[void]$sb.AppendLine('.bytemap{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 4px;font-size:12px;}')
+[void]$sb.AppendLine('.byte-cell{border-radius:8px;padding:6px 8px;min-width:52px;max-width:160px;text-align:center;flex:1;}')
+[void]$sb.AppendLine('.byte-used{background:#f0f9ff;border:1px solid #7dd3fc;}')
+[void]$sb.AppendLine('.byte-empty{background:#f8fafc;border:1px dashed #cbd5e1;color:#94a3b8;}')
+[void]$sb.AppendLine('.byte-idx{font-weight:700;color:#0369a1;margin-bottom:3px;font-size:11px;}')
+[void]$sb.AppendLine('.byte-empty .byte-idx{color:#94a3b8;}')
+[void]$sb.AppendLine('.byte-sigs{color:#334155;word-break:break-word;line-height:1.3;}')
+[void]$sb.AppendLine('.bytemap-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:14px 0 2px;}')
+# Table styles
 [void]$sb.AppendLine('table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px;}')
 [void]$sb.AppendLine('th,td{padding:10px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top;text-align:left;}')
 [void]$sb.AppendLine('th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#64748b;background:#f8fafc;}')
-[void]$sb.AppendLine('td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px;border-radius:6px;}')
+[void]$sb.AppendLine('td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px;border-radius:6px;font-size:13px;}')
+[void]$sb.AppendLine('.human-pos{font-weight:600;color:#0f172a;font-family:Consolas,Monaco,monospace;font-size:13px;}')
+[void]$sb.AppendLine('.dbc-pos{color:#94a3b8;font-size:11px;margin-top:2px;}')
+[void]$sb.AppendLine('.formula{color:#065f46;font-size:13px;}')
+[void]$sb.AppendLine('.dbc-scale{color:#94a3b8;font-size:11px;margin-top:2px;}')
 [void]$sb.AppendLine('.signal-comment{margin-top:6px;color:#475569;font-size:13px;}')
-[void]$sb.AppendLine('.enum-list{margin:8px 0 0;padding-left:18px;color:#334155;font-size:13px;}')
-[void]$sb.AppendLine('.enum-list li{margin:2px 0;}')
+[void]$sb.AppendLine('.enum-list{margin:8px 0 0;padding-left:0;list-style:none;color:#334155;font-size:13px;display:flex;flex-wrap:wrap;gap:4px 10px;}')
+[void]$sb.AppendLine('.enum-list li{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:2px 7px;}')
+[void]$sb.AppendLine('.enum-hex{color:#065f46;font-weight:700;font-family:Consolas,Monaco,monospace;}')
+[void]$sb.AppendLine('.enum-dec{color:#94a3b8;font-size:11px;}')
 [void]$sb.AppendLine('.muted{color:#64748b;}')
 [void]$sb.AppendLine('@media (max-width:900px){.message-header{flex-direction:column;}table{display:block;overflow-x:auto;}}')
 [void]$sb.AppendLine('</style>')
@@ -200,7 +308,11 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine("<span>Messages: $($orderedMessages.Count)</span>")
 [void]$sb.AppendLine("<span>Signals: $signalCount</span>")
 [void]$sb.AppendLine('</div>')
+[void]$sb.AppendLine('<div class="search-wrap">')
+[void]$sb.AppendLine('<input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">')
+[void]$sb.AppendLine('</div>')
 [void]$sb.AppendLine('</section>')
+
 [void]$sb.AppendLine('<section class="toc">')
 [void]$sb.AppendLine('<h2>Message Index</h2>')
 [void]$sb.AppendLine('<div class="toc-list">')
@@ -212,8 +324,9 @@ foreach ($msg in $orderedMessages) {
 [void]$sb.AppendLine('</section>')
 
 foreach ($msg in $orderedMessages) {
-    $anchor = "msg-$($msg.Id)"
-    [void]$sb.AppendLine("<section class='message' id='$anchor'>")
+    $anchor   = "msg-$($msg.Id)"
+    $searchData = "$($msg.IdHex) $($msg.Id) $($msg.Name) $($msg.Transmitter)".ToLower()
+    [void]$sb.AppendLine("<section class='message' id='$anchor' data-search='$(Escape-Html $searchData)'>")
     [void]$sb.AppendLine('<div class="message-header">')
     [void]$sb.AppendLine('<div>')
     [void]$sb.AppendLine("<h2>$($msg.IdHex) &middot; $(Escape-Html $msg.Name)</h2>")
@@ -224,14 +337,28 @@ foreach ($msg in $orderedMessages) {
     [void]$sb.AppendLine("<span class='badge'>$($msg.Signals.Count) signals</span>")
     [void]$sb.AppendLine('</div>')
     [void]$sb.AppendLine('</div>')
+
     if ($msg.Comment) {
         [void]$sb.AppendLine("<div class='comment'>$(Escape-Html $msg.Comment)</div>")
     }
+
+    # Byte map
+    if ($msg.Dlc -gt 0) {
+        [void]$sb.AppendLine("<div class='bytemap-label'>Byte layout</div>")
+        [void]$sb.AppendLine((Get-ByteMap $msg))
+    }
+
+    # Signal table
     [void]$sb.AppendLine('<table>')
-    [void]$sb.AppendLine('<thead><tr><th>Signal</th><th>Bits</th><th>Format</th><th>Scale</th><th>Range</th><th>Receivers</th></tr></thead>')
+    [void]$sb.AppendLine('<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>')
     [void]$sb.AppendLine('<tbody>')
     foreach ($sig in $msg.Signals) {
+        $humanPos = Get-HumanBitPos $sig
+        $formula  = Get-Formula $sig
+
         [void]$sb.AppendLine('<tr>')
+
+        # Signal name + comment + enum
         [void]$sb.AppendLine('<td>')
         [void]$sb.AppendLine("<strong>$(Escape-Html $sig.Name)</strong>")
         if ($sig.Multiplex) {
@@ -243,16 +370,37 @@ foreach ($msg in $orderedMessages) {
         if ($sig.EnumMap.Count -gt 0) {
             [void]$sb.AppendLine('<ul class="enum-list">')
             foreach ($key in $sig.EnumMap.Keys) {
-                [void]$sb.AppendLine("<li><code>$(Escape-Html $key)</code> = $(Escape-Html $sig.EnumMap[$key])</li>")
+                $decVal = [int]$key
+                $hexVal = '0x{0:X2}' -f $decVal
+                [void]$sb.AppendLine("<li><span class='enum-hex'>$hexVal</span> <span class='enum-dec'>($decVal)</span> = $(Escape-Html $sig.EnumMap[$key])</li>")
             }
             [void]$sb.AppendLine('</ul>')
         }
         [void]$sb.AppendLine('</td>')
-        [void]$sb.AppendLine("<td><code>$($sig.StartBit)|$($sig.Length)</code></td>")
+
+        # Position — human-readable primary, DBC secondary
+        [void]$sb.AppendLine('<td>')
+        [void]$sb.AppendLine("<div class='human-pos'>$(Escape-Html $humanPos)</div>")
+        [void]$sb.AppendLine("<div class='dbc-pos'>DBC: $($sig.StartBit)|$($sig.Length)</div>")
+        [void]$sb.AppendLine('</td>')
+
+        # Format
         [void]$sb.AppendLine("<td>$(Escape-Html $sig.Endian)<br>$(Escape-Html $sig.ValueType)$(if ($sig.Unit) { '<br>Unit: ' + (Escape-Html $sig.Unit) } else { '' })</td>")
-        [void]$sb.AppendLine("<td>Factor <code>$(Escape-Html $sig.Factor)</code><br>Offset <code>$(Escape-Html $sig.Offset)</code></td>")
+
+        # Scale / formula — human-readable primary, DBC secondary
+        [void]$sb.AppendLine('<td>')
+        if ($formula) {
+            [void]$sb.AppendLine("<div class='formula'>$formula</div>")
+        }
+        [void]$sb.AppendLine("<div class='dbc-scale'>Factor <code>$(Escape-Html $sig.Factor)</code> Offset <code>$(Escape-Html $sig.Offset)</code></div>")
+        [void]$sb.AppendLine('</td>')
+
+        # Range
         [void]$sb.AppendLine("<td><code>[$(Escape-Html $sig.Minimum) .. $(Escape-Html $sig.Maximum)]</code></td>")
+
+        # Receivers
         [void]$sb.AppendLine("<td>$(Escape-Html $sig.Receivers)</td>")
+
         [void]$sb.AppendLine('</tr>')
     }
     [void]$sb.AppendLine('</tbody>')
@@ -261,6 +409,16 @@ foreach ($msg in $orderedMessages) {
 }
 
 [void]$sb.AppendLine('</div>')
+[void]$sb.AppendLine('<script>')
+[void]$sb.AppendLine('var s=document.getElementById("search");')
+[void]$sb.AppendLine('var msgs=document.querySelectorAll(".message");')
+[void]$sb.AppendLine('s.addEventListener("input",function(){')
+[void]$sb.AppendLine('  var q=s.value.toLowerCase().trim();')
+[void]$sb.AppendLine('  msgs.forEach(function(m){')
+[void]$sb.AppendLine('    m.classList.toggle("hidden", q.length>0 && m.dataset.search.indexOf(q)===-1);')
+[void]$sb.AppendLine('  });')
+[void]$sb.AppendLine('});')
+[void]$sb.AppendLine('</script>')
 [void]$sb.AppendLine('</body>')
 [void]$sb.AppendLine('</html>')
 
@@ -269,5 +427,5 @@ if (-not [string]::IsNullOrWhiteSpace($outputDir) -and -not (Test-Path -Path $ou
     New-Item -ItemType Directory -Path $outputDir | Out-Null
 }
 
-[System.IO.File]::WriteAllText((Resolve-Path -Path (Split-Path -Path $OutputPath -Parent)).Path + '\\' + (Split-Path -Path $OutputPath -Leaf), $sb.ToString(), [System.Text.Encoding]::UTF8)
+[System.IO.File]::WriteAllText((Resolve-Path -Path (Split-Path -Path $OutputPath -Parent)).Path + '\' + (Split-Path -Path $OutputPath -Leaf), $sb.ToString(), [System.Text.Encoding]::UTF8)
 Write-Host "Generated $OutputPath"
