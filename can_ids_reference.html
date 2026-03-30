@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BMW CAN IDs Reference</title>
 <style>
-body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f3f5f7;color:#1d2731;line-height:1.45;}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f3f5f7;color:#1d2731;line-height:1.45;overflow-x:hidden;}
 .page{max-width:1400px;margin:0 auto;padding:32px 20px 64px;}
 .hero{background:#111827;color:#f9fafb;border-radius:18px;padding:28px 24px;box-shadow:0 18px 40px rgba(17,24,39,.18);}
 .hero h1{margin:0 0 8px;font-size:34px;}
@@ -57,18 +57,23 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 .muted{color:#64748b;}
 @media (max-width:900px){.message-header{flex-direction:column;}}
 @media (max-width:700px){
-  .page{padding:12px 10px 48px;}
+  .page{padding:12px 10px 48px;max-width:100%;}
   .hero{border-radius:12px;padding:18px 16px;}
   .hero h1{font-size:22px;}
-  .message{padding:14px 14px 18px;border-radius:12px;}
+  .message{padding:14px 12px 18px;border-radius:12px;overflow:hidden;}
   .message h2{font-size:20px;}
   .message-sub{font-size:13px;}
   .toc-list{grid-template-columns:repeat(2,1fr);}
+  /* prevent wide content from blowing layout */
+  .comment,.signal-comment,td code{word-break:break-word;}
+  /* signal table: 2-column card grid */
   table,thead,tbody,th,td,tr{display:block;}
   thead tr{position:absolute;top:-9999px;left:-9999px;}
-  tr{border-bottom:2px solid #e5e7eb;margin-bottom:10px;}
-  td{position:relative;padding:5px 8px 5px 42%;border:none;border-bottom:1px solid #f1f5f9;min-height:28px;}
-  td::before{content:attr(data-label);position:absolute;left:8px;top:6px;width:36%;font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;}
+  tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:12px;border-bottom:2px solid #e5e7eb;padding-bottom:8px;}
+  td{padding:6px 8px;border:1px solid #e5e7eb;border-radius:6px;background:#f8fafc;min-height:0;}
+  td::before{display:block;content:attr(data-label);font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}
+  /* Signal (col 1) and Rx (col 6) span full width */
+  td[data-label="Signal"],td[data-label="Rx"]{grid-column:1/-1;background:#fff;border-color:#bfdbfe;}
   .byte-cell{min-width:36px;}
 }
 </style>
@@ -80,7 +85,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-30 23:07:47</span>
+<span>Generated: 2026-03-30 23:13:50</span>
 <span>Messages: 371</span>
 <span>Signals: 331</span>
 </div>
