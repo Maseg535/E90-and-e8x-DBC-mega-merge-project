@@ -109,7 +109,7 @@ BO_ 181 Torque_request_EGS: 8 EGS
  SG_ ST_OBD_ERR_GRB : 44|2@1+ (1,0) [0|3] "" DME
  SG_ ST_LIM_STORQ : 46|2@1+ (1,0) [0|3] "" DME
  SG_ TORQ_DRAW_GRB : 48|8@1+ (0.5,0) [0|255] "Nm" DME
- SG_ TEMP_GRB : 56|8@1- (1,40) [0|0] "C" DME
+ SG_ TEMP_GRB : 56|8@1+ (1,-40) [-40|215] "C" DME
 
 BO_ 182 Torque_request_DSC: 5 DSC
  SG_ Checksum_0xb6 : 0|8@1+ (1,0) [0|255] "" DME
@@ -1135,7 +1135,7 @@ CM_ SG_ 181 ST_OTMP_GRB "overtemperature gearbox status";
 CM_ SG_ 181 ST_OBD_GRB "status OBD_error gearbox";
 CM_ SG_ 181 ST_LIM_STORQ "starting torque limitation status";
 CM_ SG_ 181 TORQ_DRAW_GRB "Torque converter - looks like fluid path torque before multiplication";
-CM_ SG_ 181 TEMP_GRB "gearbox temperature";
+CM_ SG_ 181 TEMP_GRB "Gearbox/ATF oil temperature. Encoding: phys = raw - 40 (C). Unsigned 0-255, range -40 to +215C. ZF 6HP19 normal operating range 60-90C, alarm >130C. Matches OBD2 PID 0x6C (ATF temp) standard. Source: Raiso77 (confirmed on GM gearbox via OBD2, 2026-03-31). Previously wrong in DBC as signed @1- offset +40 — corrected to unsigned @1+ offset -40. Not confirmed on ZF 6HP19 from our HIL (0x0B5 absent from all bench logs — EGS→DME message, no EGS simulation on bench).";
 CM_ SG_ 182 TORQ_TAR_DSC "torque target (fast)";
 CM_ SG_ 182 TORQ_TAR_ADJR_POS_DSC "torque target (slow)";
 CM_ BO_ 183 "ACC or LDM - active cruise control torque request";
