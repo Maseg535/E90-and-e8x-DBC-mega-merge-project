@@ -118,9 +118,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-30 20:45:29</span>
+<span>Generated: 2026-03-31 19:33:09</span>
 <span>Messages: 371</span>
-<span>Signals: 331</span>
+<span>Signals: 333</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
@@ -11345,15 +11345,75 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 2</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>2 signals</span>
 </div>
 </div>
-<div class='comment'>0x381 (DME): Engine oil level</div>
+<div class='comment'>0x381 (DDE/DME→CIC/Kombi): Engine oil level response. Byte0=measurement state (sent on CIC request), Byte1=general status. Source: Raiso77. Not observed in HIL logs — message only transmitted when CIC requests oil level check.</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OilLevel_MeasState</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OilLevel_Status</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>OilLevel_MeasState</strong>
+<div class='signal-comment'>Oil level measurement state / value code (Byte0). Response to CIC oil-level request.</div>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x12</span> <span class='enum-dec'>(18)</span> = Level below MIN</li>
+<li><span class='enum-hex'>0x25</span> <span class='enum-dec'>(37)</span> = Level at MIN</li>
+<li><span class='enum-hex'>0x38</span> <span class='enum-dec'>(56)</span> = Level between MIN and OK</li>
+<li><span class='enum-hex'>0x53</span> <span class='enum-dec'>(83)</span> = Level OK</li>
+<li><span class='enum-hex'>0x69</span> <span class='enum-dec'>(105)</span> = Level between OK and MAX</li>
+<li><span class='enum-hex'>0x85</span> <span class='enum-dec'>(133)</span> = Level at MAX</li>
+<li><span class='enum-hex'>0x95</span> <span class='enum-dec'>(149)</span> = Overcrowded / overfilled</li>
+<li><span class='enum-hex'>0x78</span> <span class='enum-dec'>(120)</span> = No measurement possible</li>
+<li><span class='enum-hex'>0x79</span> <span class='enum-dec'>(121)</span> = Measurement in progress</li>
+<li><span class='enum-hex'>0x7A</span> <span class='enum-dec'>(122)</span> = Oil level check OK</li>
+<li><span class='enum-hex'>0x7B</span> <span class='enum-dec'>(123)</span> = Measurement OK</li>
+<li><span class='enum-hex'>0x7C</span> <span class='enum-dec'>(124)</span> = Ignition OFF, no measurement possible</li>
+<li><span class='enum-hex'>0x7D</span> <span class='enum-dec'>(125)</span> = Oil level OK, precise measurement in progress</li>
+<li><span class='enum-hex'>0x7E</span> <span class='enum-dec'>(126)</span> = Oil level OK</li>
+<li><span class='enum-hex'>0x7F</span> <span class='enum-dec'>(127)</span> = Measurement in progress (alt)</li>
+<li><span class='enum-hex'>0x80</span> <span class='enum-dec'>(128)</span> = Accurate measurement in progress (~1 min)</li>
+<li><span class='enum-hex'>0xFF</span> <span class='enum-dec'>(255)</span> = Signal invalid</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">CIC,Kombi</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OilLevel_Status</strong>
+<div class='signal-comment'>Oil level general status (Byte1).</div>
+<ul class="enum-list">
+<li><span class='enum-hex'>0xF0</span> <span class='enum-dec'>(240)</span> = All OK</li>
+<li><span class='enum-hex'>0xF1</span> <span class='enum-dec'>(241)</span> = Overfilled</li>
+<li><span class='enum-hex'>0xF2</span> <span class='enum-dec'>(242)</span> = Refill 1.0 L</li>
+<li><span class='enum-hex'>0xF4</span> <span class='enum-dec'>(244)</span> = Service required</li>
+<li><span class='enum-hex'>0xFF</span> <span class='enum-dec'>(255)</span> = Signal invalid</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">CIC,Kombi</td>
+</tr>
 </tbody>
 </table>
 </section>
