@@ -118,7 +118,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-31 19:52:23</span>
+<span>Generated: 2026-03-31 19:58:43</span>
 <span>Messages: 371</span>
 <span>Signals: 333</span>
 </div>
@@ -1520,18 +1520,18 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <tr>
 <td data-label="Signal">
 <strong>TEMP_GRB</strong>
-<div class='signal-comment'>gearbox temperature</div>
+<div class='signal-comment'>Gearbox/ATF oil temperature. Encoding: phys = raw - 40 (C). Unsigned 0-255, range -40 to +215C. ZF 6HP19 normal operating range 60-90C, alarm &gt;130C. Matches OBD2 PID 0x6C (ATF temp) standard. Source: Raiso77 (confirmed on GM gearbox via OBD2, 2026-03-31). Previously wrong in DBC as signed @1- offset +40 — corrected to unsigned @1+ offset -40. Not confirmed on ZF 6HP19 from our HIL (0x0B5 absent from all bench logs — EGS→DME message, no EGS simulation on bench).</div>
 </td>
 <td data-label="Position">
 <div class='human-pos'>B7 (full byte)</div>
 <div class='dbc-pos'>DBC: 56|8</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: C</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: C</td>
 <td data-label="Scale">
-<div class='formula'>raw + 40 = <em>C</em></div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>40</code></div>
+<div class='formula'>raw &minus; 40 = <em>C</em></div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>-40</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Range"><code>[-40 .. 215]</code></td>
 <td data-label="Rx">DME</td>
 </tr>
 </tbody>
