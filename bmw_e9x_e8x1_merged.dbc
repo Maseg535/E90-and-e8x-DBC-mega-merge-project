@@ -914,6 +914,8 @@ BO_ 896 chassis_number: 8 CAS
  SG_ VIN_Byte6 : 48|8@1+ (1,0) [0|255] "" DME,EGS,CIC,Kombi
 
 BO_ 897 EngineOilLevel: 2 DME
+ SG_ OilLevel_MeasState : 0|8@1+ (1,0) [0|255] "" CIC,Kombi
+ SG_ OilLevel_Status    : 8|8@1+ (1,0) [0|255] "" CIC,Kombi
 
 BO_ 898 Electronic_engine_oil_dipstick_M: 8 DME
 
@@ -1244,7 +1246,11 @@ CM_ BO_ 847 "0x34F (Gate1): Handbrake lever contact. B0 bit0=Handbrake_pushed_do
 CM_ BO_ 870 "0x366 (Kombi): External temperature and remaining fuel range. B0=ExternalTemp unsigned (factor=0.5, offset=-41 degC): formula raw*0.5-41. Validated: raw 0x6B=107 → 12.5C confirmed against dashboard at 12.5C ambient. B1-B2=FuelRange (miles). Source: STATIC-01 validation 2026-03-21";
 CM_ BO_ 884 "0x374 (DSC): Wheel tolerance adjustment";
 CM_ BO_ 896 "0x380 (CAS): Chassis / VIN number — bytes 0-6 are ASCII characters of VIN digits. Source: loopybunny.co.uk/CarPC";
-CM_ BO_ 897 "0x381 (DME): Engine oil level";
+CM_ BO_ 897 "0x381 (DDE/DME→CIC/Kombi): Engine oil level response. Byte0=measurement state (sent on CIC request), Byte1=general status. Source: Raiso77. Not observed in HIL logs — message only transmitted when CIC requests oil level check.";
+CM_ SG_ 897 OilLevel_MeasState "Oil level measurement state / value code (Byte0). Response to CIC oil-level request.";
+CM_ SG_ 897 OilLevel_Status "Oil level general status (Byte1).";
+VAL_ 897 OilLevel_MeasState 18 "Level below MIN" 37 "Level at MIN" 56 "Level between MIN and OK" 83 "Level OK" 105 "Level between OK and MAX" 133 "Level at MAX" 149 "Overcrowded / overfilled" 120 "No measurement possible" 121 "Measurement in progress" 122 "Oil level check OK" 123 "Measurement OK" 124 "Ignition OFF, no measurement possible" 125 "Oil level OK, precise measurement in progress" 126 "Oil level OK" 127 "Measurement in progress (alt)" 128 "Accurate measurement in progress (~1 min)" 255 "Signal invalid";
+VAL_ 897 OilLevel_Status 240 "All OK" 241 "Overfilled" 242 "Refill 1.0 L" 244 "Service required" 255 "Signal invalid";
 CM_ BO_ 940 "0x3AC (Gate1): Terminal 30 run-on time";
 CM_ BO_ 944 "0x3B0 (FRM — Footwell Module): Reverse gear status. Byte 1: 0xFD=not in reverse, 0xFE=in reverse. Source: loopybunny.co.uk/CarPC";
 CM_ BO_ 945 "0x3B1 (DKG): Transmission data 3";

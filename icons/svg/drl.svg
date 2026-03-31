@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="236.66" height="137.89" version="1.1" viewBox="0 0 221.87 129.27" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-134.43 -381.46)">
+  <rect transform="translate(-4.0456e-6)" x="134.43" y="381.46" width="221.87" height="129.27" ry=".2253"/>
+  <g fill="#00a000" stroke-linejoin="round">
+   <ellipse cx="213.37" cy="404.03" rx="9.4701" ry="9.6136" stroke-width="7.7328"/>
+   <ellipse cx="184.52" cy="404.03" rx="7.8021" ry="7.3666" stroke-width="9.1602"/>
+   <ellipse cx="159.05" cy="403.55" rx="5.9112" ry="5.8798" stroke-width="7.4543"/>
+   <ellipse cx="206.51" cy="442.05" rx="9.408" ry="9.4701" stroke-width="10.605"/>
+   <ellipse cx="175.38" cy="442.61" rx="7.4943" ry="7.7771" stroke-width="11.31"/>
+   <ellipse cx="147.86" cy="442.61" rx="5.532" ry="5.6717" stroke-width="11.632"/>
+   <ellipse cx="159.17" cy="481.46" rx="5.7873" ry="5.7367" stroke-width="12.683"/>
+  </g>
+  <g stroke-linejoin="round">
+   <ellipse cx="184.43" cy="481.46" rx="7.8908" ry="7.8412" fill="#009f00" stroke-width="11.253"/>
+   <ellipse cx="213.24" cy="480.69" rx="9.3433" ry="9.1773" fill="#00a000" stroke-width="10.524"/>
+   <path d="m243.18 490.21c-11.25-37.5-11.25-63.75 0.9375-95.625 18.723-2.8271 35.432 0.15806 51.562 3.75 48.75 26.25 45 61.875 0.9375 87.188-16.125 4.1395-34.855 5.7137-53.438 4.6875z" fill="none" stroke="#00a000" stroke-width="8.8594"/>
+  </g>
+ </g>
+</svg>

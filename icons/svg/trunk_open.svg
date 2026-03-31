@@ -1,0 +1,15 @@
+<svg viewBox="0 0 130 165" xmlns="http://www.w3.org/2000/svg">
+  <title>Trunk / Boot Open</title>
+  <!-- Car body (top-down view, front at top) -->
+  <rect x="35" y="10" width="60" height="120" rx="8" fill="#e0e0e0" stroke="#111" stroke-width="3.5"/>
+  <!-- Windscreen / A-pillar line -->
+  <line x1="35" y1="36" x2="95" y2="36" stroke="#111" stroke-width="2"/>
+  <!-- B-pillar -->
+  <line x1="35" y1="82" x2="95" y2="82" stroke="#111" stroke-width="2"/>
+  <!-- Rear window -->
+  <line x1="35" y1="114" x2="95" y2="114" stroke="#111" stroke-width="2"/>
+  <!-- Trunk lid line (hinge) -->
+  <line x1="39" y1="124" x2="91" y2="124" stroke="#111" stroke-width="1.5"/>
+  <!-- Open trunk lid (perpendicular, hinged at rear-window line, extends below car) -->
+  <rect x="35" y="130" width="60" height="26" rx="3" fill="#444" stroke="#111" stroke-width="2"/>
+</svg>

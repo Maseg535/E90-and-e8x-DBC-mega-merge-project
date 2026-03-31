@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMW E90 Dashboard Icon Library</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, sans-serif; background: #111; color: #ddd; margin: 0; padding: 1rem 2rem; }
+  h1 { color: #fff; margin-bottom: .25rem; }
+  p.sub { color: #888; margin-top: 0; font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .85rem; }
+  th { background: #1e1e1e; color: #aaa; text-transform: uppercase; font-size: .75rem;
+        letter-spacing: .06em; padding: .6rem .8rem; text-align: left; border-bottom: 2px solid #333; }
+  tr:nth-child(even) { background: #181818; }
+  td { padding: .5rem .8rem; vertical-align: middle; border-bottom: 1px solid #222; }
+  td.icon-cell { width: 64px; text-align: center; }
+  td.icon-cell img { height: 40px; width: auto; max-width: 56px; filter: invert(1) brightness(.85); }
+  a { color: #5b9cf6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: #2a2a2a; padding: .1rem .35rem; border-radius: 3px; font-size: .8rem; }
+  .badge { display: inline-block; padding: .15rem .5rem; border-radius: 3px;
+             font-size: .72rem; font-weight: 700; color: #fff; letter-spacing: .04em; }
+  @media (prefers-color-scheme: light) {
+    body { background: #f5f5f5; color: #222; }
+    th { background: #e0e0e0; color: #555; }
+    tr:nth-child(even) { background: #ebebeb; }
+    td.icon-cell img { filter: none; }
+    code { background: #e8e8e8; }
+  }
+</style>
+</head>
+<body>
+<h1>BMW E90 Dashboard Icon Library</h1>
+<p class="sub">
+  44 icons &bull; SVGs sourced from
+  <a href="https://commons.wikimedia.org/wiki/Category:Dashboard_SVG_icons" target="_blank">Wikimedia Commons</a>
+  (public domain / CC0) &bull; Target: E90 LCI N47D20O1 diesel, ZF 6HP19
+</p>
+<table>
+  <thead>
+    <tr><th>Icon</th><th>File</th><th>Description</th><th>Indicator colour</th><th>BMW E90 context</th></tr>
+  </thead>
+  <tbody>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/engine_mil.svg" alt="Engine Management Light (MIL / EML)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/engine_mil.svg" target="_blank"><code>engine_mil.svg</code></a></td>
+          <td>Engine Management Light (MIL / EML)</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Check engine / EML fault — emissions or engine management system</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/oil_pressure.svg" alt="Engine Oil Pressure Warning" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/oil_pressure.svg" target="_blank"><code>oil_pressure.svg</code></a></td>
+          <td>Engine Oil Pressure Warning</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Oil pressure critically low — stop engine immediately</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/battery_charge.svg" alt="Battery / Alternator Charging Fault" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/battery_charge.svg" target="_blank"><code>battery_charge.svg</code></a></td>
+          <td>Battery / Alternator Charging Fault</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Alternator not charging — drive to workshop</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/electrical_fault.svg" alt="General Electrical Fault" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/electrical_fault.svg" target="_blank"><code>electrical_fault.svg</code></a></td>
+          <td>General Electrical Fault</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Electrical system fault — various modules</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/immobiliser.svg" alt="Immobiliser / EWS Active" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/immobiliser.svg" target="_blank"><code>immobiliser.svg</code></a></td>
+          <td>Immobiliser / EWS Active</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>EWS 3.3/4.0 immobiliser indicator — stays on if armed</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/ewslock.svg" alt="Anti-Theft / Immobiliser Warning" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/ewslock.svg" target="_blank"><code>ewslock.svg</code></a></td>
+          <td>Anti-Theft / Immobiliser Warning</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>EWS immobiliser triggered or fault</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/brake_warning.svg" alt="Brake System Warning (Critical)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/brake_warning.svg" target="_blank"><code>brake_warning.svg</code></a></td>
+          <td>Brake System Warning (Critical)</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Brake circuit failure — stop safely immediately</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/parking_brake.svg" alt="Parking Brake / Handbrake" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/parking_brake.svg" target="_blank"><code>parking_brake.svg</code></a></td>
+          <td>Parking Brake / Handbrake</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Handbrake applied or EPB fault</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/abs_warning.svg" alt="ABS Warning" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/abs_warning.svg" target="_blank"><code>abs_warning.svg</code></a></td>
+          <td>ABS Warning</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>ABS malfunction — normal braking retained</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/brake_wear.svg" alt="Brake Pad Wear Indicator" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/brake_wear.svg" target="_blank"><code>brake_wear.svg</code></a></td>
+          <td>Brake Pad Wear Indicator</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>CBS brake service due — pads worn</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/brake_fluid.svg" alt="Brake Fluid Level Low" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/brake_fluid.svg" target="_blank"><code>brake_fluid.svg</code></a></td>
+          <td>Brake Fluid Level Low</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Brake fluid reservoir below minimum</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/brake_alert.svg" alt="Braking System Alert" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/brake_alert.svg" target="_blank"><code>brake_alert.svg</code></a></td>
+          <td>Braking System Alert</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>General braking system alert</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/airbag_srs.svg" alt="Airbag / SRS Warning" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/airbag_srs.svg" target="_blank"><code>airbag_srs.svg</code></a></td>
+          <td>Airbag / SRS Warning</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Airbag or seatbelt pretensioner system fault</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/seatbelt.svg" alt="Seatbelt Reminder" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/seatbelt.svg" target="_blank"><code>seatbelt.svg</code></a></td>
+          <td>Seatbelt Reminder</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Driver or passenger seatbelt not fastened</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/dsc_esp.svg" alt="DSC / ESP Stability Control" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/dsc_esp.svg" target="_blank"><code>dsc_esp.svg</code></a></td>
+          <td>DSC / ESP Stability Control</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>DSC off, DTC mode, or stability system fault</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/dsc_esp2.svg" alt="DSC / ESP (variant 2)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/dsc_esp2.svg" target="_blank"><code>dsc_esp2.svg</code></a></td>
+          <td>DSC / ESP (variant 2)</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Alternative DSC symbol variant</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/traction_control.svg" alt="Traction Control (ASC/TC)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/traction_control.svg" target="_blank"><code>traction_control.svg</code></a></td>
+          <td>Traction Control (ASC/TC)</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>ASC/TC active (flashing) or disabled/fault (steady)</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/glow_plug.svg" alt="Glow Plug / Preheat Indicator" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/glow_plug.svg" target="_blank"><code>glow_plug.svg</code></a></td>
+          <td>Glow Plug / Preheat Indicator</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Diesel preheat in progress (steady) or fault (flashing)</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/dpf.svg" alt="Diesel Particulate Filter (DPF)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/dpf.svg" target="_blank"><code>dpf.svg</code></a></td>
+          <td>Diesel Particulate Filter (DPF)</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>DPF regeneration required — take for motorway run</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/tyre_pressure.svg" alt="Tyre Pressure Warning (iTPMS)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/tyre_pressure.svg" target="_blank"><code>tyre_pressure.svg</code></a></td>
+          <td>Tyre Pressure Warning (iTPMS)</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Tyre pressure loss detected — check all tyres</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/power_steering.svg" alt="Power Steering (EPS/EPAS) Fault" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/power_steering.svg" target="_blank"><code>power_steering.svg</code></a></td>
+          <td>Power Steering (EPS/EPAS) Fault</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Electric power steering system fault</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/fuel_low.svg" alt="Fuel Level Low" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/fuel_low.svg" target="_blank"><code>fuel_low.svg</code></a></td>
+          <td>Fuel Level Low</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Reserve fuel warning — approx. 8–12 L remaining</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/washer_fluid.svg" alt="Washer Fluid Level Low" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/washer_fluid.svg" target="_blank"><code>washer_fluid.svg</code></a></td>
+          <td>Washer Fluid Level Low</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Screen wash reservoir low</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/door_open.svg" alt="Any Door / Boot / Bonnet Open" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/door_open.svg" target="_blank"><code>door_open.svg</code></a></td>
+          <td>Any Door / Boot / Bonnet Open</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Any door, boot or bonnet not fully closed (generic)</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/door_front_left.svg" alt="Front Left Door Open" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/door_front_left.svg" target="_blank"><code>door_front_left.svg</code></a></td>
+          <td>Front Left Door Open</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Front left (driver LHD / passenger RHD) door open</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/door_front_right.svg" alt="Front Right Door Open" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/door_front_right.svg" target="_blank"><code>door_front_right.svg</code></a></td>
+          <td>Front Right Door Open</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Front right (passenger LHD / driver RHD) door open</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/door_rear_left.svg" alt="Rear Left Door Open" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/door_rear_left.svg" target="_blank"><code>door_rear_left.svg</code></a></td>
+          <td>Rear Left Door Open</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Rear left door open</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/door_rear_right.svg" alt="Rear Right Door Open" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/door_rear_right.svg" target="_blank"><code>door_rear_right.svg</code></a></td>
+          <td>Rear Right Door Open</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Rear right door open</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/trunk_open.svg" alt="Trunk / Boot Open" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/trunk_open.svg" target="_blank"><code>trunk_open.svg</code></a></td>
+          <td>Trunk / Boot Open</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Boot/trunk lid not fully latched</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/high_beam.svg" alt="High Beam (Main Beam) On" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/high_beam.svg" target="_blank"><code>high_beam.svg</code></a></td>
+          <td>High Beam (Main Beam) On</td>
+          <td><span class="badge" style="background:#2980b9">blue</span></td>
+          <td>Main beam headlights active</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/low_beam.svg" alt="Low Beam (Dipped Headlights) On" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/low_beam.svg" target="_blank"><code>low_beam.svg</code></a></td>
+          <td>Low Beam (Dipped Headlights) On</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Dipped headlights active</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/driving_lights.svg" alt="Driving / Running Lights On" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/driving_lights.svg" target="_blank"><code>driving_lights.svg</code></a></td>
+          <td>Driving / Running Lights On</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Driving lights indicator (alternate symbol variant)</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/fog_front.svg" alt="Front Fog Light Active" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/fog_front.svg" target="_blank"><code>fog_front.svg</code></a></td>
+          <td>Front Fog Light Active</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Front fog lights switched on</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/fog_rear.svg" alt="Rear Fog Light Active" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/fog_rear.svg" target="_blank"><code>fog_rear.svg</code></a></td>
+          <td>Rear Fog Light Active</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Rear fog light switched on</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/parking_lights.svg" alt="Parking / Sidelights On" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/parking_lights.svg" target="_blank"><code>parking_lights.svg</code></a></td>
+          <td>Parking / Sidelights On</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Parking/side lights active</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/sidelights_markers.svg" alt="Sidelights / Marker Lights On" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/sidelights_markers.svg" target="_blank"><code>sidelights_markers.svg</code></a></td>
+          <td>Sidelights / Marker Lights On</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Position/marker/sidelights only — no driving lights</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/indicator_left.svg" alt="Left Turn Signal" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/indicator_left.svg" target="_blank"><code>indicator_left.svg</code></a></td>
+          <td>Left Turn Signal</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Left indicator / turn signal flashing</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/indicator_right.svg" alt="Right Turn Signal" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/indicator_right.svg" target="_blank"><code>indicator_right.svg</code></a></td>
+          <td>Right Turn Signal</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Right indicator / turn signal flashing</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/hazard.svg" alt="Hazard Warning Lights" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/hazard.svg" target="_blank"><code>hazard.svg</code></a></td>
+          <td>Hazard Warning Lights</td>
+          <td><span class="badge" style="background:#e74c3c">red</span></td>
+          <td>Hazard / emergency flashers active</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/drl.svg" alt="Daytime Running Lights (DRL)" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/drl.svg" target="_blank"><code>drl.svg</code></a></td>
+          <td>Daytime Running Lights (DRL)</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Automatic DRL active (LA light package or retrofit)</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/bulb_failure.svg" alt="Exterior Bulb Failure" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/bulb_failure.svg" target="_blank"><code>bulb_failure.svg</code></a></td>
+          <td>Exterior Bulb Failure</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>One or more exterior lamps failed — CBS light check</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/headlamp_levelling.svg" alt="Headlamp Levelling / Range Control" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/headlamp_levelling.svg" target="_blank"><code>headlamp_levelling.svg</code></a></td>
+          <td>Headlamp Levelling / Range Control</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Automatic or manual headlamp levelling system fault</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/cruise_control.svg" alt="Cruise Control / Speed Limiter" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/cruise_control.svg" target="_blank"><code>cruise_control.svg</code></a></td>
+          <td>Cruise Control / Speed Limiter</td>
+          <td><span class="badge" style="background:#27ae60">green</span></td>
+          <td>Cruise control or speed limiter active</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">
+            <img src="svg/bend_lighting.svg" alt="Adaptive Headlight Malfunction" onerror="this.style.opacity='0.2'">
+          </td>
+          <td><a href="svg/bend_lighting.svg" target="_blank"><code>bend_lighting.svg</code></a></td>
+          <td>Adaptive Headlight Malfunction</td>
+          <td><span class="badge" style="background:#e67e22">amber</span></td>
+          <td>Adaptive/cornering headlight system fault</td>
+        </tr>
+  </tbody>
+</table>
+</body>
+</html>

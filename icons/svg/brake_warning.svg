@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="208" height="163.53" version="1.0" viewBox="0 0 166.4 130.82" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>Created by potrace 1.11, written by Peter Selinger 2001-2013
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <rect x="-1.1102e-16" width="166.4" height="130.49" ry=".19019" stroke-width=".99999"/>
+ <g fill="none" stroke="#cf0000">
+  <circle cx="83.761" cy="65.847" r="56.599" stroke-linecap="square" stroke-width="9.3566"/>
+  <path d="m138.36 16.447c28.8 28.8 22.4 73.599-1.6 100.8m-108-101.6c-28 32.799-24.8 71.199 1.6 100.8" stroke-linecap="square" stroke-width="9.3731"/>
+  <path d="m83.2 36v35.2" stroke-linecap="round" stroke-width="12.285"/>
+ </g>
+ <ellipse cx="82.8" cy="94.4" rx="6.8" ry="6.4" fill="#cf0000"/>
+</svg>
