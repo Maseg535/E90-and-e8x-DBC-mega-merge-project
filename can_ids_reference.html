@@ -118,9 +118,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-03-31 19:58:43</span>
+<span>Generated: 2026-04-06 12:14:13</span>
 <span>Messages: 371</span>
-<span>Signals: 333</span>
+<span>Signals: 343</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
@@ -3416,39 +3416,199 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='message-sub'>Decimal ID: 250 <span class='muted'>&middot;</span> Transmitter: FRMFA</div>
 </div>
 <div class="badge-row">
-<span class='badge'>DLC 8</span>
-<span class='badge'>2 signals</span>
+<span class='badge'>DLC 3</span>
+<span class='badge'>12 signals</span>
 </div>
 </div>
-<div class='comment'>0x0FA (FRM — Footwell Module): Window motor command for front-left window. B0=WindowCmdByte (upper nibble=speed/direction step); B1 bit0=WindowCmdStop. B2=0xFF constant. Source: Windows_cycle.log HIL capture</div>
+<div class='comment'>0x0FA (FRMFA — Footwell Module): All 4 window command frame. 3 bytes: B0=front commands, B1=rear commands, B2=0xFF constant. Idle: 80 00 FF. B0/B1 bit map (base 0x80): bit0=DrvClose(hold), bit1=DrvAutoClose(one-touch), bit2=DrvOpen(hold), bit3=PasClose(hold), bit4=PasAutoClose(one-touch), bit5=PasOpen(hold). Confirmed from Windows_cycle.log + injection tests 2026-04-06: front-both-autoclose=A4 00 FF, rear-both-autoclose=80 24 FF. INJECTION NOTE: sending B0+B1 combined (A4 24 FF) closes only rear — likely B0 rejected by FRM when B1 non-zero (FRM owns B0, JBE owns B1). Workaround: inject A4 00 FF then 80 24 FF sequentially (~500ms each).</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>WindowCmdByte</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>WindowCmdStop</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>FrontDrvClose, FrontDrvAutoClose, FrontDrvOpen, FrontPasClose, FrontPasAutoClose, FrontPasOpen</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>RearDrvClose, RearDrvAutoClose, RearDrvOpen, RearPasClose, RearPasAutoClose, RearPasOpen</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
 <tr>
 <td data-label="Signal">
-<strong>WindowCmdByte</strong>
+<strong>FrontDrvClose</strong>
 </td>
 <td data-label="Position">
-<div class='human-pos'>B0 (full byte)</div>
-<div class='dbc-pos'>DBC: 0|8</div>
+<div class='human-pos'>B0 bit0</div>
+<div class='dbc-pos'>DBC: 0|1</div>
 </td>
 <td data-label="Format">Intel (little-endian)<br>Unsigned</td>
 <td data-label="Scale">
 <div class='formula'>raw value</div>
 <div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
 <td data-label="Rx">Gate1</td>
 </tr>
 <tr>
 <td data-label="Signal">
-<strong>WindowCmdStop</strong>
+<strong>FrontDrvAutoClose</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit1</div>
+<div class='dbc-pos'>DBC: 1|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>FrontDrvOpen</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit2</div>
+<div class='dbc-pos'>DBC: 2|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>FrontPasClose</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit3</div>
+<div class='dbc-pos'>DBC: 3|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>FrontPasAutoClose</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit4</div>
+<div class='dbc-pos'>DBC: 4|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>FrontPasOpen</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit5</div>
+<div class='dbc-pos'>DBC: 5|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RearDrvClose</strong>
 </td>
 <td data-label="Position">
 <div class='human-pos'>B1 bit0</div>
 <div class='dbc-pos'>DBC: 8|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RearDrvAutoClose</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 bit1</div>
+<div class='dbc-pos'>DBC: 9|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RearDrvOpen</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 bit2</div>
+<div class='dbc-pos'>DBC: 10|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RearPasClose</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 bit3</div>
+<div class='dbc-pos'>DBC: 11|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RearPasAutoClose</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 bit4</div>
+<div class='dbc-pos'>DBC: 12|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">Gate1</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RearPasOpen</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 bit5</div>
+<div class='dbc-pos'>DBC: 13|1</div>
 </td>
 <td data-label="Format">Intel (little-endian)<br>Unsigned</td>
 <td data-label="Scale">
