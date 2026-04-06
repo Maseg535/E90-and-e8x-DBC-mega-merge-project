@@ -246,9 +246,19 @@ BO_ 247 lateral_dynamics_ARS_VDM: 8 ARS
 
 BO_ 249 Vertical_dynamics_VDM_ARS: 8 VDM
 
-BO_ 250 Control_window_lifter_FAT: 8 FRMFA
- SG_ WindowCmdByte : 0|8@1+ (1,0) [0|255] "" Gate1
- SG_ WindowCmdStop : 8|1@1+ (1,0) [0|1] "" Gate1
+BO_ 250 Control_window_lifter_FAT: 3 FRMFA
+ SG_ FrontDrvClose : 0|1@1+ (1,0) [0|1] "" Gate1
+ SG_ FrontDrvAutoClose : 1|1@1+ (1,0) [0|1] "" Gate1
+ SG_ FrontDrvOpen : 2|1@1+ (1,0) [0|1] "" Gate1
+ SG_ FrontPasClose : 3|1@1+ (1,0) [0|1] "" Gate1
+ SG_ FrontPasAutoClose : 4|1@1+ (1,0) [0|1] "" Gate1
+ SG_ FrontPasOpen : 5|1@1+ (1,0) [0|1] "" Gate1
+ SG_ RearDrvClose : 8|1@1+ (1,0) [0|1] "" Gate1
+ SG_ RearDrvAutoClose : 9|1@1+ (1,0) [0|1] "" Gate1
+ SG_ RearDrvOpen : 10|1@1+ (1,0) [0|1] "" Gate1
+ SG_ RearPasClose : 11|1@1+ (1,0) [0|1] "" Gate1
+ SG_ RearPasAutoClose : 12|1@1+ (1,0) [0|1] "" Gate1
+ SG_ RearPasOpen : 13|1@1+ (1,0) [0|1] "" Gate1
 
 BO_ 251 Control_window_lifter_BFT: 8 Gate1
 
@@ -1165,7 +1175,7 @@ CM_ BO_ 230 "0x0E6 (Gate1): Door status — RR (Beifahrertür hinten, BFTH, pass
 CM_ BO_ 234 "0x0EA (Gate1): Door status — FL driver front (Fahrertür vorne, FAT). B0=LockState: 0x81=unlocked, 0x82=locked, 0x83=armed. B3=DoorOpenState: 0xFC=closed, 0xFD=open. B1=0xFF, B2=0xE7 constant. B3=0xFD CONFIRMED twice: (1) HIL 2026-03-23: B3=0xFD when driver entered car. (2) keyless-restart log 2026-03-24: B3=0xFD at t+26.4s when driver exited running keyless car (held ~5s, then 0xFC). Simultaneously with 0x130 B0 transition to 0x05 (security-alert state). This is the driver door — highest event density, most reliable for door-open detection. B0 lock state changes in real-time: 0x81→0x82 at keyfob lock (simultaneous with 0x2A0 command frame). Source: HIL 2026-03-23 + keyless-restart 2026-03-24";
 CM_ BO_ 238 "0x0EE (Gate1): Door status — RL driver rear (Fahrertür hinten, FATH). Same byte layout as 0x0E2/0x0E6/0x0EA: B0=LockState (0x81=unlocked, 0x82=locked, 0x83=armed), B3=DoorOpenState (0xFC=closed, 0xFD=open). B3=0xFD CONFIRMED: captured at t=2765496ms in 10minutes_run_Wheel_doors_tests.log 2026-03-24 (door held open ~10s, B0=0x81 unlocked). This is the only door frame with open state directly captured in HIL logs to date — confirms the 0xFC/0xFD decode is correct. B1=0xFF, B2=0xE7 constant. Source: HIL 2026-03-23 + HIL doors log 2026-03-24";
 CM_ BO_ 242 "0x0F2 (Gate1): Central locking status HK (boot/trunk area)";
-CM_ BO_ 250 "0x0FA (FRM — Footwell Module): Window motor command for front-left window. B0=WindowCmdByte (upper nibble=speed/direction step); B1 bit0=WindowCmdStop. B2=0xFF constant. Source: Windows_cycle.log HIL capture";
+CM_ BO_ 250 "0x0FA (FRMFA — Footwell Module): All 4 window command frame. 3 bytes: B0=front commands, B1=rear commands, B2=0xFF constant. Idle: 80 00 FF. B0/B1 bit map (base 0x80): bit0=DrvClose(hold), bit1=DrvAutoClose(one-touch), bit2=DrvOpen(hold), bit3=PasClose(hold), bit4=PasAutoClose(one-touch), bit5=PasOpen(hold). Confirmed from Windows_cycle.log + injection tests 2026-04-06: front-both-autoclose=A4 00 FF, rear-both-autoclose=80 24 FF. INJECTION NOTE: sending B0+B1 combined (A4 24 FF) closes only rear — likely B0 rejected by FRM when B1 non-zero (FRM owns B0, JBE owns B1). Workaround: inject A4 00 FF then 80 24 FF sequentially (~500ms each).";
 CM_ BO_ 251 "0x0FB (Gate1): Window lifter control front-right";
 CM_ BO_ 304 "0x130 (CAS — Car Access System): Ignition/key/terminal status frame at ~10 Hz. Confirmed decode (HIL keyfobless_restart_lock.log 2026-03-24): B0=IgnitionMode: 0x45=KL15_RUN (normal running), 0x55=CRANKING/starting (engineStarting), 0x41=ACCESSORY (KL15 on, engine off), 0x40=transitional/shutdown (ignition winding down, keeps previous state in decoder), 0x05=SECURITY_ALERT (engine running without authorised key — persists when car is locked externally with engine on). B1 encodes key presence and door/security context: 0x40=key_present_normal (bit6=1), 0x1A=key_absent_door_closed, 0x0D=key_absent_door_open_or_security_event. B2/B3=variable (clutch nibble in B2 hi-nibble: 0xA=unknown, decodes unchanged). KEYLESS RESTART CONFIRMED: B0=0x55 + B1=0x1A observed when engine cranks without physical key — CAS allows restart within security window after key removal. CRANK TIMING (N47D20O1): B0=0x55 fires → 0x21A engine_running bit in 13ms → RPM measurable in 264ms → B0 settles to 0x45 in ~800ms total. LOCKED-RUNNING STATE: after driver exits and keyfob-locks running car, B0 stays at 0x05, B1=0x0D indefinitely — distinct from all normal run states. Source: HIL sessions 2026-03-23 + keyless-restart 2026-03-24";
 CM_ SG_ 304 IgnitionOff "Active when engine off (KL15 de-energised)";
