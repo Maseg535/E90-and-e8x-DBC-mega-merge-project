@@ -118,9 +118,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-07 18:23:37</span>
+<span>Generated: 2026-04-07 18:45:19</span>
 <span>Messages: 371</span>
-<span>Signals: 343</span>
+<span>Signals: 338</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
@@ -1331,11 +1331,11 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>10 signals</span>
+<span class='badge'>9 signals</span>
 </div>
 </div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0xb5</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0xb5, TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS, ST_OTMP_GRB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>ST_OBD_GRB, ST_OBD_ERR_GRB, ST_LIM_STORQ</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>TORQ_DRAW_GRB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>TEMP_GRB</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0xb5</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0xb5, TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS, ST_OTMP_GRB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>ST_OBD_GRB, ST_OBD_ERR_GRB, ST_LIM_STORQ</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>TORQ_DRAW_GRB</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -1515,23 +1515,6 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='dbc-scale'>Factor <code>0.5</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 255]</code></td>
-<td data-label="Rx">DME</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>TEMP_GRB</strong>
-<div class='signal-comment'>Gearbox/ATF oil temperature. Encoding: phys = raw - 40 (C). Unsigned 0-255, range -40 to +215C. ZF 6HP19 normal operating range 60-90C, alarm &gt;130C. Matches OBD2 PID 0x6C (ATF temp) standard. Source: Raiso77 (confirmed on GM gearbox via OBD2, 2026-03-31). Previously wrong in DBC as signed @1- offset +40 — corrected to unsigned @1+ offset -40. Not confirmed on ZF 6HP19 from our HIL (0x0B5 absent from all bench logs — EGS→DME message, no EGS simulation on bench).</div>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B7 (full byte)</div>
-<div class='dbc-pos'>DBC: 56|8</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: C</td>
-<td data-label="Scale">
-<div class='formula'>raw &minus; 40 = <em>C</em></div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>-40</code></div>
-</td>
-<td data-label="Range"><code>[-40 .. 215]</code></td>
 <td data-label="Rx">DME</td>
 </tr>
 </tbody>
@@ -2653,9 +2636,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B0..B1 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 0|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: kph</td>
+<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.0625 = <em>kph</em></div>
+<div class='formula'>raw &times; 0.0625 = <em>km/h</em></div>
 <div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
@@ -2669,9 +2652,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B2..B3 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 16|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: kph</td>
+<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.0625 = <em>kph</em></div>
+<div class='formula'>raw &times; 0.0625 = <em>km/h</em></div>
 <div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
@@ -2685,9 +2668,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B4..B5 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 32|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: kph</td>
+<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.0625 = <em>kph</em></div>
+<div class='formula'>raw &times; 0.0625 = <em>km/h</em></div>
 <div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
@@ -2701,9 +2684,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B6..B7 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 48|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: kph</td>
+<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.0625 = <em>kph</em></div>
+<div class='formula'>raw &times; 0.0625 = <em>km/h</em></div>
 <div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
@@ -4423,12 +4406,12 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B1 (full byte, BE)</div>
 <div class='dbc-pos'>DBC: 15|8</div>
 </td>
-<td data-label="Format">Motorola (big-endian)<br>Unsigned<br>Unit: kph/mph</td>
+<td data-label="Format">Motorola (big-endian)<br>Unsigned<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &minus; 2 = <em>kph/mph</em></div>
+<div class='formula'>raw &minus; 2 = <em>km/h</em></div>
 <div class='dbc-scale'>Factor <code>1</code> Offset <code>-2</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Range"><code>[0 .. 253]</code></td>
 <td data-label="Rx">ACC,Kombi</td>
 </tr>
 <tr>
@@ -5102,9 +5085,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B0..B1 (12b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 0|12</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: kph</td>
+<td data-label="Format">Intel (little-endian)<br>Signed<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.103 = <em>kph</em></div>
+<div class='formula'>raw &times; 0.103 = <em>km/h</em></div>
 <div class='dbc-scale'>Factor <code>0.103</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
@@ -5240,24 +5223,24 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class='comment'>0x1A1 (XXX): Speed as used by instrument cluster. 5 bytes. Bytes 2-3 big-endian: ((B2*256)+B3)/100 = MPH. Source: loopybunny.co.uk/CarPC</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>SpeedMPH_1A1</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>SpeedKmh_1A1</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
 <tr>
 <td data-label="Signal">
-<strong>SpeedMPH_1A1</strong>
+<strong>SpeedKmh_1A1</strong>
 </td>
 <td data-label="Position">
 <div class='human-pos'>B2..B3 (16b BE)</div>
 <div class='dbc-pos'>DBC: 23|16</div>
 </td>
-<td data-label="Format">Motorola (big-endian)<br>Unsigned<br>Unit: MPH</td>
+<td data-label="Format">Motorola (big-endian)<br>Unsigned<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.01 = <em>MPH</em></div>
-<div class='dbc-scale'>Factor <code>0.01</code> Offset <code>0</code></div>
+<div class='formula'>raw &times; 0.0160934 = <em>km/h</em></div>
+<div class='dbc-scale'>Factor <code>0.0160934</code> Offset <code>0</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 655.35]</code></td>
+<td data-label="Range"><code>[0 .. 1054.4]</code></td>
 <td data-label="Rx">Kombi,CIC</td>
 </tr>
 </tbody>
@@ -5780,49 +5763,15 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>9 signals</span>
+<span class='badge'>5 signals</span>
 </div>
 </div>
 <div class='comment'>0x1D0 (DME): Engine data — coolant temp, oil temp (petrol/some diesel), idle target RPM. TEMP_EOI (B1) returns 0xFF on N47 diesel (signal not available — N47 does not expose oil temp via K-CAN gateway; OBD-II PID 0x5C or PT-CAN required). TEMP_EOI is valid on petrol engines (N43, N52, N54, etc.) using same raw-48=C formula as TEMP_ENG.</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>TEMP_ENG</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>TEMP_EOI</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>Counter_0x1d0, ST_ENG_RUN, ST_SW_WAUP</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>AIP_ENG</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>IJV_FU</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>IJV_FU</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>CTR_SLCK</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>RPM_IDLG_TAR</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>Counter_0x1d0, ST_ENG_RUN, ST_SW_WAUP</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>AIP_ENG</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>CTR_SLCK</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
-<tr>
-<td data-label="Signal">
-<strong>TEMP_ENG</strong>
-<div class='signal-comment'>Coolant temperature. Formula: raw - 48 = degC. Confirmed on N47 diesel: 0x3E=14C cold start (ambient), rises to 0x62=50C after 10 min, 0x88=88C at operating temp. Source: HIL 2026-03-24 temp log.</div>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B0 (full byte)</div>
-<div class='dbc-pos'>DBC: 0|8</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: C</td>
-<td data-label="Scale">
-<div class='formula'>raw &minus; 48 = <em>C</em></div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>-48</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 0]</code></td>
-<td data-label="Rx">Kombi,CIC</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>TEMP_EOI</strong>
-<div class='signal-comment'>Engine oil temperature. Formula: raw - 48 = degC. Valid on petrol engines (N43, N52, N54, etc.). NOT AVAILABLE on N47 diesel: returns 0xFF permanently after engine start (= 207 degC with formula — discard, signal absent). Use OBD-II PID 0x5C or PT-CAN for oil temp on N47. Validated HIL 2026-03-24: 10minutes_run_temp_24_16_28_24.log shows B1=0x30 briefly at cold start, 0x42 for ~30s, then 0xFF for remainder of run.</div>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B1 (full byte)</div>
-<div class='dbc-pos'>DBC: 8|8</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: C</td>
-<td data-label="Scale">
-<div class='formula'>raw &minus; 48 = <em>C</em></div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>-48</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 0]</code></td>
-<td data-label="Rx">Kombi,CIC</td>
-</tr>
 <tr>
 <td data-label="Signal">
 <strong>Counter_0x1d0</strong>
@@ -5901,22 +5850,6 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tr>
 <tr>
 <td data-label="Signal">
-<strong>IJV_FU</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B4..B5 (16b LE, 2 bytes)</div>
-<div class='dbc-pos'>DBC: 32|16</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: C</td>
-<td data-label="Scale">
-<div class='formula'>raw &minus; 48 = <em>C</em></div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>-48</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 0]</code></td>
-<td data-label="Rx">Kombi,CIC</td>
-</tr>
-<tr>
-<td data-label="Signal">
 <strong>CTR_SLCK</strong>
 <ul class="enum-list">
 <li><span class='enum-hex'>0x03</span> <span class='enum-dec'>(3)</span> = signal invalid</li>
@@ -5935,22 +5868,6 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
-<td data-label="Rx">Kombi,CIC</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>RPM_IDLG_TAR</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B7 (full byte)</div>
-<div class='dbc-pos'>DBC: 56|8</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: 1/min</td>
-<td data-label="Scale">
-<div class='formula'>raw &times; 5 = <em>1/min</em></div>
-<div class='dbc-scale'>Factor <code>5</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 1270]</code></td>
 <td data-label="Rx">Kombi,CIC</td>
 </tr>
 </tbody>
@@ -6934,10 +6851,10 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B0 (full byte, BE)</div>
 <div class='dbc-pos'>DBC: 7|8</div>
 </td>
-<td data-label="Format">Motorola (big-endian)<br>Unsigned<br>Unit: mph</td>
+<td data-label="Format">Motorola (big-endian)<br>Unsigned<br>Unit: km/h</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.25 = <em>mph</em></div>
-<div class='dbc-scale'>Factor <code>0.25</code> Offset <code>0</code></div>
+<div class='formula'>raw &times; 0.402335 = <em>km/h</em></div>
+<div class='dbc-scale'>Factor <code>0.402335</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 0]</code></td>
 <td data-label="Rx">Kombi,CIC,ACC</td>
@@ -10829,12 +10746,12 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B0..B1 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 0|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: gallons</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: L</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.00165108 = <em>gallons</em></div>
-<div class='dbc-scale'>Factor <code>0.00165108</code> Offset <code>0</code></div>
+<div class='formula'>raw &times; 0.006249 = <em>L</em></div>
+<div class='dbc-scale'>Factor <code>0.006249</code> Offset <code>0</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 16.5]</code></td>
+<td data-label="Range"><code>[0 .. 62.5]</code></td>
 <td data-label="Rx">Kombi</td>
 </tr>
 <tr>
@@ -10845,12 +10762,12 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B2..B3 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 16|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: gallons</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: L</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.00165108 = <em>gallons</em></div>
-<div class='dbc-scale'>Factor <code>0.00165108</code> Offset <code>0</code></div>
+<div class='formula'>raw &times; 0.006249 = <em>L</em></div>
+<div class='dbc-scale'>Factor <code>0.006249</code> Offset <code>0</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 16.5]</code></td>
+<td data-label="Range"><code>[0 .. 62.5]</code></td>
 <td data-label="Rx">Kombi</td>
 </tr>
 </tbody>
@@ -11221,12 +11138,12 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='human-pos'>B1..B2 (16b LE, 2 bytes)</div>
 <div class='dbc-pos'>DBC: 8|16</div>
 </td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: miles</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: km</td>
 <td data-label="Scale">
-<div class='formula'>raw &times; 0.0625 = <em>miles</em></div>
-<div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
+<div class='formula'>raw &times; 0.100584 = <em>km</em></div>
+<div class='dbc-scale'>Factor <code>0.100584</code> Offset <code>0</code></div>
 </td>
-<td data-label="Range"><code>[0 .. 4096]</code></td>
+<td data-label="Range"><code>[0 .. 6596]</code></td>
 <td data-label="Rx">CIC</td>
 </tr>
 </tbody>
