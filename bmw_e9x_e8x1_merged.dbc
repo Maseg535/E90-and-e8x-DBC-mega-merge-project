@@ -109,7 +109,7 @@ BO_ 181 Torque_request_EGS: 8 EGS
  SG_ ST_OBD_ERR_GRB : 44|2@1+ (1,0) [0|3] "" DME
  SG_ ST_LIM_STORQ : 46|2@1+ (1,0) [0|3] "" DME
  SG_ TORQ_DRAW_GRB : 48|8@1+ (0.5,0) [0|255] "Nm" DME
- SG_ TEMP_GRB : 56|8@1+ (1,-40) [-40|215] "C" DME
+ SG_ TEMP_GRB : 56|8@1+ (1,-40) [-40|215] "degC"DME
 
 BO_ 182 Torque_request_DSC: 5 DSC
  SG_ Checksum_0xb6 : 0|8@1+ (1,0) [0|255] "" DME
@@ -188,10 +188,10 @@ BO_ 205 Accelerometer2: 8 XXX
  SG_ Counter_0xcd : 52|4@1+ (1,0) [0|15] "" DSC,ACSM
 
 BO_ 206 WheelSpeeds: 8 DSC
- SG_ Wheel_FL : 0|16@1- (0.0625,0) [0|0] "kph" DME,EGS,Kombi,ACC
- SG_ Wheel_FR : 16|16@1- (0.0625,0) [0|0] "kph" DME,EGS,Kombi,ACC
- SG_ Wheel_RL : 32|16@1- (0.0625,0) [0|0] "kph" DME,EGS,Kombi,ACC
- SG_ Wheel_RR : 48|16@1- (0.0625,0) [0|0] "kph" DME,EGS,Kombi,ACC
+ SG_ Wheel_FL : 0|16@1- (0.0625,0) [0|0] "km/h" DME,EGS,Kombi,ACC
+ SG_ Wheel_FR : 16|16@1- (0.0625,0) [0|0] "km/h" DME,EGS,Kombi,ACC
+ SG_ Wheel_RL : 32|16@1- (0.0625,0) [0|0] "km/h" DME,EGS,Kombi,ACC
+ SG_ Wheel_RR : 48|16@1- (0.0625,0) [0|0] "km/h" DME,EGS,Kombi,ACC
 
 BO_ 209 Accelerometer1: 8 XXX
  SG_ YawRate : 0|16@1- (1,0) [0|0] "" DSC,ACSM
@@ -327,7 +327,7 @@ BO_ 402 GearSelectorSwitch_1: 4 SZL_LWS
 
 BO_ 403 DynamicCruiseControlStatus: 8 DSC
  SG_ Counter_0x193 : 7|8@0+ (1,0) [0|15] "" ACC,Kombi
- SG_ CruiseControlSetpointSpeed : 15|8@0+ (1,-2) [0|255] "kph/mph" ACC,Kombi
+ SG_ CruiseControlSetpointSpeed : 15|8@0+ (1,-2) [0|253] "km/h" ACC,Kombi
  SG_ CruiseActive : 43|1@0+ (1,0) [0|1] "" ACC,Kombi
  SG_ CruiseSpeedChangeRequest : 48|1@0+ (1,0) [0|1] "" ACC,Kombi
 
@@ -372,7 +372,7 @@ BO_ 414 StatusDSC_KCAN: 8 DSC
  SG_ Checksum_0x19e : 56|8@1+ (1,0) [0|255] "" Kombi,CIC
 
 BO_ 416 Speed: 8 DSC
- SG_ VehicleSpeed : 0|12@1- (0.103,0) [0|0] "kph" Kombi,CIC,IHKA,ACC
+ SG_ VehicleSpeed : 0|12@1- (0.103,0) [0|0] "km/h" Kombi,CIC,IHKA,ACC
  SG_ MovingForward : 12|1@1+ (1,0) [0|1] "" Kombi,CIC,IHKA,ACC
  SG_ MovingReverse : 13|1@1+ (1,0) [0|1] "" Kombi,CIC,IHKA,ACC
  SG_ LongAcc : 16|12@1- (0.025,0) [0|0] "m/s^2" Kombi,CIC,IHKA,ACC
@@ -382,7 +382,7 @@ BO_ 416 Speed: 8 DSC
  SG_ Checksum_0x1a0 : 56|8@1+ (1,0) [0|255] "" Kombi,CIC,IHKA,ACC
 
 BO_ 417 SpeedKombi_1A1: 5 XXX
- SG_ SpeedMPH_1A1 : 23|16@0+ (0.01,0) [0|655.35] "MPH" Kombi,CIC
+ SG_ SpeedKmh_1A1 : 23|16@0+ (0.0160934,0) [0|1054.4] "km/h" Kombi,CIC
 
 BO_ 418 TransimissionData2: 8 EGS
  SG_ Counter_0x1a2 : 28|4@1+ (1,0) [0|14] "" DME,Kombi
@@ -427,15 +427,15 @@ BO_ 451 Distance_message_2_PDC: 8 PDC
 BO_ 454 Acoustic_message_PDC: 8 PDC
 
 BO_ 464 EngineData: 8 DME
- SG_ TEMP_ENG : 0|8@1+ (1,-48) [0|0] "C" Kombi,CIC
- SG_ TEMP_EOI : 8|8@1+ (1,-48) [0|0] "C" Kombi,CIC
+ SG_ TEMP_ENG : 0|8@1+ (1,-48) [0|0] "degC"Kombi,CIC
+ SG_ TEMP_EOI : 8|8@1+ (1,-48) [0|0] "degC"Kombi,CIC
  SG_ Counter_0x1d0 : 16|4@1+ (1,0) [0|14] "" Kombi,CIC
  SG_ ST_ENG_RUN : 20|2@1+ (1,0) [0|0] "" Kombi,CIC
  SG_ ST_SW_WAUP : 22|2@1+ (1,0) [0|0] "" Kombi,CIC
  SG_ AIP_ENG : 24|8@1+ (2,598) [600|1106] "hPa" Kombi,CIC
- SG_ IJV_FU : 32|16@1+ (1,-48) [0|0] "C" Kombi,CIC
+ SG_ IJV_FU : 32|16@1+ (1,-48) [0|0] "degC"Kombi,CIC
  SG_ CTR_SLCK : 48|2@1+ (1,0) [0|0] "" Kombi,CIC
- SG_ RPM_IDLG_TAR : 56|8@1+ (5,0) [0|1270] "1/min" Kombi,CIC
+ SG_ RPM_IDLG_TAR : 56|8@1+ (5,0) [0|1270] "rpm"Kombi,CIC
 
 BO_ 466 TransmissionDataDisplay: 6 EGS
  SG_ ShiftLeverPosition : 0|4@1+ (1,0) [0|8] "" Kombi,CIC
@@ -517,7 +517,7 @@ BO_ 509 Status_request_EMF_KCAN: 8 EMF
 BO_ 510 Crash: 8 ACSM
 
 BO_ 512 CruiseControlStatus: 8 DME
- SG_ CruiseControlSetpointSpeed : 7|8@0+ (0.25,0) [0|0] "mph" Kombi,CIC,ACC
+ SG_ CruiseControlSetpointSpeed : 7|8@0+ (0.402335,0) [0|0] "km/h" Kombi,CIC,ACC
  SG_ CruiseControlInactiveFlag : 12|1@0+ (1,0) [0|1] "" Kombi,CIC,ACC
  SG_ CruiseCoontrolActiveFlag : 13|1@0+ (1,0) [0|1] "" Kombi,CIC,ACC
 
@@ -863,8 +863,8 @@ BO_ 830 Status_Monitor_Fond_2: 8 CID
 BO_ 840 NavGraph_Alignment_348: 4 CCC_GW
 
 BO_ 841 Raw_data_level_tank: 8 Gate1
- SG_ FuelSensorLeft : 0|16@1+ (0.00165108,0) [0|16.5] "gallons" Kombi
- SG_ FuelSensorRight : 16|16@1+ (0.00165108,0) [0|16.5] "gallons" Kombi
+ SG_ FuelSensorLeft : 0|16@1+ (0.006249,0) [0|62.5] "L" Kombi
+ SG_ FuelSensorRight : 16|16@1+ (0.006249,0) [0|62.5] "L" Kombi
 
 BO_ 842 GPS_34A: 8 CCC
  SG_ Latitude : 0|32@1- (8.38190317e-08,0) [-90|90] "deg" CIC,Kombi
@@ -898,7 +898,7 @@ BO_ 869 Status_terminal_request: 8 CAS
 
 BO_ 870 Display_Kombination_external_display: 8 Kombi
  SG_ ExternalTemp : 0|8@1+ (0.5,-41) [-40|87.5] "degC" CIC
- SG_ RemainingRange : 8|16@1+ (0.0625,0) [0|4096] "miles" CIC
+ SG_ RemainingRange : 8|16@1+ (0.100584,0) [0|6596] "km" CIC
 
 BO_ 871 Control_display_of_demand_oriented_service: 8 Kombi
 
