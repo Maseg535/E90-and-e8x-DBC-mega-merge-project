@@ -118,7 +118,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-09 00:16:28</span>
+<span>Generated: 2026-04-09 02:04:11</span>
 <span>Messages: 386</span>
 <span>Signals: 419</span>
 </div>
@@ -499,7 +499,6 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-1548' title='DIAG_RESP_60C_EGS'>0x60C · DIAG_RESP_60C_EGS</a>
 <a href='#msg-1554' title='DIAG_RESP_612'>0x612 · DIAG_RESP_612</a>
 <a href='#msg-1562' title='DIAG_RESP_61A_DSC'>0x61A · DIAG_RESP_61A_DSC</a>
-<a href='#msg-1568' title='DIAG_RESP_620_FRM'>0x620 · DIAG_RESP_620_FRM</a>
 <a href='#msg-1577' title='Unknown_629'>0x629 · Unknown_629</a>
 <a href='#msg-1580' title='DIAG_RESP_62C_JBE'>0x62C · DIAG_RESP_62C_JBE</a>
 <a href='#msg-1596' title='DIAG_RESP_63C_IHKA'>0x63C · DIAG_RESP_63C_IHKA</a>
@@ -507,6 +506,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-1624' title='DIAG_RESP_658_LM'>0x658 · DIAG_RESP_658_LM</a>
 <a href='#msg-1632' title='DIAG_RESP_660'>0x660 · DIAG_RESP_660</a>
 <a href='#msg-1640' title='DIAG_RESP_668_SZL'>0x668 · DIAG_RESP_668_SZL</a>
+<a href='#msg-1650' title='DIAG_RESP_672_FRM3'>0x672 · DIAG_RESP_672_FRM3</a>
 <a href='#msg-1676' title='DIAG_RESP_68C_PDC'>0x68C · DIAG_RESP_68C_PDC</a>
 <a href='#msg-1777' title='DIAG_REQ_6F1'>0x6F1 · DIAG_REQ_6F1</a>
 <a href='#msg-1987' title='Keyfob_7C3'>0x7C3 · Keyfob_7C3</a>
@@ -13808,90 +13808,6 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1568' data-search='0x620 1568 diag_resp_620_frm frm'>
-<div class="message-header">
-<div>
-<h2>0x620 &middot; DIAG_RESP_620_FRM</h2>
-<div class='message-sub'>Decimal ID: 1568 <span class='muted'>&middot;</span> Transmitter: FRM</div>
-</div>
-<div class="badge-row">
-<span class='badge'>DLC 8</span>
-<span class='badge'>4 signals</span>
-</div>
-</div>
-<div class='comment'>0x620 (FRM → DIA): UDS diagnostic response from FRM (Footwell Module / Fussraummodul) on K-CAN. Physical FRM request ID = 0x640, response = 0x620. FRM controls: window lifters (all 4), exterior mirrors, footwell lighting, welcome light, rain/light sensor input, interior light relay. Coding parameters accessible in extended session (0x10 0x02) after SecurityAccess level 0x01. Key DIDs: 0xF190=VIN, 0xF187=spare part number, 0xF189=SW version, 0xF1A2=FA coding index. Comfort close (0x0FA injection) equivalent achievable via FRM RoutineControl. Source: BMW E9x FRM DATEN, obd2-diagnostic-architecture.md</div>
-<div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
-<table>
-<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
-<tbody>
-<tr>
-<td data-label="Signal">
-<strong>ISOTP_PCI</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B0[7:4] hi-nibble</div>
-<div class='dbc-pos'>DBC: 4|4</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 15]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>ISOTP_DL</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B0[3:0] lo-nibble</div>
-<div class='dbc-pos'>DBC: 0|4</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 15]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>UDS_ServiceId</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B1 (full byte)</div>
-<div class='dbc-pos'>DBC: 8|8</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 255]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>UDS_Payload</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
-<div class='dbc-pos'>DBC: 16|48</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 0]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-</tbody>
-</table>
-</section>
 <section class='message' id='msg-1577' data-search='0x629 1577 unknown_629 xxx'>
 <div class="message-header">
 <div>
@@ -14351,6 +14267,90 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x668 (SZL → DIA): UDS diagnostic response from SZL (Steering Column Switch Centre / Schaltzentrum Lenkrad) on K-CAN. Physical SZL request ID = 0x660, response = 0x668. Also contains LWS (Lenkwinkelsensor — steering angle sensor). SZL coding covers MFL button assignment and cruise control stalk function. Steering angle sensor initialisation accessible via RoutineControl. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1650' data-search='0x672 1650 diag_resp_672_frm3 frm'>
+<div class="message-header">
+<div>
+<h2>0x672 &middot; DIAG_RESP_672_FRM3</h2>
+<div class='message-sub'>Decimal ID: 1650 <span class='muted'>&middot;</span> Transmitter: FRM</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x672 (FRM3 → DIA): UDS diagnostic response from FRM3 (Footwell Module / Fussraummodul, revision C32) on K-CAN. CONFIRMED from Carista HIL capture: tester sends on 0x6F1 with B0=0x72 (FRM node address), FRM3 responds on CAN ID 0x672 with B0=0xF1. Address formula: response_ID = 0x600 | node_byte = 0x600 | 0x72 = 0x672. Physical request address: 0x6F1 with target byte 0x72 in B0. No security access required for DID 0x3400 (coding block) in default session. FRM controls: window lifters (all 4), exterior mirrors, footwell lighting, welcome light, rain/light sensor input, interior light relay. Key DIDs: 0x3400=lamp monitoring coding block (16 bytes), 0xF190=VIN, 0xF187=spare part number, 0xF189=SW version. Source: Carista HIL capture 2026-04-08, frm3_lamp_check_disable.md</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
