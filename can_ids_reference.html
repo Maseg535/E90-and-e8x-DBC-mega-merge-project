@@ -118,7 +118,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-08 23:10:34</span>
+<span>Generated: 2026-04-08 23:53:47</span>
 <span>Messages: 386</span>
 <span>Signals: 419</span>
 </div>
@@ -500,9 +500,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-1554' title='DIAG_RESP_612'>0x612 · DIAG_RESP_612</a>
 <a href='#msg-1562' title='PTCAN_RESP_61A_DSC'>0x61A · PTCAN_RESP_61A_DSC</a>
 <a href='#msg-1577' title='Unknown_629'>0x629 · Unknown_629</a>
-<a href='#msg-1580' title='DIAG_RESP_62C_JBE'>0x62C · DIAG_RESP_62C_JBE</a>
 <a href='#msg-1596' title='DIAG_RESP_63C_IHKA'>0x63C · DIAG_RESP_63C_IHKA</a>
-<a href='#msg-1616' title='DIAG_RESP_650_CAS'>0x650 · DIAG_RESP_650_CAS</a>
+<a href='#msg-1600' title='DIAG_RESP_640_CAS'>0x640 · DIAG_RESP_640_CAS</a>
+<a href='#msg-1622' title='DIAG_RESP_656_JBBF'>0x656 · DIAG_RESP_656_JBBF</a>
 <a href='#msg-1624' title='DIAG_RESP_658_LM'>0x658 · DIAG_RESP_658_LM</a>
 <a href='#msg-1632' title='DIAG_RESP_660'>0x660 · DIAG_RESP_660</a>
 <a href='#msg-1640' title='DIAG_RESP_668_SZL'>0x668 · DIAG_RESP_668_SZL</a>
@@ -13827,90 +13827,6 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1580' data-search='0x62c 1580 diag_resp_62c_jbe gate1'>
-<div class="message-header">
-<div>
-<h2>0x62C &middot; DIAG_RESP_62C_JBE</h2>
-<div class='message-sub'>Decimal ID: 1580 <span class='muted'>&middot;</span> Transmitter: Gate1</div>
-</div>
-<div class="badge-row">
-<span class='badge'>DLC 8</span>
-<span class='badge'>4 signals</span>
-</div>
-</div>
-<div class='comment'>0x62C (JBE → DIA): UDS diagnostic response from JBE (Junction Box Electronics / Junction Box Elektronik) on K-CAN. Physical JBE request ID = 0x644, response = 0x62C. JBE controls: central locking relay logic, window rear pair, heated seats, horn. JBE is the gateway for rear door lock commands on K-CAN. Extended session required for coding. Source: obd2-diagnostic-architecture.md</div>
-<div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
-<table>
-<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
-<tbody>
-<tr>
-<td data-label="Signal">
-<strong>ISOTP_PCI</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B0[7:4] hi-nibble</div>
-<div class='dbc-pos'>DBC: 4|4</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 15]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>ISOTP_DL</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B0[3:0] lo-nibble</div>
-<div class='dbc-pos'>DBC: 0|4</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 15]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>UDS_ServiceId</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B1 (full byte)</div>
-<div class='dbc-pos'>DBC: 8|8</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 255]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-<tr>
-<td data-label="Signal">
-<strong>UDS_Payload</strong>
-</td>
-<td data-label="Position">
-<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
-<div class='dbc-pos'>DBC: 16|48</div>
-</td>
-<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
-<td data-label="Scale">
-<div class='formula'>raw value</div>
-<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
-</td>
-<td data-label="Range"><code>[0 .. 0]</code></td>
-<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
-</tr>
-</tbody>
-</table>
-</section>
 <section class='message' id='msg-1596' data-search='0x63c 1596 diag_resp_63c_ihka ihka'>
 <div class="message-header">
 <div>
@@ -13995,18 +13911,102 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1616' data-search='0x650 1616 diag_resp_650_cas cas'>
+<section class='message' id='msg-1600' data-search='0x640 1600 diag_resp_640_cas cas'>
 <div class="message-header">
 <div>
-<h2>0x650 &middot; DIAG_RESP_650_CAS</h2>
-<div class='message-sub'>Decimal ID: 1616 <span class='muted'>&middot;</span> Transmitter: CAS</div>
+<h2>0x640 &middot; DIAG_RESP_640_CAS</h2>
+<div class='message-sub'>Decimal ID: 1600 <span class='muted'>&middot;</span> Transmitter: CAS</div>
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x650 (CAS → DIA): UDS diagnostic response from CAS (Car Access System / Carstarter) on K-CAN. Physical CAS request ID = 0x650, response = 0x650 (same — CAS is special: some versions use same ID for req and resp on K-CAN, confirm from trace). CAS holds immobiliser data, comfort access configuration, key learning. Programming session (0x10 0x03) required for key coding — use with extreme caution. Source: obd2-diagnostic-architecture.md</div>
+<div class='comment'>0x640 (CAS → DIA): UDS diagnostic response from CAS (Car Access System / Carstarter) on K-CAN. Node 0x40 CONFIRMED from Carista HIL capture (31 response frames on 0x640). Tester request: 0x6F1 → target byte 0x40. CAS holds immobiliser data, comfort access, key learning. Programming session (0x10 0x03) required for key coding — use with extreme caution. NOTE: previous agent brief incorrectly placed CAS at 0x650 (node 0x50 = unknown, possibly CCC_GW/M-ASK area, NOT CAS).</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1622' data-search='0x656 1622 diag_resp_656_jbbf gate1'>
+<div class="message-header">
+<div>
+<h2>0x656 &middot; DIAG_RESP_656_JBBF</h2>
+<div class='message-sub'>Decimal ID: 1622 <span class='muted'>&middot;</span> Transmitter: Gate1</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x656 (JBBF → DIA): UDS diagnostic response from JBBF/JBE (Junction Box Body Front / Junctions Box Elektronik) on K-CAN. Node 0x56 CONFIRMED from Carista HIL capture (11 response frames on 0x656, DID 0x3000 responded, 0x2E write session active). JBBF acts as K-CAN/PT-CAN gateway (ZGW function) on E90. Controls: central locking relay logic, window rear pair, heated seats, horn, footwell lighting. NCS Expert module name: JBBFE/JBBFR3. EDIABAS driver: jbbf3.prg. Node identity confirmed by user 2026-04-08. Extended session required for coding.</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
