@@ -118,16 +118,16 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-09 00:12:31</span>
-<span>Messages: 371</span>
-<span>Signals: 338</span>
+<span>Generated: 2026-04-09 00:16:28</span>
+<span>Messages: 386</span>
+<span>Signals: 419</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
 </div>
 </section>
 <details class="toc">
-<summary>Message Index <span style='color:#64748b;font-weight:400;font-size:13px;'>(371 messages)</span></summary>
+<summary>Message Index <span style='color:#64748b;font-weight:400;font-size:13px;'>(386 messages)</span></summary>
 <div class="toc-body"><div class="toc-list">
 <a href='#msg-128' title='SYNC'>0x080 · SYNC</a>
 <a href='#msg-133' title='Synchronization_SC_VDA'>0x085 · Synchronization_SC_VDA</a>
@@ -495,11 +495,26 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-1511' title='Services_ZBE_5E7'>0x5E7 · Services_ZBE_5E7</a>
 <a href='#msg-1522' title='Services_KBM_5F2'>0x5F2 · Services_KBM_5F2</a>
 <a href='#msg-1528' title='Services_IHKA_5F8'>0x5F8 · Services_IHKA_5F8</a>
-<a href='#msg-1554' title='RES_612'>0x612 · RES_612</a>
+<a href='#msg-1544' title='DIAG_RESP_608_DME'>0x608 · DIAG_RESP_608_DME</a>
+<a href='#msg-1548' title='DIAG_RESP_60C_EGS'>0x60C · DIAG_RESP_60C_EGS</a>
+<a href='#msg-1554' title='DIAG_RESP_612'>0x612 · DIAG_RESP_612</a>
+<a href='#msg-1562' title='DIAG_RESP_61A_DSC'>0x61A · DIAG_RESP_61A_DSC</a>
+<a href='#msg-1568' title='DIAG_RESP_620_FRM'>0x620 · DIAG_RESP_620_FRM</a>
 <a href='#msg-1577' title='Unknown_629'>0x629 · Unknown_629</a>
-<a href='#msg-1632' title='ACK_660'>0x660 · ACK_660</a>
-<a href='#msg-1777' title='REQ_6F1'>0x6F1 · REQ_6F1</a>
+<a href='#msg-1580' title='DIAG_RESP_62C_JBE'>0x62C · DIAG_RESP_62C_JBE</a>
+<a href='#msg-1596' title='DIAG_RESP_63C_IHKA'>0x63C · DIAG_RESP_63C_IHKA</a>
+<a href='#msg-1616' title='DIAG_RESP_650_CAS'>0x650 · DIAG_RESP_650_CAS</a>
+<a href='#msg-1624' title='DIAG_RESP_658_LM'>0x658 · DIAG_RESP_658_LM</a>
+<a href='#msg-1632' title='DIAG_RESP_660'>0x660 · DIAG_RESP_660</a>
+<a href='#msg-1640' title='DIAG_RESP_668_SZL'>0x668 · DIAG_RESP_668_SZL</a>
+<a href='#msg-1676' title='DIAG_RESP_68C_PDC'>0x68C · DIAG_RESP_68C_PDC</a>
+<a href='#msg-1777' title='DIAG_REQ_6F1'>0x6F1 · DIAG_REQ_6F1</a>
 <a href='#msg-1987' title='Keyfob_7C3'>0x7C3 · Keyfob_7C3</a>
+<a href='#msg-2015' title='OBD2_FUNC_REQ_7DF'>0x7DF · OBD2_FUNC_REQ_7DF</a>
+<a href='#msg-2016' title='OBD2_PHYS_REQ_7E0_DME'>0x7E0 · OBD2_PHYS_REQ_7E0_DME</a>
+<a href='#msg-2017' title='OBD2_PHYS_REQ_7E1_EGS'>0x7E1 · OBD2_PHYS_REQ_7E1_EGS</a>
+<a href='#msg-2024' title='OBD2_RESP_7E8_DME'>0x7E8 · OBD2_RESP_7E8_DME</a>
+<a href='#msg-2025' title='OBD2_RESP_7E9_EGS'>0x7E9 · OBD2_RESP_7E9_EGS</a>
 </div></div>
 </details>
 <section class='message' id='msg-128' data-search='0x080 128 sync xxx'>
@@ -13449,23 +13464,431 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1554' data-search='0x612 1554 res_612 dme'>
+<section class='message' id='msg-1544' data-search='0x608 1544 diag_resp_608_dme dme'>
 <div class="message-header">
 <div>
-<h2>0x612 &middot; RES_612</h2>
+<h2>0x608 &middot; DIAG_RESP_608_DME</h2>
+<div class='message-sub'>Decimal ID: 1544 <span class='muted'>&middot;</span> Transmitter: DME</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x608 (DME → PT-CAN tester): UDS diagnostic response from DME on PT-CAN (500 kbit/s). Physical DME request ID = 0x600, response = 0x608. Accessible from K-CAN via ZGW gateway when sending to 0x600 from 0x6F1 — ZGW bridges K-CAN diagnostic requests to PT-CAN. Direct PT-CAN access requires second MCP2515 at 500 kbit/s. Standard OBD2 Mode 01 PIDs also answered on 0x7E8 (DME) when requested via functional address 0x7DF. Source: BMW ISTA, obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1548' data-search='0x60c 1548 diag_resp_60c_egs egs'>
+<div class="message-header">
+<div>
+<h2>0x60C &middot; DIAG_RESP_60C_EGS</h2>
+<div class='message-sub'>Decimal ID: 1548 <span class='muted'>&middot;</span> Transmitter: EGS</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x60C (EGS → PT-CAN tester): UDS diagnostic response from EGS (Electronic Gearbox Control, ZF 6HP19 TCM) on PT-CAN. Physical EGS request ID = 0x604, response = 0x60C. EGS holds ZF gearbox adaptation data, clutch friction values, and ATF temperature calibration. SecurityAccess (0x27) required for adaptation reset and clutch learning reset. Standard OBD2 Mode 01 ATF temp PID 0x6C answered on 0x7E9. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1554' data-search='0x612 1554 diag_resp_612 dme'>
+<div class="message-header">
+<div>
+<h2>0x612 &middot; DIAG_RESP_612</h2>
 <div class='message-sub'>Decimal ID: 1554 <span class='muted'>&middot;</span> Transmitter: DME</div>
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x612 (DME): Diagnostic response</div>
+<div class='comment'>0x612 (DME → DIA): UDS diagnostic response from DME/ECM (Digital Motor Electronics, N47D20O1 engine ECU) on K-CAN. Physical addressing: request sent to 0x6F1 (DIA tester), response from 0x612. ISO-TP transport: PCI byte in B0 (high nibble = frame type: 0=SF, 1=FF, 2=CF, 3=FC; low nibble = DL for SF or length-high for FF). UDS positive response = request service ID + 0x40 (e.g., 0x50 for 0x10 session control, 0x62 for 0x22 ReadDID). Negative response: service ID = 0x7F, B1 = requested service, B2 = NRC. Also used by DSC (0x612) on K-CAN — context depends on diagnostic session. Source: ISO 14229-1 UDS, BMW ISTA diagnostic trace, architecture doc obd2-diagnostic-architecture.md</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x00</span> <span class='enum-dec'>(0)</span> = SingleFrame</li>
+<li><span class='enum-hex'>0x01</span> <span class='enum-dec'>(1)</span> = FirstFrame</li>
+<li><span class='enum-hex'>0x02</span> <span class='enum-dec'>(2)</span> = ConsecutiveFrame</li>
+<li><span class='enum-hex'>0x03</span> <span class='enum-dec'>(3)</span> = FlowControl_CTS</li>
+<li><span class='enum-hex'>0x04</span> <span class='enum-dec'>(4)</span> = FlowControl_Wait</li>
+<li><span class='enum-hex'>0x05</span> <span class='enum-dec'>(5)</span> = FlowControl_Overflow</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1562' data-search='0x61a 1562 diag_resp_61a_dsc dsc'>
+<div class="message-header">
+<div>
+<h2>0x61A &middot; DIAG_RESP_61A_DSC</h2>
+<div class='message-sub'>Decimal ID: 1562 <span class='muted'>&middot;</span> Transmitter: DSC</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x61A (DSC → PT-CAN tester): UDS diagnostic response from DSC (Dynamic Stability Control / ABS, ATE MK60E5) on PT-CAN. Physical DSC request ID = 0x612, response = 0x61A. DSC holds wheel speed sensor calibration, yaw sensor offset, and ABS valve test routines (0x31). Bleeding routine accessible via RoutineControl. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">Diagnosetool_PT_CAN</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1568' data-search='0x620 1568 diag_resp_620_frm frm'>
+<div class="message-header">
+<div>
+<h2>0x620 &middot; DIAG_RESP_620_FRM</h2>
+<div class='message-sub'>Decimal ID: 1568 <span class='muted'>&middot;</span> Transmitter: FRM</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x620 (FRM → DIA): UDS diagnostic response from FRM (Footwell Module / Fussraummodul) on K-CAN. Physical FRM request ID = 0x640, response = 0x620. FRM controls: window lifters (all 4), exterior mirrors, footwell lighting, welcome light, rain/light sensor input, interior light relay. Coding parameters accessible in extended session (0x10 0x02) after SecurityAccess level 0x01. Key DIDs: 0xF190=VIN, 0xF187=spare part number, 0xF189=SW version, 0xF1A2=FA coding index. Comfort close (0x0FA injection) equivalent achievable via FRM RoutineControl. Source: BMW E9x FRM DATEN, obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -13488,43 +13911,730 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1632' data-search='0x660 1632 ack_660 kombi'>
+<section class='message' id='msg-1580' data-search='0x62c 1580 diag_resp_62c_jbe gate1'>
 <div class="message-header">
 <div>
-<h2>0x660 &middot; ACK_660</h2>
+<h2>0x62C &middot; DIAG_RESP_62C_JBE</h2>
+<div class='message-sub'>Decimal ID: 1580 <span class='muted'>&middot;</span> Transmitter: Gate1</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x62C (JBE → DIA): UDS diagnostic response from JBE (Junction Box Electronics / Junction Box Elektronik) on K-CAN. Physical JBE request ID = 0x644, response = 0x62C. JBE controls: central locking relay logic, window rear pair, heated seats, horn. JBE is the gateway for rear door lock commands on K-CAN. Extended session required for coding. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1596' data-search='0x63c 1596 diag_resp_63c_ihka ihka'>
+<div class="message-header">
+<div>
+<h2>0x63C &middot; DIAG_RESP_63C_IHKA</h2>
+<div class='message-sub'>Decimal ID: 1596 <span class='muted'>&middot;</span> Transmitter: IHKA</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x63C (IHKA → DIA): UDS diagnostic response from IHKA (Integrated Heating/Klimaanlage — automatic climate control) on K-CAN. Physical IHKA request ID = 0x63C, response (legacy) or 0x644 (alternate — confirm). IHKA controls AC compressor relay, evaporator blower, all temperature zone actuators. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1616' data-search='0x650 1616 diag_resp_650_cas cas'>
+<div class="message-header">
+<div>
+<h2>0x650 &middot; DIAG_RESP_650_CAS</h2>
+<div class='message-sub'>Decimal ID: 1616 <span class='muted'>&middot;</span> Transmitter: CAS</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x650 (CAS → DIA): UDS diagnostic response from CAS (Car Access System / Carstarter) on K-CAN. Physical CAS request ID = 0x650, response = 0x650 (same — CAS is special: some versions use same ID for req and resp on K-CAN, confirm from trace). CAS holds immobiliser data, comfort access configuration, key learning. Programming session (0x10 0x03) required for key coding — use with extreme caution. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1624' data-search='0x658 1624 diag_resp_658_lm afs'>
+<div class="message-header">
+<div>
+<h2>0x658 &middot; DIAG_RESP_658_LM</h2>
+<div class='message-sub'>Decimal ID: 1624 <span class='muted'>&middot;</span> Transmitter: AFS</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x658 (LM → DIA): UDS diagnostic response from LM (Light Module — E8x adaptive light unit, Lichtmodul) on K-CAN. Physical LM request ID = 0x654, response = 0x658. Controls bi-xenon swivel actuators, cornering light logic. Coding allows enabling/disabling adaptive light, DRL configuration. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1632' data-search='0x660 1632 diag_resp_660 kombi'>
+<div class="message-header">
+<div>
+<h2>0x660 &middot; DIAG_RESP_660</h2>
 <div class='message-sub'>Decimal ID: 1632 <span class='muted'>&middot;</span> Transmitter: Kombi</div>
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x660 (Kombi): Diagnostic request acknowledgement</div>
+<div class='comment'>0x660 (Kombi → DIA): UDS diagnostic response from Kombi (instrument cluster). Physical addressing: tester sends to 0x6F9 (Kombi request ID), Kombi responds on 0x660. ISO-TP single-frame (SF) typical for standard DID reads (VIN, SW version). Extended session required for coding access (0x10 0x02). TesterPresent (0x3E 0x00) must be sent every 2s to maintain extended session. Source: BMW ISTA, obd2-diagnostic-architecture.md</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x00</span> <span class='enum-dec'>(0)</span> = SingleFrame</li>
+<li><span class='enum-hex'>0x01</span> <span class='enum-dec'>(1)</span> = FirstFrame</li>
+<li><span class='enum-hex'>0x02</span> <span class='enum-dec'>(2)</span> = ConsecutiveFrame</li>
+<li><span class='enum-hex'>0x03</span> <span class='enum-dec'>(3)</span> = FlowControl_CTS</li>
+<li><span class='enum-hex'>0x04</span> <span class='enum-dec'>(4)</span> = FlowControl_Wait</li>
+<li><span class='enum-hex'>0x05</span> <span class='enum-dec'>(5)</span> = FlowControl_Overflow</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1777' data-search='0x6f1 1777 req_6f1 dia'>
+<section class='message' id='msg-1640' data-search='0x668 1640 diag_resp_668_szl szl'>
 <div class="message-header">
 <div>
-<h2>0x6F1 &middot; REQ_6F1</h2>
+<h2>0x668 &middot; DIAG_RESP_668_SZL</h2>
+<div class='message-sub'>Decimal ID: 1640 <span class='muted'>&middot;</span> Transmitter: SZL</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x668 (SZL → DIA): UDS diagnostic response from SZL (Steering Column Switch Centre / Schaltzentrum Lenkrad) on K-CAN. Physical SZL request ID = 0x660, response = 0x668. Also contains LWS (Lenkwinkelsensor — steering angle sensor). SZL coding covers MFL button assignment and cruise control stalk function. Steering angle sensor initialisation accessible via RoutineControl. Source: obd2-diagnostic-architecture.md</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1676' data-search='0x68c 1676 diag_resp_68c_pdc pdc'>
+<div class="message-header">
+<div>
+<h2>0x68C &middot; DIAG_RESP_68C_PDC</h2>
+<div class='message-sub'>Decimal ID: 1676 <span class='muted'>&middot;</span> Transmitter: PDC</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x68C (PDC → DIA): UDS diagnostic response from PDC (Park Distance Control) on K-CAN. Physical PDC request ID = 0x68C, response = 0x694. Hmm — confirm exact address pair from trace. PDC holds sensor distance calibration. Activation/deactivation of PDC feature via coding. Source: obd2-diagnostic-architecture.md. NOTE: request ID 0x68C confirmed in module registry; response ID 0x694 = decimal 1684 — add BO_ 1684 DIAG_RESP_694_PDC if trace confirms.</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2..B7 (48b LE, 6 bytes)</div>
+<div class='dbc-pos'>DBC: 16|48</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">DIA,Diagnosetool_K_CAN_System</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-1777' data-search='0x6f1 1777 diag_req_6f1 dia'>
+<div class="message-header">
+<div>
+<h2>0x6F1 &middot; DIAG_REQ_6F1</h2>
 <div class='message-sub'>Decimal ID: 1777 <span class='muted'>&middot;</span> Transmitter: DIA</div>
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>5 signals</span>
 </div>
 </div>
-<div class='comment'>0x6F1 (DIA): Diagnostic request</div>
+<div class='comment'>0x6F1 (DIA → module): UDS diagnostic request from tester (our Pico 2W IDRIVE_NEW firmware acting as diagnostic tool). This is the ISO 15765-2 / ISO 14229 tester address on BMW K-CAN. All module requests are sent from this address. For functional/broadcast addressing (default session open on all modules simultaneously), BMW uses 0x6F1 with functional target. For physical addressing, tester sends to module-specific request ID (e.g., 0x640 for FRM) but own source address remains 0x6F1. Frame format: B0 PCI, B1 UDS service ID [B2 sub-function or DID-hi, B3 DID-lo, B4-B7 data]. Source: BMW E9x diagnostic trace, ISO 14229-1</div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_SubFunction</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_PCI</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x00</span> <span class='enum-dec'>(0)</span> = SingleFrame</li>
+<li><span class='enum-hex'>0x01</span> <span class='enum-dec'>(1)</span> = FirstFrame</li>
+<li><span class='enum-hex'>0x02</span> <span class='enum-dec'>(2)</span> = ConsecutiveFrame</li>
+<li><span class='enum-hex'>0x03</span> <span class='enum-dec'>(3)</span> = FlowControl_CTS</li>
+<li><span class='enum-hex'>0x04</span> <span class='enum-dec'>(4)</span> = FlowControl_Wait</li>
+<li><span class='enum-hex'>0x05</span> <span class='enum-dec'>(5)</span> = FlowControl_Overflow</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[7:4] hi-nibble</div>
+<div class='dbc-pos'>DBC: 4|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>ISOTP_DL</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0[3:0] lo-nibble</div>
+<div class='dbc-pos'>DBC: 0|4</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_ServiceId</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x10</span> <span class='enum-dec'>(16)</span> = DiagnosticSessionControl_0x10</li>
+<li><span class='enum-hex'>0x11</span> <span class='enum-dec'>(17)</span> = ECUReset_0x11</li>
+<li><span class='enum-hex'>0x14</span> <span class='enum-dec'>(20)</span> = ClearDTC_0x14</li>
+<li><span class='enum-hex'>0x19</span> <span class='enum-dec'>(25)</span> = ReadDTCInfo_0x19</li>
+<li><span class='enum-hex'>0x22</span> <span class='enum-dec'>(34)</span> = ReadDataByIdentifier_0x22</li>
+<li><span class='enum-hex'>0x23</span> <span class='enum-dec'>(35)</span> = ReadMemByAddress_0x23</li>
+<li><span class='enum-hex'>0x27</span> <span class='enum-dec'>(39)</span> = SecurityAccess_0x27</li>
+<li><span class='enum-hex'>0x28</span> <span class='enum-dec'>(40)</span> = CommunicationControl_0x28</li>
+<li><span class='enum-hex'>0x2E</span> <span class='enum-dec'>(46)</span> = WriteDataByIdentifier_0x2E</li>
+<li><span class='enum-hex'>0x31</span> <span class='enum-dec'>(49)</span> = RoutineControl_0x31</li>
+<li><span class='enum-hex'>0x34</span> <span class='enum-dec'>(52)</span> = RequestDownload_0x34</li>
+<li><span class='enum-hex'>0x36</span> <span class='enum-dec'>(54)</span> = TransferData_0x36</li>
+<li><span class='enum-hex'>0x37</span> <span class='enum-dec'>(55)</span> = RequestTransferExit_0x37</li>
+<li><span class='enum-hex'>0x3E</span> <span class='enum-dec'>(62)</span> = TesterPresent_0x3E</li>
+<li><span class='enum-hex'>0x7F</span> <span class='enum-dec'>(127)</span> = NegativeResponse_0x7F</li>
+<li><span class='enum-hex'>0x85</span> <span class='enum-dec'>(133)</span> = ControlDTCSetting_0x85</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_SubFunction</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x01</span> <span class='enum-dec'>(1)</span> = DefaultSession</li>
+<li><span class='enum-hex'>0x02</span> <span class='enum-dec'>(2)</span> = ExtendedDiagnosticSession</li>
+<li><span class='enum-hex'>0x03</span> <span class='enum-dec'>(3)</span> = ProgrammingSession</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>UDS_Payload</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3..B7 (40b LE, 5 bytes)</div>
+<div class='dbc-pos'>DBC: 24|40</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 0]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -13545,6 +14655,572 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-2015' data-search='0x7df 2015 obd2_func_req_7df dia'>
+<div class="message-header">
+<div>
+<h2>0x7DF &middot; OBD2_FUNC_REQ_7DF</h2>
+<div class='message-sub'>Decimal ID: 2015 <span class='muted'>&middot;</span> Transmitter: DIA</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>6 signals</span>
+</div>
+</div>
+<div class='comment'>0x7DF (OBD2 functional broadcast — all ECUs): Standard ISO 15031 / SAE J1979 OBD2 functional request address. All OBD2-compliant ECUs respond. On BMW E9x PT-CAN: DME responds on 0x7E8, EGS on 0x7E9. Accessible from K-CAN via ZGW gateway — ZGW forwards standard OBD2 Mode 01/03/04/09 requests to PT-CAN. NOT suitable for BMW-proprietary UDS (Mode 0x22/0x2E/0x27/0x31) — use physical addressing (0x6F1 → 0x600 etc.) for extended diagnostics. Frame format: B0=0x02 (2 bytes follow), B1=Mode (0x01=current data, 0x03=stored DTCs, 0x04=clear DTCs, 0x09=vehicle info), B2=PID/InfoType, B3-B7=0x00 padding. Source: SAE J1979, ISO 15031-5</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_Mode</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>OBD2_DataC</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>OBD2_DataD</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_Mode</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x01</span> <span class='enum-dec'>(1)</span> = Mode01_CurrentData</li>
+<li><span class='enum-hex'>0x02</span> <span class='enum-dec'>(2)</span> = Mode02_FreezeFrame</li>
+<li><span class='enum-hex'>0x03</span> <span class='enum-dec'>(3)</span> = Mode03_StoredDTCs</li>
+<li><span class='enum-hex'>0x04</span> <span class='enum-dec'>(4)</span> = Mode04_ClearDTCs</li>
+<li><span class='enum-hex'>0x05</span> <span class='enum-dec'>(5)</span> = Mode05_O2MonitorResults</li>
+<li><span class='enum-hex'>0x06</span> <span class='enum-dec'>(6)</span> = Mode06_OnboardMonitor</li>
+<li><span class='enum-hex'>0x07</span> <span class='enum-dec'>(7)</span> = Mode07_PendingDTCs</li>
+<li><span class='enum-hex'>0x09</span> <span class='enum-dec'>(9)</span> = Mode09_VehicleInfo</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_PID</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataA</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataB</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataC</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B4 (full byte)</div>
+<div class='dbc-pos'>DBC: 32|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataD</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B5 (full byte)</div>
+<div class='dbc-pos'>DBC: 40|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">Vector__XXX</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-2016' data-search='0x7e0 2016 obd2_phys_req_7e0_dme dia'>
+<div class="message-header">
+<div>
+<h2>0x7E0 &middot; OBD2_PHYS_REQ_7E0_DME</h2>
+<div class='message-sub'>Decimal ID: 2016 <span class='muted'>&middot;</span> Transmitter: DIA</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x7E0 (OBD2 physical request → DME): Physical-address OBD2 request direct to DME/ECM. Used when targeting only the engine ECU (not broadcast). Response on 0x7E8. Physical addressing bypasses ZGW arbitration — may not be accessible from K-CAN without dedicated PT-CAN connection. Source: ISO 15031-5</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_Mode</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_Mode</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DME</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_PID</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DME</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataA</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DME</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataB</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DME</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-2017' data-search='0x7e1 2017 obd2_phys_req_7e1_egs dia'>
+<div class="message-header">
+<div>
+<h2>0x7E1 &middot; OBD2_PHYS_REQ_7E1_EGS</h2>
+<div class='message-sub'>Decimal ID: 2017 <span class='muted'>&middot;</span> Transmitter: DIA</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class='comment'>0x7E1 (OBD2 physical request → EGS/TCM): Physical-address OBD2 request direct to EGS (gearbox TCM). Response on 0x7E9. OBD2 Mode 01 PID 0x6C = ATF temperature (gearbox oil temp). Source: ISO 15031-5</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_Mode</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_Mode</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">EGS</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_PID</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">EGS</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataA</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">EGS</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataB</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">EGS</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-2024' data-search='0x7e8 2024 obd2_resp_7e8_dme dme'>
+<div class="message-header">
+<div>
+<h2>0x7E8 &middot; OBD2_RESP_7E8_DME</h2>
+<div class='message-sub'>Decimal ID: 2024 <span class='muted'>&middot;</span> Transmitter: DME</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>7 signals</span>
+</div>
+</div>
+<div class='comment'>0x7E8 (DME OBD2 response): Standard OBD2 response from DME (engine ECU). Frame format: B0=number of additional bytes (0x03-0x06 typical), B1=Mode+0x40 (e.g. 0x41 for Mode 01 current data), B2=PID, B3=DataA, B4=DataB, B5=DataC, B6=DataD. Key Mode 01 PIDs on N47D20O1: 0x04=engine load%, 0x05=coolant temp (A-40 degC), 0x0B=intake MAP kPa, 0x0C=RPM ((256A+B)/4), 0x0D=speed km/h, 0x0F=intake air temp (A-40 degC), 0x11=throttle position A/2.55%, 0x2F=fuel level A/2.55%, 0x33=barometric pressure A kPa, 0x42=control module voltage (256A+B)/1000 V, 0x46=ambient air temp (A-40 degC). Source: SAE J1979, ISO 15031-5</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_ByteCount</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_ModeResp</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>OBD2_DataC</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>OBD2_DataD</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_ByteCount</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 7]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_ModeResp</strong>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x41</span> <span class='enum-dec'>(65)</span> = Mode01_Response_0x41</li>
+<li><span class='enum-hex'>0x42</span> <span class='enum-dec'>(66)</span> = Mode02_Response_0x42</li>
+<li><span class='enum-hex'>0x43</span> <span class='enum-dec'>(67)</span> = Mode03_Response_0x43</li>
+<li><span class='enum-hex'>0x46</span> <span class='enum-dec'>(70)</span> = Mode06_Response_0x46</li>
+<li><span class='enum-hex'>0x47</span> <span class='enum-dec'>(71)</span> = Mode07_Response_0x47</li>
+<li><span class='enum-hex'>0x49</span> <span class='enum-dec'>(73)</span> = Mode09_Response_0x49</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_PID</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataA</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataB</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B4 (full byte)</div>
+<div class='dbc-pos'>DBC: 32|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataC</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B5 (full byte)</div>
+<div class='dbc-pos'>DBC: 40|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataD</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B6 (full byte)</div>
+<div class='dbc-pos'>DBC: 48|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-2025' data-search='0x7e9 2025 obd2_resp_7e9_egs egs'>
+<div class="message-header">
+<div>
+<h2>0x7E9 &middot; OBD2_RESP_7E9_EGS</h2>
+<div class='message-sub'>Decimal ID: 2025 <span class='muted'>&middot;</span> Transmitter: EGS</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 8</span>
+<span class='badge'>7 signals</span>
+</div>
+</div>
+<div class='comment'>0x7E9 (EGS OBD2 response): Standard OBD2 response from EGS (ZF 6HP19 gearbox TCM). Frame format same as 0x7E8. EGS-specific PID: 0x6C=ATF oil temperature (ZF 6HP19 confirmation PENDING — community data suggests same A-40 degC formula as DME coolant). Also responds to Mode 09 InfoType 0x02 (VIN) for EGS identity. Source: SAE J1979; ZF 6HP19 OBD2 data not confirmed on this vehicle — mark decoded values as UNVERIFIED until HIL validation.</div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_ByteCount</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_ModeResp</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>OBD2_DataC</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>OBD2_DataD</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_ByteCount</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 7]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_ModeResp</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1 (full byte)</div>
+<div class='dbc-pos'>DBC: 8|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_PID</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataA</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataB</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B4 (full byte)</div>
+<div class='dbc-pos'>DBC: 32|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataC</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B5 (full byte)</div>
+<div class='dbc-pos'>DBC: 40|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>OBD2_DataD</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B6 (full byte)</div>
+<div class='dbc-pos'>DBC: 48|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DIA</td>
+</tr>
 </tbody>
 </table>
 </section>
