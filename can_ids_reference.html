@@ -118,7 +118,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-09 02:04:11</span>
+<span>Generated: 2026-04-09 02:08:29</span>
 <span>Messages: 386</span>
 <span>Signals: 419</span>
 </div>
@@ -495,10 +495,10 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-1511' title='Services_ZBE_5E7'>0x5E7 · Services_ZBE_5E7</a>
 <a href='#msg-1522' title='Services_KBM_5F2'>0x5F2 · Services_KBM_5F2</a>
 <a href='#msg-1528' title='Services_IHKA_5F8'>0x5F8 · Services_IHKA_5F8</a>
-<a href='#msg-1544' title='DIAG_RESP_608_DME'>0x608 · DIAG_RESP_608_DME</a>
-<a href='#msg-1548' title='DIAG_RESP_60C_EGS'>0x60C · DIAG_RESP_60C_EGS</a>
+<a href='#msg-1544' title='PTCAN_RESP_608_DME'>0x608 · PTCAN_RESP_608_DME</a>
+<a href='#msg-1548' title='PTCAN_RESP_60C_EGS'>0x60C · PTCAN_RESP_60C_EGS</a>
 <a href='#msg-1554' title='DIAG_RESP_612'>0x612 · DIAG_RESP_612</a>
-<a href='#msg-1562' title='DIAG_RESP_61A_DSC'>0x61A · DIAG_RESP_61A_DSC</a>
+<a href='#msg-1562' title='PTCAN_RESP_61A_DSC'>0x61A · PTCAN_RESP_61A_DSC</a>
 <a href='#msg-1577' title='Unknown_629'>0x629 · Unknown_629</a>
 <a href='#msg-1580' title='DIAG_RESP_62C_JBE'>0x62C · DIAG_RESP_62C_JBE</a>
 <a href='#msg-1596' title='DIAG_RESP_63C_IHKA'>0x63C · DIAG_RESP_63C_IHKA</a>
@@ -13464,10 +13464,10 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1544' data-search='0x608 1544 diag_resp_608_dme dme'>
+<section class='message' id='msg-1544' data-search='0x608 1544 ptcan_resp_608_dme dme'>
 <div class="message-header">
 <div>
-<h2>0x608 &middot; DIAG_RESP_608_DME</h2>
+<h2>0x608 &middot; PTCAN_RESP_608_DME</h2>
 <div class='message-sub'>Decimal ID: 1544 <span class='muted'>&middot;</span> Transmitter: DME</div>
 </div>
 <div class="badge-row">
@@ -13475,7 +13475,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x608 (DME → PT-CAN tester): UDS diagnostic response from DME on PT-CAN (500 kbit/s). Physical DME request ID = 0x600, response = 0x608. Accessible from K-CAN via ZGW gateway when sending to 0x600 from 0x6F1 — ZGW bridges K-CAN diagnostic requests to PT-CAN. Direct PT-CAN access requires second MCP2515 at 500 kbit/s. Standard OBD2 Mode 01 PIDs also answered on 0x7E8 (DME) when requested via functional address 0x7DF. Source: BMW ISTA, obd2-diagnostic-architecture.md</div>
+<div class='comment'>0x608 [PT-CAN via ZGW — NOT direct K-CAN] DME UDS diagnostic response. PT-CAN 500 kbit/s. Physical request ID = 0x600, response = 0x608. Reachable from K-CAN tester (0x6F1) only via ZGW gateway bridge — ZGW forwards the request to PT-CAN and relays response back. Direct PT-CAN access requires dedicated MCP2515 at 500 kbit/s. Standard OBD2 Mode 01 PIDs answered on 0x7E8 via functional address 0x7DF. Source: BMW ISTA, obd2-diagnostic-architecture.md</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
@@ -13548,10 +13548,10 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1548' data-search='0x60c 1548 diag_resp_60c_egs egs'>
+<section class='message' id='msg-1548' data-search='0x60c 1548 ptcan_resp_60c_egs egs'>
 <div class="message-header">
 <div>
-<h2>0x60C &middot; DIAG_RESP_60C_EGS</h2>
+<h2>0x60C &middot; PTCAN_RESP_60C_EGS</h2>
 <div class='message-sub'>Decimal ID: 1548 <span class='muted'>&middot;</span> Transmitter: EGS</div>
 </div>
 <div class="badge-row">
@@ -13559,7 +13559,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x60C (EGS → PT-CAN tester): UDS diagnostic response from EGS (Electronic Gearbox Control, ZF 6HP19 TCM) on PT-CAN. Physical EGS request ID = 0x604, response = 0x60C. EGS holds ZF gearbox adaptation data, clutch friction values, and ATF temperature calibration. SecurityAccess (0x27) required for adaptation reset and clutch learning reset. Standard OBD2 Mode 01 ATF temp PID 0x6C answered on 0x7E9. Source: obd2-diagnostic-architecture.md</div>
+<div class='comment'>0x60C [PT-CAN via ZGW — NOT direct K-CAN] EGS (ZF 6HP19 TCM) UDS diagnostic response. PT-CAN 500 kbit/s. Physical request ID = 0x604, response = 0x60C. Reachable from K-CAN only via ZGW. Holds gearbox adaptation data, clutch friction values, ATF temperature calibration. SecurityAccess (0x27) required for adaptation reset. OBD2 ATF temp PID 0x6C answered on 0x7E9. Source: obd2-diagnostic-architecture.md</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
@@ -13724,10 +13724,10 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-1562' data-search='0x61a 1562 diag_resp_61a_dsc dsc'>
+<section class='message' id='msg-1562' data-search='0x61a 1562 ptcan_resp_61a_dsc dsc'>
 <div class="message-header">
 <div>
-<h2>0x61A &middot; DIAG_RESP_61A_DSC</h2>
+<h2>0x61A &middot; PTCAN_RESP_61A_DSC</h2>
 <div class='message-sub'>Decimal ID: 1562 <span class='muted'>&middot;</span> Transmitter: DSC</div>
 </div>
 <div class="badge-row">
@@ -13735,7 +13735,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x61A (DSC → PT-CAN tester): UDS diagnostic response from DSC (Dynamic Stability Control / ABS, ATE MK60E5) on PT-CAN. Physical DSC request ID = 0x612, response = 0x61A. DSC holds wheel speed sensor calibration, yaw sensor offset, and ABS valve test routines (0x31). Bleeding routine accessible via RoutineControl. Source: obd2-diagnostic-architecture.md</div>
+<div class='comment'>0x61A [PT-CAN via ZGW — NOT direct K-CAN] DSC (ABS/Dynamic Stability Control, ATE MK60E5) UDS diagnostic response. PT-CAN 500 kbit/s. Physical request ID = 0x612, response = 0x61A. Reachable from K-CAN only via ZGW. Holds wheel speed sensor calibration, yaw sensor offset, ABS valve test routines (RoutineControl 0x31), bleeding routine. Source: obd2-diagnostic-architecture.md</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ISOTP_PCI, ISOTP_DL</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>UDS_ServiceId</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>UDS_Payload</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>UDS_Payload</div></div></div>
 <table>
@@ -14669,7 +14669,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>6 signals</span>
 </div>
 </div>
-<div class='comment'>0x7DF (OBD2 functional broadcast — all ECUs): Standard ISO 15031 / SAE J1979 OBD2 functional request address. All OBD2-compliant ECUs respond. On BMW E9x PT-CAN: DME responds on 0x7E8, EGS on 0x7E9. Accessible from K-CAN via ZGW gateway — ZGW forwards standard OBD2 Mode 01/03/04/09 requests to PT-CAN. NOT suitable for BMW-proprietary UDS (Mode 0x22/0x2E/0x27/0x31) — use physical addressing (0x6F1 → 0x600 etc.) for extended diagnostics. Frame format: B0=0x02 (2 bytes follow), B1=Mode (0x01=current data, 0x03=stored DTCs, 0x04=clear DTCs, 0x09=vehicle info), B2=PID/InfoType, B3-B7=0x00 padding. Source: SAE J1979, ISO 15031-5</div>
+<div class='comment'>0x7DF [OBD2 via ZGW — NOT direct K-CAN] Functional broadcast request to all OBD2-compliant ECUs. Standard ISO 15031 / SAE J1979. All OBD2-compliant ECUs respond. On BMW E9x PT-CAN: DME responds on 0x7E8, EGS on 0x7E9. Accessible from K-CAN via ZGW gateway — ZGW forwards standard OBD2 Mode 01/03/04/09 requests to PT-CAN. NOT suitable for BMW-proprietary UDS (Mode 0x22/0x2E/0x27/0x31) — use physical addressing (0x6F1 → 0x600 etc.) for extended diagnostics. Frame format: B0=0x02 (2 bytes follow), B1=Mode (0x01=current data, 0x03=stored DTCs, 0x04=clear DTCs, 0x09=vehicle info), B2=PID/InfoType, B3-B7=0x00 padding. Source: SAE J1979, ISO 15031-5</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_Mode</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>OBD2_DataC</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>OBD2_DataD</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -14795,7 +14795,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x7E0 (OBD2 physical request → DME): Physical-address OBD2 request direct to DME/ECM. Used when targeting only the engine ECU (not broadcast). Response on 0x7E8. Physical addressing bypasses ZGW arbitration — may not be accessible from K-CAN without dedicated PT-CAN connection. Source: ISO 15031-5</div>
+<div class='comment'>0x7E0 [OBD2 via ZGW — NOT direct K-CAN] Physical OBD2 request to DME/ECM. Used when targeting only the engine ECU (not broadcast). Response on 0x7E8. Physical addressing bypasses ZGW arbitration — may not be accessible from K-CAN without dedicated PT-CAN connection. Source: ISO 15031-5</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_Mode</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -14879,7 +14879,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>4 signals</span>
 </div>
 </div>
-<div class='comment'>0x7E1 (OBD2 physical request → EGS/TCM): Physical-address OBD2 request direct to EGS (gearbox TCM). Response on 0x7E9. OBD2 Mode 01 PID 0x6C = ATF temperature (gearbox oil temp). Source: ISO 15031-5</div>
+<div class='comment'>0x7E1 [OBD2 via ZGW — NOT direct K-CAN] Physical OBD2 request to EGS/TCM (gearbox). Response on 0x7E9. OBD2 Mode 01 PID 0x6C = ATF temperature (gearbox oil temp). Source: ISO 15031-5</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_Mode</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -14963,7 +14963,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>7 signals</span>
 </div>
 </div>
-<div class='comment'>0x7E8 (DME OBD2 response): Standard OBD2 response from DME (engine ECU). Frame format: B0=number of additional bytes (0x03-0x06 typical), B1=Mode+0x40 (e.g. 0x41 for Mode 01 current data), B2=PID, B3=DataA, B4=DataB, B5=DataC, B6=DataD. Key Mode 01 PIDs on N47D20O1: 0x04=engine load%, 0x05=coolant temp (A-40 degC), 0x0B=intake MAP kPa, 0x0C=RPM ((256A+B)/4), 0x0D=speed km/h, 0x0F=intake air temp (A-40 degC), 0x11=throttle position A/2.55%, 0x2F=fuel level A/2.55%, 0x33=barometric pressure A kPa, 0x42=control module voltage (256A+B)/1000 V, 0x46=ambient air temp (A-40 degC). Source: SAE J1979, ISO 15031-5</div>
+<div class='comment'>0x7E8 [OBD2 via ZGW — NOT direct K-CAN] Standard OBD2 response from DME (engine ECU). Frame format: B0=number of additional bytes (0x03-0x06 typical), B1=Mode+0x40 (e.g. 0x41 for Mode 01 current data), B2=PID, B3=DataA, B4=DataB, B5=DataC, B6=DataD. Key Mode 01 PIDs on N47D20O1: 0x04=engine load%, 0x05=coolant temp (A-40 degC), 0x0B=intake MAP kPa, 0x0C=RPM ((256A+B)/4), 0x0D=speed km/h, 0x0F=intake air temp (A-40 degC), 0x11=throttle position A/2.55%, 0x2F=fuel level A/2.55%, 0x33=barometric pressure A kPa, 0x42=control module voltage (256A+B)/1000 V, 0x46=ambient air temp (A-40 degC). Source: SAE J1979, ISO 15031-5</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_ByteCount</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_ModeResp</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>OBD2_DataC</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>OBD2_DataD</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -15103,7 +15103,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>7 signals</span>
 </div>
 </div>
-<div class='comment'>0x7E9 (EGS OBD2 response): Standard OBD2 response from EGS (ZF 6HP19 gearbox TCM). Frame format same as 0x7E8. EGS-specific PID: 0x6C=ATF oil temperature (ZF 6HP19 confirmation PENDING — community data suggests same A-40 degC formula as DME coolant). Also responds to Mode 09 InfoType 0x02 (VIN) for EGS identity. Source: SAE J1979; ZF 6HP19 OBD2 data not confirmed on this vehicle — mark decoded values as UNVERIFIED until HIL validation.</div>
+<div class='comment'>0x7E9 [OBD2 via ZGW — NOT direct K-CAN] Standard OBD2 response from EGS (ZF 6HP19 gearbox TCM). Frame format same as 0x7E8. EGS-specific PID: 0x6C=ATF oil temperature (ZF 6HP19 confirmation PENDING — community data suggests same A-40 degC formula as DME coolant). Also responds to Mode 09 InfoType 0x02 (VIN) for EGS identity. Source: SAE J1979; ZF 6HP19 OBD2 data not confirmed on this vehicle — mark decoded values as UNVERIFIED until HIL validation.</div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>OBD2_ByteCount</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>OBD2_ModeResp</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>OBD2_PID</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>OBD2_DataA</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>OBD2_DataB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>OBD2_DataC</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>OBD2_DataD</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
