@@ -1143,19 +1143,19 @@ BO_ 1562 PTCAN_RESP_61A_DSC: 8 DSC
 
 BO_ 1577 Unknown_629: 8 XXX
 
-BO_ 1580 DIAG_RESP_62C_JBE: 8 Gate1
- SG_ ISOTP_PCI : 4|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
- SG_ ISOTP_DL : 0|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
- SG_ UDS_ServiceId : 8|8@1+ (1,0) [0|255] "" DIA,Diagnosetool_K_CAN_System
- SG_ UDS_Payload : 16|48@1+ (1,0) [0|0] "" DIA,Diagnosetool_K_CAN_System
-
 BO_ 1596 DIAG_RESP_63C_IHKA: 8 IHKA
  SG_ ISOTP_PCI : 4|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
  SG_ ISOTP_DL : 0|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
  SG_ UDS_ServiceId : 8|8@1+ (1,0) [0|255] "" DIA,Diagnosetool_K_CAN_System
  SG_ UDS_Payload : 16|48@1+ (1,0) [0|0] "" DIA,Diagnosetool_K_CAN_System
 
-BO_ 1616 DIAG_RESP_650_CAS: 8 CAS
+BO_ 1600 DIAG_RESP_640_CAS: 8 CAS
+ SG_ ISOTP_PCI : 4|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
+ SG_ ISOTP_DL : 0|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
+ SG_ UDS_ServiceId : 8|8@1+ (1,0) [0|255] "" DIA,Diagnosetool_K_CAN_System
+ SG_ UDS_Payload : 16|48@1+ (1,0) [0|0] "" DIA,Diagnosetool_K_CAN_System
+
+BO_ 1622 DIAG_RESP_656_JBBF: 8 Gate1
  SG_ ISOTP_PCI : 4|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
  SG_ ISOTP_DL : 0|4@1+ (1,0) [0|15] "" DIA,Diagnosetool_K_CAN_System
  SG_ UDS_ServiceId : 8|8@1+ (1,0) [0|255] "" DIA,Diagnosetool_K_CAN_System
@@ -1385,9 +1385,9 @@ CM_ BO_ 1548 "0x60C [PT-CAN via ZGW — NOT direct K-CAN] EGS (ZF 6HP19 TCM) UDS
 CM_ BO_ 1554 "0x612 (DME → DIA): UDS diagnostic response from DME/ECM (Digital Motor Electronics, N47D20O1 engine ECU) on K-CAN. Physical addressing: request sent to 0x6F1 (DIA tester), response from 0x612. ISO-TP transport: PCI byte in B0 (high nibble = frame type: 0=SF, 1=FF, 2=CF, 3=FC; low nibble = DL for SF or length-high for FF). UDS positive response = request service ID + 0x40 (e.g., 0x50 for 0x10 session control, 0x62 for 0x22 ReadDID). Negative response: service ID = 0x7F, B1 = requested service, B2 = NRC. Also used by DSC (0x612) on K-CAN — context depends on diagnostic session. Source: ISO 14229-1 UDS, BMW ISTA diagnostic trace, architecture doc obd2-diagnostic-architecture.md";
 CM_ BO_ 1562 "0x61A [PT-CAN via ZGW — NOT direct K-CAN] DSC (ABS/Dynamic Stability Control, ATE MK60E5) UDS diagnostic response. PT-CAN 500 kbit/s. Physical request ID = 0x612, response = 0x61A. Reachable from K-CAN only via ZGW. Holds wheel speed sensor calibration, yaw sensor offset, ABS valve test routines (RoutineControl 0x31), bleeding routine. Source: obd2-diagnostic-architecture.md";
 CM_ BO_ 1650 "0x672 (FRM3 → DIA): UDS diagnostic response from FRM3 (Footwell Module / Fussraummodul, revision C32) on K-CAN. CONFIRMED from Carista HIL capture: tester sends on 0x6F1 with B0=0x72 (FRM node address), FRM3 responds on CAN ID 0x672 with B0=0xF1. Address formula: response_ID = 0x600 | node_byte = 0x600 | 0x72 = 0x672. Physical request address: 0x6F1 with target byte 0x72 in B0. No security access required for DID 0x3400 (coding block) in default session. FRM controls: window lifters (all 4), exterior mirrors, footwell lighting, welcome light, rain/light sensor input, interior light relay. Key DIDs: 0x3400=lamp monitoring coding block (16 bytes), 0xF190=VIN, 0xF187=spare part number, 0xF189=SW version. Source: Carista HIL capture 2026-04-08, frm3_lamp_check_disable.md";
-CM_ BO_ 1580 "0x62C (JBE → DIA): UDS diagnostic response from JBE (Junction Box Electronics / Junction Box Elektronik) on K-CAN. Physical JBE request ID = 0x644, response = 0x62C. JBE controls: central locking relay logic, window rear pair, heated seats, horn. JBE is the gateway for rear door lock commands on K-CAN. Extended session required for coding. Source: obd2-diagnostic-architecture.md";
+CM_ BO_ 1600 "0x640 (CAS → DIA): UDS diagnostic response from CAS (Car Access System / Carstarter) on K-CAN. Node 0x40 CONFIRMED from Carista HIL capture (31 response frames on 0x640). Tester request: 0x6F1 → target byte 0x40. CAS holds immobiliser data, comfort access, key learning. Programming session (0x10 0x03) required for key coding — use with extreme caution. NOTE: previous agent brief incorrectly placed CAS at 0x650 (node 0x50 = unknown, possibly CCC_GW/M-ASK area, NOT CAS).";
+CM_ BO_ 1622 "0x656 (JBBF → DIA): UDS diagnostic response from JBBF/JBE (Junction Box Body Front / Junctions Box Elektronik) on K-CAN. Node 0x56 CONFIRMED from Carista HIL capture (11 response frames on 0x656, DID 0x3000 responded, 0x2E write session active). JBBF acts as K-CAN/PT-CAN gateway (ZGW function) on E90. Controls: central locking relay logic, window rear pair, heated seats, horn, footwell lighting. NCS Expert module name: JBBFE/JBBFR3. EDIABAS driver: jbbf3.prg. Node identity confirmed by user 2026-04-08. Extended session required for coding.";
 CM_ BO_ 1596 "0x63C (IHKA → DIA): UDS diagnostic response from IHKA (Integrated Heating/Klimaanlage — automatic climate control) on K-CAN. Physical IHKA request ID = 0x63C, response (legacy) or 0x644 (alternate — confirm). IHKA controls AC compressor relay, evaporator blower, all temperature zone actuators. Source: obd2-diagnostic-architecture.md";
-CM_ BO_ 1616 "0x650 (CAS → DIA): UDS diagnostic response from CAS (Car Access System / Carstarter) on K-CAN. Physical CAS request ID = 0x650, response = 0x650 (same — CAS is special: some versions use same ID for req and resp on K-CAN, confirm from trace). CAS holds immobiliser data, comfort access configuration, key learning. Programming session (0x10 0x03) required for key coding — use with extreme caution. Source: obd2-diagnostic-architecture.md";
 CM_ BO_ 1624 "0x658 (LM → DIA): UDS diagnostic response from LM (Light Module — E8x adaptive light unit, Lichtmodul) on K-CAN. Physical LM request ID = 0x654, response = 0x658. Controls bi-xenon swivel actuators, cornering light logic. Coding allows enabling/disabling adaptive light, DRL configuration. Source: obd2-diagnostic-architecture.md";
 CM_ BO_ 1632 "0x660 (Kombi → DIA): UDS diagnostic response from Kombi (instrument cluster). Physical addressing: tester sends to 0x6F9 (Kombi request ID), Kombi responds on 0x660. ISO-TP single-frame (SF) typical for standard DID reads (VIN, SW version). Extended session required for coding access (0x10 0x02). TesterPresent (0x3E 0x00) must be sent every 2s to maintain extended session. Source: BMW ISTA, obd2-diagnostic-architecture.md";
 CM_ BO_ 1640 "0x668 (SZL → DIA): UDS diagnostic response from SZL (Steering Column Switch Centre / Schaltzentrum Lenkrad) on K-CAN. Physical SZL request ID = 0x660, response = 0x668. Also contains LWS (Lenkwinkelsensor — steering angle sensor). SZL coding covers MFL button assignment and cruise control stalk function. Steering angle sensor initialisation accessible via RoutineControl. Source: obd2-diagnostic-architecture.md";
