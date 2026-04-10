@@ -109,7 +109,7 @@ BO_ 181 Torque_request_EGS: 8 EGS
  SG_ ST_OBD_ERR_GRB : 44|2@1+ (1,0) [0|3] "" DME
  SG_ ST_LIM_STORQ : 46|2@1+ (1,0) [0|3] "" DME
  SG_ TORQ_DRAW_GRB : 48|8@1+ (0.5,0) [0|255] "Nm" DME
- SG_ TEMP_GRB : 56|8@1+ (1,-40) [-40|215] "degC"DME
+ SG_ TEMP_GRB : 56|8@1+ (1,-40) [-40|215] "degC" DME
 
 BO_ 182 Torque_request_DSC: 5 DSC
  SG_ Checksum_0xb6 : 0|8@1+ (1,0) [0|255] "" DME
