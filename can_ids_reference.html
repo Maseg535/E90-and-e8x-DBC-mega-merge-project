@@ -118,9 +118,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-08 23:53:47</span>
+<span>Generated: 2026-04-10 18:48:06</span>
 <span>Messages: 386</span>
-<span>Signals: 419</span>
+<span>Signals: 420</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
@@ -1346,11 +1346,11 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>9 signals</span>
+<span class='badge'>10 signals</span>
 </div>
 </div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0xb5</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0xb5, TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS, ST_OTMP_GRB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>ST_OBD_GRB, ST_OBD_ERR_GRB, ST_LIM_STORQ</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>TORQ_DRAW_GRB</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0xb5</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0xb5, TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>TORQ_TAR_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>TORQ_TAR_ADJR_POS_EGS, ST_OTMP_GRB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>ST_OBD_GRB, ST_OBD_ERR_GRB, ST_LIM_STORQ</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>TORQ_DRAW_GRB</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>TEMP_GRB</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
@@ -1530,6 +1530,23 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <div class='dbc-scale'>Factor <code>0.5</code> Offset <code>0</code></div>
 </td>
 <td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">DME</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>TEMP_GRB</strong>
+<div class='signal-comment'>Gearbox/ATF oil temperature. Encoding: phys = raw - 40 (C). Unsigned 0-255, range -40 to +215C. ZF 6HP19 normal operating range 60-90C, alarm &gt;130C. Matches OBD2 PID 0x6C (ATF temp) standard. Source: Raiso77 (confirmed on GM gearbox via OBD2, 2026-03-31). Previously wrong in DBC as signed @1- offset +40 — corrected to unsigned @1+ offset -40. Not confirmed on ZF 6HP19 from our HIL (0x0B5 absent from all bench logs — EGS→DME message, no EGS simulation on bench).</div>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B7 (full byte)</div>
+<div class='dbc-pos'>DBC: 56|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: degC</td>
+<td data-label="Scale">
+<div class='formula'>raw &minus; 40 = <em>degC</em></div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>-40</code></div>
+</td>
+<td data-label="Range"><code>[-40 .. 215]</code></td>
 <td data-label="Rx">DME</td>
 </tr>
 </tbody>
