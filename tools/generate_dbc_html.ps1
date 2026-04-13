@@ -438,7 +438,11 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('<div class="toc-body"><div class="toc-list">')
 foreach ($msg in $orderedMessages) {
     $anchor = "msg-$($msg.Id)"
-    $style = if ($msg.Comment) { " style='color:#22c55e'" } else { '' }
+    $hasKnown  = $knownValues.ContainsKey([int]$msg.Id)
+    $hasComment = [bool]$msg.Comment
+    $styleColor  = if ($hasComment) { 'color:#22c55e;' } else { '' }
+    $styleBold   = if ($hasKnown)   { 'font-weight:700;' } else { '' }
+    $style = if ($styleColor -or $styleBold) { " style='$styleColor$styleBold'" } else { '' }
     [void]$sb.AppendLine("<a href='#$anchor' title='$(Escape-Html $msg.Name)'$style>$($msg.IdHex) $([char]0xB7) $(Escape-Html $msg.Name)</a>")
 }
 [void]$sb.AppendLine('</div></div>')
