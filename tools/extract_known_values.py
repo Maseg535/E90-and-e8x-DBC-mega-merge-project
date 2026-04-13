@@ -5,7 +5,9 @@ HIL data takes priority over existing entries from other sources (e.g. loopybunn
 Entries from other sources are preserved if the CAN ID is not seen in HIL logs.
 
 Log format (per line, ignoring # comments):
-  timestamp_ms  can_id_decimal  dlc  b0  b1  b2 ... (hex bytes)
+  timestamp_ms  can_id_hex  dlc  b0  b1  b2 ... (all hex, CAN ID is 3-digit zero-padded hex)
+
+JSON keys are TRUE DECIMAL CAN IDs (e.g. 0x175 -> "373", 0x0A9 -> "169").
 
 Run from repo root:
   python tools/extract_known_values.py
@@ -20,7 +22,7 @@ LOG_DIR = r"E:\HIL_LOGS"
 JSON_PATH = os.path.join(os.path.dirname(__file__), 'known_values.json')
 MIN_OCCURRENCES = 5  # skip IDs seen fewer than this many times
 
-# Accumulate: {can_id: {byte_pos: Counter}}
+# Accumulate: {can_id_decimal: {byte_pos: Counter}}
 byte_counters = defaultdict(lambda: defaultdict(Counter))
 id_count = Counter()
 
@@ -38,7 +40,7 @@ for fname in os.listdir(LOG_DIR):
                 if len(parts) < 3:
                     continue
                 try:
-                    can_id = int(parts[1])
+                    can_id = int(parts[1], 16)   # log stores hex IDs (e.g. "0A9", "175")
                     dlc = int(parts[2])
                     bytes_data = [int(b, 16) for b in parts[3:3+dlc]]
                 except (ValueError, IndexError):
@@ -51,29 +53,55 @@ for fname in os.listdir(LOG_DIR):
     except Exception as e:
         print(f"# Warning: {fname}: {e}", file=sys.stderr)
 
-# Load existing JSON to preserve non-HIL entries
-existing = {}
+# Load existing JSON to preserve non-HIL entries.
+# Re-key any entries whose key looks like a hex-as-decimal value (legacy format):
+#   Old keys were hex values stored as decimal strings (e.g. "175" meant 0x175=373).
+#   New format: keys are true decimal CAN IDs.
+# Heuristic: if the same key reinterpreted as hex differs from itself as decimal,
+#   and the hex interpretation produces a plausible CAN ID (<= 0x7FF = 2047), rekey it.
+existing_raw = {}
 if os.path.exists(JSON_PATH):
     with open(JSON_PATH, 'r', encoding='utf-8') as f:
-        existing = json.load(f)
+        existing_raw = json.load(f)
 
-meta = existing.get('_meta', {
+meta = existing_raw.get('_meta', {
     "description": "Known typical byte values per CAN ID. Merged from HIL logs and loopybunny reference.",
     "sources": {
         "hil": r"E:\HIL_LOGS\ — captured on E90 LCI N47 bench, most common value per byte position",
         "loopybunny": "https://www.loopybunny.co.uk/CarPC/k_can.html — BMW X1 E84 reference (2012)"
     },
-    "format": "decimal CAN ID -> { bytes: [b0..bN hex], source: str, count: int|null }"
+    "format": "TRUE DECIMAL CAN ID -> { bytes: [b0..bN hex], source: str, count: int|null }"
 })
 
-# Start output with all existing entries (non-HIL preserved as-is)
-output = {'_meta': meta}
-for key, val in existing.items():
+def rekey_if_needed(key_str):
+    """Convert legacy hex-as-decimal key to true decimal key."""
+    try:
+        as_dec = int(key_str)       # the stored value treated as decimal
+        as_hex = int(key_str, 16)   # the stored value treated as hex
+    except ValueError:
+        return key_str
+    # If the value is a valid 3-digit hex CAN ID and differs when reinterpreted
+    if as_hex != as_dec and as_hex <= 0x7FF and len(key_str) == 3:
+        return str(as_hex)
+    return key_str
+
+existing = {}
+for key, val in existing_raw.items():
     if key == '_meta':
         continue
+    new_key = rekey_if_needed(key)
+    # If two keys map to the same new key, prefer hil source
+    if new_key in existing:
+        if existing[new_key].get('source') != 'hil' and val.get('source') == 'hil':
+            existing[new_key] = val
+    else:
+        existing[new_key] = val
+
+# Build output: start with existing (rekeyed), overwrite with fresh HIL data
+output = {'_meta': meta}
+for key, val in existing.items():
     output[key] = val
 
-# Overwrite with HIL data (HIL takes priority)
 hil_count = 0
 for can_id in sorted(byte_counters.keys()):
     if id_count[can_id] < MIN_OCCURRENCES:
@@ -103,5 +131,5 @@ for key in sorted(output.keys(), key=lambda k: int(k) if k != '_meta' else -1):
 with open(JSON_PATH, 'w', encoding='utf-8') as f:
     json.dump(sorted_output, f, indent=2)
 
-total = len(sorted_output) - 1  # exclude _meta
+total = len(sorted_output) - 1
 print(f"Written {total} entries to {JSON_PATH} ({hil_count} from HIL, {total - hil_count} from other sources)")
