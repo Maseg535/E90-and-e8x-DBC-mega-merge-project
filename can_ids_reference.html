@@ -124,7 +124,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-13 21:15:24</span>
+<span>Generated: 2026-04-13 21:18:24</span>
 <span>Messages: 386</span>
 <span>Signals: 420</span>
 </div>
@@ -15620,6 +15620,13 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </table>
 </section>
 </div>
+<button id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">&#8679;</button>
+<style>
+#totop{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;border:none;background:#1d4ed8;color:#fff;font-size:24px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;transition:opacity .25s;z-index:999;}
+#totop.vis{opacity:1;}
+#totop:hover{background:#2563eb;}
+@media (prefers-color-scheme:dark){#totop{background:#3b82f6;}#totop:hover{background:#60a5fa;}}
+</style>
 <script>
 var s=document.getElementById("search");
 var msgs=document.querySelectorAll(".message");
@@ -15629,6 +15636,8 @@ s.addEventListener("input",function(){
     m.classList.toggle("hidden", q.length>0 && m.dataset.search.indexOf(q)===-1);
   });
 });
+var btn=document.getElementById("totop");
+window.addEventListener("scroll",function(){btn.classList.toggle("vis",window.scrollY>300);});
 </script>
 </body>
 </html>
