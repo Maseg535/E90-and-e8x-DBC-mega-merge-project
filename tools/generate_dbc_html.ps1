@@ -117,6 +117,41 @@ function Get-Formula($sig) {
     return $expr
 }
 
+# Returns HTML hex value row for a message (green=known, red=unknown)
+function Get-HexRow($msg, $knownValues) {
+    $dlc = $msg.Dlc
+    if ($dlc -le 0) { return '' }
+
+    # Collect which bytes have signal coverage
+    $coveredBytes = @{}
+    for ($i = 0; $i -lt $dlc; $i++) { $coveredBytes[$i] = $false }
+    foreach ($sig in $msg.Signals) {
+        if ($sig.EndianFlag -eq '1') {
+            $startByte = [math]::Floor($sig.StartBit / 8)
+            $endByte   = [math]::Floor(($sig.StartBit + $sig.Length - 1) / 8)
+            for ($b = [int]$startByte; $b -le [math]::Min([int]$endByte, $dlc - 1); $b++) {
+                $coveredBytes[$b] = $true
+            }
+        } else {
+            $b = [math]::Min([int][math]::Floor($sig.StartBit / 8), $dlc - 1)
+            $coveredBytes[$b] = $true
+        }
+    }
+
+    # Get example values if available
+    $vals = $null
+    if ($knownValues.ContainsKey($msg.Id)) { $vals = $knownValues[$msg.Id] }
+
+    $html = '<div class="hexrow">'
+    for ($i = 0; $i -lt $dlc; $i++) {
+        $val = if ($vals -and $i -lt $vals.Count) { $vals[$i].ToString('X2') } else { '??' }
+        $cls = if ($coveredBytes[$i]) { 'hb-known' } else { 'hb-unknown' }
+        $html += "<span class='hb $cls'>$val</span>"
+    }
+    $html += '</div>'
+    return $html
+}
+
 # Returns HTML byte-map visual for a message
 function Get-ByteMap($msg) {
     $dlc = $msg.Dlc
@@ -236,6 +271,10 @@ foreach ($rawLine in [System.IO.File]::ReadLines((Resolve-Path $DbcPath))) {
 
 $orderedMessages = $messages.Values | Sort-Object Id
 $signalCount     = ($orderedMessages | ForEach-Object { $_.Signals.Count } | Measure-Object -Sum).Sum
+
+# Known example byte values per message ID (optional companion data)
+# Format: message_decimal_id = [byte array]
+$knownValues = @{}
 $generatedAt     = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 $sourceName      = Split-Path -Path $DbcPath -Leaf
 
@@ -284,6 +323,10 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('.byte-empty .byte-idx{color:#94a3b8;}')
 [void]$sb.AppendLine('.byte-sigs{color:#334155;word-break:break-word;line-height:1.3;}')
 [void]$sb.AppendLine('.bytemap-label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:14px 0 2px;}')
+[void]$sb.AppendLine('.hexrow{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 4px;font-family:monospace;font-size:13px;}')
+[void]$sb.AppendLine('.hb{padding:3px 7px;border-radius:5px;font-weight:600;letter-spacing:.04em;}')
+[void]$sb.AppendLine('.hb-known{background:#dcfce7;color:#15803d;border:1px solid #86efac;}')
+[void]$sb.AppendLine('.hb-unknown{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;}')
 # Table styles
 [void]$sb.AppendLine('table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px;}')
 [void]$sb.AppendLine('th,td{padding:10px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top;text-align:left;}')
@@ -318,6 +361,8 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('  .byte-empty .byte-idx{color:#64748b;}')
 [void]$sb.AppendLine('  .byte-sigs{color:#cbd5e1;}')
 [void]$sb.AppendLine('  .bytemap-label{color:#64748b;}')
+[void]$sb.AppendLine('  .hb-known{background:#14532d;color:#86efac;border-color:#166534;}')
+[void]$sb.AppendLine('  .hb-unknown{background:#450a0a;color:#fca5a5;border-color:#7f1d1d;}')
 [void]$sb.AppendLine('  th,td{border-bottom-color:#334155;}')
 [void]$sb.AppendLine('  th{background:#162032;color:#94a3b8;}')
 [void]$sb.AppendLine('  td code{background:#162032;color:#e2e8f0;}')
@@ -399,6 +444,11 @@ foreach ($msg in $orderedMessages) {
 
     if ($msg.Comment) {
         [void]$sb.AppendLine("<div class='comment'>$(Escape-Html $msg.Comment)</div>")
+    }
+
+    # Hex value row
+    if ($msg.Dlc -gt 0) {
+        [void]$sb.AppendLine((Get-HexRow $msg $knownValues))
     }
 
     # Byte map
