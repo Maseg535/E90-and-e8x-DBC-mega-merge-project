@@ -6,6 +6,7 @@ on:
     paths:
       - '*.dbc'
       - 'tools/generate_dbc_html.ps1'
+      - 'tools/known_values.json'
   workflow_dispatch:
 
 jobs:
