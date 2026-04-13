@@ -124,7 +124,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-04-13 20:02:27</span>
+<span>Generated: 2026-04-13 20:09:47</span>
 <span>Messages: 386</span>
 <span>Signals: 420</span>
 </div>
@@ -2465,7 +2465,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x0C8 (SZL): Steering wheel angle slow rate</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>2C</span><span class='hb hb-known'>91</span><span class='hb hb-known'>FC</span><span class='hb hb-known'>FF</span><span class='hb hb-known'>FF</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>SteeringPosition</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>SteeringPosition</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>Counter_0xc8</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>SteeringSpeed</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>SteeringSpeed</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -3055,7 +3055,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x0E2 (Gate1): Door status — FR (Beifahrert&#252;r vorne, BFT, passenger front-right). B3=DoorOpenState: 0xFC=closed, 0xFD=open. B0=LockState: 0x81=unlocked, 0x82=locked, 0x83=armed (increments on ignition/session transition). B1=0xFF constant. B2=0xE7 constant. B4-B7=0xFF constant. B3=0xFD CONFIRMED: HIL-3 2026-03-24 at t=2748881ms (FR door opened second in FL→FR→RL→RR sequential 4-door test, held ~10s, event-driven burst of 6 groups). Door ID mapping confirmed by sequential hold test: FL=0x0EA, FR=0x0E2, RL=0x0EE, RR=0x0E6. Source: HIL session 2026-03-24 (10minutes_run_Wheel_doors_tests.log)</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>00</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>FF</span><span class='hb hb-known'>4F</span><span class='hb hb-unknown'>F3</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>DoorLockStatus_BFT</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>DoorOpenStatus_BFT</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -3323,7 +3323,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x0F2 (Gate1): Central locking status HK (boot/trunk area)</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>01</span><span class='hb hb-unknown'>F1</span><span class='hb hb-known'>FD</span><span class='hb hb-known'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>BootLockStatus</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>BootReleaseButton</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>BootOpenStatus</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -3425,7 +3425,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x0F6: Exterior mirror control / mirror position status. Sender: KGM (Body Gateway Module, node 0x00). 2-byte, static 0xF3 0xF3 in t1.log (idle/no-command state). Follows the body-module door-status +4 sequence: 0x0E2 BFT (passenger front door), 0x0E6 BFH (passenger rear door), 0x0EA FAT (driver front door), 0x0EE FAH (driver rear door), 0x0F2 HK (boot/tailgate), 0x0F6 mirrors. Source: MorGuux BMW E90 K-CAN gist. ** IMPORTANT: Mirror motor control on E90 goes via LIN bus (FRM Footwell Module -&gt; LIN -&gt; mirror motor actuators). The joystick input on K-CAN may trigger an FRM frame, but the actual mirror movement commands are LIN-bus-only and will NOT appear in a K-CAN capture. 0x0F6 = 0 frames confirmed in 10-min real drive log (10minutes_run.log) even though mirror adjustments were physically performed. K-CAN only sees 0xF3 0xF3 (idle/no-command state) periodically. To capture mirror commands: tap LIN bus at FRM connector, or read mirror position via UDS (0x7C3 FRM diagnostic frames observed at ts=76575-78642ms before vehicle movement may be position readout). **</div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>3F</span><span class='hb hb-unknown'>F3</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -3719,7 +3719,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>CD</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -3799,7 +3799,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -3880,7 +3880,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x130 (CAS — Car Access System): Ignition/key/terminal status frame at ~10 Hz. Confirmed decode (HIL keyfobless_restart_lock.log 2026-03-24): B0=IgnitionMode: 0x45=KL15_RUN (normal running), 0x55=CRANKING/starting (engineStarting), 0x41=ACCESSORY (KL15 on, engine off), 0x40=transitional/shutdown (ignition winding down, keeps previous state in decoder), 0x05=SECURITY_ALERT (engine running without authorised key — persists when car is locked externally with engine on). B1 encodes key presence and door/security context: 0x40=key_present_normal (bit6=1), 0x1A=key_absent_door_closed, 0x0D=key_absent_door_open_or_security_event. B2/B3=variable (clutch nibble in B2 hi-nibble: 0xA=unknown, decodes unchanged). KEYLESS RESTART CONFIRMED: B0=0x55 + B1=0x1A observed when engine cranks without physical key — CAS allows restart within security window after key removal. CRANK TIMING (N47D20O1): B0=0x55 fires → 0x21A engine_running bit in 13ms → RPM measurable in 264ms → B0 settles to 0x45 in ~800ms total. LOCKED-RUNNING STATE: after driver exits and keyfob-locks running car, B0 stays at 0x05, B1=0x0D indefinitely — distinct from all normal run states. Source: HIL sessions 2026-03-23 + keyless-restart 2026-03-24</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>E3</span><span class='hb hb-known'>FF</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>ST_KL_R, ST_KL_15, ST_KL_50, ST_KEY_VLD</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>NO_KEY</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>IgnitionOff, AccOn</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>ST_KL15_HW</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>Counter_0x130, Checksum_0x130</div></div></div>
 <table>
@@ -4118,7 +4118,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>00</span><span class='hb hb-known'>00</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0x150</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0x150</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -4170,7 +4170,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>CF</span><span class='hb hb-known'>00</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0x153</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0x153</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -4274,7 +4274,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>2 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>FE</span><span class='hb hb-known'>FE</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>70</span><span class='hb hb-unknown'>86</span><span class='hb hb-unknown'>00</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Checksum_0x15c</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_0x15c</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -6381,7 +6381,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>01</span><span class='hb hb-unknown'>42</span><span class='hb hb-unknown'>FE</span><span class='hb hb-unknown'>01</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -6402,7 +6402,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x1E1 (XXX): Counter and Door Status, sent every 200ms. Bytes 0-1 rolling counter (211-225 normal, 36-50/240-254 engine starting). Byte 2 door open bitmask: b0=driver, b2=passenger, b4=rear driver, b6=rear passenger. Bytes 3-5 padding 0xFF. Source: loopybunny.co.uk/CarPC</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>40</span><span class='hb hb-known'>42</span><span class='hb hb-known'>FF</span><span class='hb hb-unknown'>01</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Counter_1E1_Lo</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Counter_1E1_Hi</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>DriverDoorOpen_1E1, PassengerDoorOpen_1E1, RearDriverDoorOpen_1E1, RearPassengerDoorOpen_1E1</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -7939,7 +7939,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>40</span><span class='hb hb-unknown'>FA</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>14</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -8529,7 +8529,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>F0</span><span class='hb hb-unknown'>03</span><span class='hb hb-unknown'>7F</span><span class='hb hb-unknown'>18</span><span class='hb hb-unknown'>78</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>00</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -8610,7 +8610,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x2A0 (CAS): Central locking control. Three frame types on same ID. (1) HEARTBEAT (~5s periodic): B0=B1=B2=0x88. B3=0x01 static. B4=rolling counter (increments by 2 per cycle, CAS auto-increments correctly regardless of injected commands). B5/B6/B7=current lock state (see below). Sending 88 88 88 wakes bus ~20s but triggers no action. (2) COMMAND BURST (3 rapid frames on keyfob/button press): B0=B1=command byte, B2=modifier. Command bytes: 0x11=unlock, 0x22=lock. B2=0x80 identifies trunk command (pattern: xx xx 80; B0=B1=0x88 for trunk burst). B3=central lock panic-disable: 0x00=enabled(normal), 0x04=disabled(panic lockout). NOTE: 10x rapid toggle triggers ~1min lockout of both cabin button and keyfob. (3) TRUNK: identified by B2=0x80. B5/B6/B7 lock state encoding (CONFIRMED HIL 2026-04-08): 0x40 0x06 0x00=unlocked by keyfob (simple), 0x44 0x05 0x04=locked by keyfob (simple), 0x84 0x02 0x00=comfort open by keyfob (windows opened), 0x84 0x02 0x04=comfort close by keyfob (windows closed), 0x40 0x0B 0x00=interior button unlock, 0x43 0x0B 0x03=interior button lock, 0x?? 0x0B 0xx=interior button (general pattern: B6=0x0B). Trunk lock state: B5=0x80. Interior cabin button and trunk button are NOT on K-CAN — CAS blocks K-CAN button signals after real keyfob lock. Sleep state (post ignition-off): B5/B6/B7=44 05 04. Per-door status NOT in this frame — see 0x0E2/0x0E6/0x0EA/0x0EE. Source: HIL 2026-03-22/23/24/2026-04-07/08.</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span><span class='hb hb-known'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>F1</span><span class='hb hb-known'>21</span><span class='hb hb-known'>00</span><span class='hb hb-known'>00</span><span class='hb hb-known'>FF</span><span class='hb hb-known'>FF</span><span class='hb hb-known'>FF</span><span class='hb hb-known'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>LockCmd_B0</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>LockCmd_B1</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>LockCmd_B2</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>LockState_B3</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>LockState_B4</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>LockState_B5</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>LockState_B6</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>LockState_B7</div></div></div>
 <table>
@@ -8822,7 +8822,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </div>
 <div class='comment'>0x2A6 (SZL): Wiper mode switch from steering column. WiperSpeedMode nibble: 0=off, 1=interval_1, 2=interval_2, 3=slow. WiperAutoActive bit4: 0=off, 1=AUTO. B1=0xF9 constant. Source: wipers.log HIL capture</div>
-<div class="hexrow"><span class='hb hb-known'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>F0</span><span class='hb hb-unknown'>02</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>WiperSpeedMode, WiperAutoActive</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
@@ -8975,7 +8975,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <span class='badge'>0 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-unknown'>F0</span><span class='hb hb-unknown'>02</span><span class='hb hb-unknown'>58</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
 <div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
