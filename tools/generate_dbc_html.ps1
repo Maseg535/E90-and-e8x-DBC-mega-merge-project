@@ -539,6 +539,13 @@ foreach ($msg in $orderedMessages) {
 }
 
 [void]$sb.AppendLine('</div>')
+[void]$sb.AppendLine('<button id="totop" onclick="window.scrollTo({top:0,behavior:''smooth''})" title="Back to top">&#8679;</button>')
+[void]$sb.AppendLine('<style>')
+[void]$sb.AppendLine('#totop{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;border:none;background:#1d4ed8;color:#fff;font-size:24px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;transition:opacity .25s;z-index:999;}')
+[void]$sb.AppendLine('#totop.vis{opacity:1;}')
+[void]$sb.AppendLine('#totop:hover{background:#2563eb;}')
+[void]$sb.AppendLine('@media (prefers-color-scheme:dark){#totop{background:#3b82f6;}#totop:hover{background:#60a5fa;}}')
+[void]$sb.AppendLine('</style>')
 [void]$sb.AppendLine('<script>')
 [void]$sb.AppendLine('var s=document.getElementById("search");')
 [void]$sb.AppendLine('var msgs=document.querySelectorAll(".message");')
@@ -548,6 +555,8 @@ foreach ($msg in $orderedMessages) {
 [void]$sb.AppendLine('    m.classList.toggle("hidden", q.length>0 && m.dataset.search.indexOf(q)===-1);')
 [void]$sb.AppendLine('  });')
 [void]$sb.AppendLine('});')
+[void]$sb.AppendLine('var btn=document.getElementById("totop");')
+[void]$sb.AppendLine('window.addEventListener("scroll",function(){btn.classList.toggle("vis",window.scrollY>300);});')
 [void]$sb.AppendLine('</script>')
 [void]$sb.AppendLine('</body>')
 [void]$sb.AppendLine('</html>')
