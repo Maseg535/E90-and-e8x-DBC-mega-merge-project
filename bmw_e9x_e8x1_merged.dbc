@@ -316,6 +316,8 @@ BO_ 351 Requirement_angle_FFP: 8 LDM
 BO_ 357 CLU_Status_VDA: 8 VDA
 
 BO_ 370 Acknowledgment_request_Kombination: 8 CCC
+ SG_ CCM_Counter : 0|1@1+ (1,0) [0|1] "" CIC
+ SG_ ActiveFaultCount : 16|8@1+ (1,0) [0|255] "" CIC
 
 BO_ 373 Display_motor_data: 3 DME
  SG_ Counter_0x175 : 3|4@0+ (1,0) [0|15] "" Kombi,CIC
@@ -526,6 +528,7 @@ BO_ 513 Status_EMF_KCAN: 8 EMF
 BO_ 514 Dimming: 2 FRMFA
 
 BO_ 517 Acoustic_request_Kombi: 8 Kombi
+ SG_ GongCounter : 0|1@1+ (1,0) [0|1] "" Kombi
 
 BO_ 518 Control_Display_Shiftlights: 8 DME
 
@@ -851,6 +854,8 @@ BO_ 822 Display_check_control_message_role: 8 Kombi
 BO_ 823 StatusFuelControl: 2 DME
 
 BO_ 824 Control_display_check_control_message: 8 Kombi
+ SG_ CCM_Counter : 0|1@1+ (1,0) [0|1] "" CIC
+ SG_ ActiveFaultCount : 16|8@1+ (1,0) [0|255] "" CIC
 
 BO_ 825 Status_display_climate: 8 CCC
 
@@ -1057,9 +1062,10 @@ BO_ 1009 LightExtStatus_CKM_3F1: 1 LM
 
 BO_ 1015 NavGraph_3F7: 8 CCC_GW
 
-BO_ 1043 Unknown_413: 8 XXX
+BO_ 1043 FRM_LampStatus_413: 8 FRM
 
-BO_ 1045 Unknown_415: 7 XXX
+BO_ 1045 FRM_LampStatus_415: 7 FRM
+ SG_ InitCounter : 0|2@1+ (1,0) [0|3] "" Kombi,CIC
 
 BO_ 1152 NetworkMgmt_KGM_480: 0 KGM
 
@@ -1291,6 +1297,7 @@ CM_ BO_ 251 "0x0FB (Gate1): Window lifter control front-right";
 CM_ BO_ 304 "0x130 (CAS — Car Access System): Ignition/key/terminal status frame at ~10 Hz. Confirmed decode (HIL keyfobless_restart_lock.log 2026-03-24): B0=IgnitionMode: 0x45=KL15_RUN (normal running), 0x55=CRANKING/starting (engineStarting), 0x41=ACCESSORY (KL15 on, engine off), 0x40=transitional/shutdown (ignition winding down, keeps previous state in decoder), 0x05=SECURITY_ALERT (engine running without authorised key — persists when car is locked externally with engine on). B1 encodes key presence and door/security context: 0x40=key_present_normal (bit6=1), 0x1A=key_absent_door_closed, 0x0D=key_absent_door_open_or_security_event. B2/B3=variable (clutch nibble in B2 hi-nibble: 0xA=unknown, decodes unchanged). KEYLESS RESTART CONFIRMED: B0=0x55 + B1=0x1A observed when engine cranks without physical key — CAS allows restart within security window after key removal. CRANK TIMING (N47D20O1): B0=0x55 fires → 0x21A engine_running bit in 13ms → RPM measurable in 264ms → B0 settles to 0x45 in ~800ms total. LOCKED-RUNNING STATE: after driver exits and keyfob-locks running car, B0 stays at 0x05, B1=0x0D indefinitely — distinct from all normal run states. Source: HIL sessions 2026-03-23 + keyless-restart 2026-03-24";
 CM_ SG_ 304 IgnitionOff "Active when engine off (KL15 de-energised)";
 CM_ BO_ 309 "0x135 (ACSM): Crash disconnect control";
+CM_ BO_ 370 "0x172 (CCC): Acknowledgment/fault-count notification. FAULT-ONLY — absent in normal startup. Companion to 0x338 (same counter and fault-count structure, both appear at +13s). DLC=5. Initialises as FF FF FF 0F F1, then transitions to: B0=rolling counter (bit 0 toggles: 0x78/0x79). B2=active fault count (0x02→0x01 as per 0x338). B3=0x60. B4=0xF0. Source: HIL 2026-05-03 low-beam fault log.";
 CM_ BO_ 373 "0x175 (DME): Engine RPM. B0=rolling counter (0x00–0x0E, 15-step). B2=RPM_HIGH byte: formula B2 × 40 = RPM (resolution ±40 RPM). Full 16-bit (B2<<8|B1) encodes finer precision. HIL calibration points from 5min_run_for_testing.log 2026-03-26: B2=0x15(21)→~840 RPM (N47 diesel idle), B2=0x18(24)→~960 RPM (light cruise), B2=0x2A(42)→~1680 RPM (acceleration), B2=0x38(56)→~2240 RPM (hard acceleration peak), B2=0x0C(12)→~480 RPM (overrun/fuel-cut). Existing DBC signals (CruiseControlSetpointSpeed etc.) are from loopybunny — RPM signal not previously mapped. Source: HIL 2026-03-26.";
 CM_ BO_ 402 "0x192: Gear selector / transmission selector switch operation. Sender: SZL_LWS (Schaltzentrum Lenkrad / Lenkwinkelsensor — Steering Column Switch Centre with integrated Steering Angle Sensor, node 0x02). Also referred to as GearSelectorSwitch_1 in some DBC files. This is the tiptronic/gear-lever operation message from the column stalk. Source: MorGuux E90 K-CAN gist (entry: 402,0x192,Transmission Selector Switch Operation [16],SZL_LWS)";
 CM_ BO_ 403 "0x193 (DSC): Dynamic cruise control status";
@@ -1339,6 +1346,7 @@ CM_ SG_ 502 RightTurn "Indicates right blinker or when steering returning right 
 CM_ SG_ 502 TurnSignalActive "Turn signal on or transitioning";
 CM_ SG_ 502 TurnSignalIdle "Turn signal off";
 CM_ BO_ 514 "0x202 (FRM — Footwell Module): Dimming status";
+CM_ BO_ 517 "0x205 (Kombi): Acoustic gong request. FAULT-ONLY — absent in normal startup. Fires at +13s coinciding with 0x338/0x172 fault notification. B0 bit 0 (GongCounter) toggles 0xF1→0xF0 across 3 rapid frames — event-driven toggle rather than a periodic heartbeat. Correlates with the audible warning gong on low-beam fault detection. Source: HIL 2026-05-03 low-beam fault log.";
 CM_ BO_ 538 "0x21A (FRM — Footwell Module): Lighting and engine-running status. CORRECTION (keyless-restart log 2026-03-24): B0 bit7 is NOT KL15_Active — it is BRAKE_LIGHTS (brake pedal pressed). Evidence: bit7 clears to 0 immediately after start while engine is still running and KL15 is active (driver lifts foot off brake). The earlier correlation with ignition events was because diesel start requires brake pedal held, so brake-on and KL15-on events coincide. B0 bit0: reflects engine running state (1=engine running) but also correlates with dipped-beam (see full lighting decode). B0 bit2=SideLights. Confirmed B0 patterns: 0x04=sidelights_only (engine off, no brake), 0x84=brake+sidelights (brake pressed, engine off — restart prep), 0x85=brake+sidelights+engine_flag (cranking/just_started), 0x05=sidelights+engine_running_no_brake (normal driving), 0x05=also seen post-lock with engine on. B1=0x12 constant when KL15 active (from HIL-2). B2=0xF7 constant. [PARTIAL] Loopybunny exterior light decode (unconfirmed for this car): B0 lo-nibble: 0=all off, 4=sidelights/auto, 5=dip, 7=main. B1: 0=off, 1=reverse/tail, 16=interior, 18=interior+exterior. Source: loopybunny.co.uk/CarPC + HIL 2026-03-23 + keyless-restart 2026-03-24";
 CM_ BO_ 550 "0x226 (FZD): Rain sensor and automatic wiper speed. B0=WiperActivity (0x00=off, 0x55=interval/active wiper mode set by rain sensor). B1=0xFE constant. B2=0xFF constant. B3=RainIntensity (0x00=no rain, 0x4F=rain detected — rises before wiper activates). B4=0xF3 constant. Source: 5ninutes_Full_Run_Cycle.log HIL capture (5 state changes observed with AUTO wiper in rain)";
 CM_ BO_ 578 "0x242 (IHKA — Automatic Climate Control): Climate front status. B0 encodes recirc and special mode flags: bit0=always set, bit2=MaxACMode (0x05), bit4=RecircAuto (0x11), bit5=RecircManual (0x21). B1=0xF1 (0xF5 observed during defrost). B2 bit0=AC_Compressor_578 flag (0xFD=on, 0xFC=off). B3-B4=0xFF constant. Source: clima_modes_bottom_up.log HIL capture";
@@ -1354,7 +1362,7 @@ CM_ SG_ 760 DateM "Top 4 bits only, lower nibble is always 0xF. eg: Jan=0x1F, Ma
 CM_ BO_ 762 "0x2FA (ACSM): Seat belt and occupancy status. B0=driver status byte, B1=passenger status byte. CONFIRMED payloads 2026-04-07: FC=unlatched/unoccupied, FD=occupied. B1: 90=passenger unlatched, 91=passenger latched. Full confirmed states: FC 90=all belts unlatched, FD 91=both latched (driver+passenger). B2-B4=0xFF (unused/constant). Event-triggered, ~5s periodic during KL15-on. Source: HIL 2026-03-23 + confirmed 2026-04-07.";
 CM_ BO_ 764 "0x2FC (CAS): Lock/latch status — unusual behaviour observed 2026-04-07. Always shows driver door correctly. Passenger front (FR): responds to central lock but not reliably. Rear doors: respond to central lock command but NOT to manual individual door open/close — only update on central lock operation. Behaviour suggests this frame tracks LATCH state (locked/unlocked by CAS) rather than physical door open/close. Physical door open status is in 0x0E2/0x0E6/0x0EA/0x0EE. Byte 0 bitmask (loopybunny): b0=driver, b2=passenger, b4=rear-driver, b6=rear-passenger. Byte 2 bitmask: b0=boot, b2=bonnet. Signal decode unconfirmed — needs dedicated per-door latch test. Source: loopybunny.co.uk/CarPC + HIL observation 2026-04-07.";
 CM_ BO_ 784 "0x310 (Kombi): Ambient temperature and relative time";
-CM_ BO_ 790 "0x316 (Gate1): DTC push-button";
+CM_ BO_ 790 "0x316 (Gate1): DTC push-button. NOTE: single frame FC FF appears only at +74ms in lamp-fault startup logs and is absent in normal startup — may carry an early FRM/body status bit that differs when a lamp fault is present at ignition-on. Source: HIL 2026-05-03 low-beam fault comparison.";
 CM_ SG_ 790 DTC_pressed "Traction control off. Message transmitted when pressed. Few presses may be required followed by off.";
 CM_ SG_ 790 setMe_0x3FFF "All ones";
 CM_ BO_ 797 "0x31D (DSC): Tire pressure status";
@@ -1362,6 +1370,7 @@ CM_ BO_ 814 "0x32E (IHKA — Automatic Climate Control): Climate internal contro
 CM_ BO_ 816 "0x330 (Kombi): Range / mileage (odometer)";
 CM_ BO_ 821 "0x335 (EKP): Electric fuel pump status";
 CM_ BO_ 823 "0x337 (DME): Fuel control status";
+CM_ BO_ 824 "0x338 (Kombi): Check Control Message active fault notification. FAULT-ONLY — absent in normal startup, appears only when a lamp fault is detected. ~3 s period. B0: rolling counter (bit 0 toggles: 0x78/0x79). B2: active fault count (0x02=two faults e.g. left+right low beam, decrements to 0x01 as faults are acknowledged). B3=0xF0. B5-B7=0xFE (padding/unused). Timing: first frame at +13s, continues while fault active. Companion to 0x172 (same counter/fault-count structure). Source: HIL 2026-05-03 low-beam fault log.";
 CM_ BO_ 841 "0x349 (Gate1): Raw fuel level sensor data (left and right tank floats)";
 CM_ BO_ 842 "0x34A (CCC/MK4 nav): GPS Latitude (B0-B3) and Longitude (B4-B7). Both 32-bit signed Intel LE. Scale factor 1/2^23 * (180/pi) = ~8.382e-8 deg/LSB (BMW CCC/MK4 standard radian-based encoding). Confirmed format from CCC/MK4 documentation. Source: confirmed BMW CCC/MK4 format 2026-04-07.";
 CM_ BO_ 847 "0x34F (Gate1): Handbrake lever contact. B0 bit0=Handbrake_pushed_down (1=lever down/released), B0 bit1=Handbrake_pulled_up (1=lever up/engaged). Exactly one bit active at a time. 0xFE=engaged, 0xFD=released. Validated across all HIL sessions: stationary sessions=0xFE, driving sessions=0xFD. Source: 5ninutes_Full_Run_Cycle.log HIL capture";
@@ -1434,8 +1443,8 @@ CM_ BO_ 844 "0x34C: Navigation GPS 2. Sender: CCC_GW. DLC 5. Source: rusefi.com 
 CM_ BO_ 972 "0x3CC (CCC_GW): NavGraph group dormant message. DLC 7. B0: rolling counter shared with 0x278/0x3F7 (7-bit, 0x0A-0x7E). B1=0xF6, B2-B4=0xFE fixed (data not available). B5: varies 0x00-0xFF (purpose unknown). B6: 3 states (0xF0, 0xF7, 0xFF — likely status flags). Consistently present in all driving sessions. Source: HIL 2026-03-29";
 CM_ BO_ 1015 "0x3F7 (CCC_GW): NavGraph group dormant message. DLC 8. B0: rolling counter shared with 0x278/0x3CC. B1: 3 states (0xE2, 0xE6, 0xEE). B3: 2 states (0x7F, 0xFF). B4: 2 states (0x15, 0xFF). Most bytes fixed 0xFF/0xFE. Mostly inactive — likely GPS or nav sub-message dormant when no active navigation. Source: HIL 2026-03-29";
 CM_ BO_ 1009 "0x3F1: Extended Lighting Personalisation Status (CKM — Comfort Coding Module data). Sender: LM/FRM (Light Module / Footwell Module, node 0x70). Paired with 0x3F0 (Extended Lighting Personalisation Configuration from CCC_GW). Appears once at startup — FRM broadcasts current extended-lighting personalisation state. Source: MorGuux BMW E90 K-CAN gist (entry: 1009,0x3F1,Status Light Extended CKM [1],112,0x70,LM)";
-CM_ BO_ 1043 "0x413: Unknown — 8-byte, ~1 s period. B2=0x97, B3=0x86, B6=0xE9, B7=0x87 are constant in all sessions; B0, B1, B4, B5 vary. Static (1 unique payload) in all focused HIL sessions (climate, gearbox, wipers). Highly variable (66+ unique payloads) in 5ninutes_Full_Run_Cycle.log (driving session) — no climate or gearbox correlation found. Likely a periodic counter or sensor broadcast from an unknown body module. Source: HIL sessions 2026-03-20";
-CM_ BO_ 1045 "0x415: Unknown — 7-byte, ~1 s period. Static (1 unique payload) in all focused HIL sessions. Highly variable (82+ unique payloads) in 5ninutes_Full_Run_Cycle.log. Appears paired with 0x413 (adjacent IDs, same period). Likely config+status pair from the same unknown module. Source: HIL sessions 2026-03-20";
+CM_ BO_ 1043 "0x413 (FRM — Footwell Module): Lamp status broadcast, ~1 s period. Normal startup: valid from +326ms, stable 49 8E 97 86 62 77 E9 87 throughout ignition-on cycle. Fault startup: FF FF FF FF FF FF FF FF from +5.5s (lamp check incomplete / bulb missing), resolves to normal value only after ~25s once FRM completes fault detection. FF FF pattern is a reliable indicator that FRM has not yet confirmed lamp integrity. Byte layout not yet decoded at bit level. Source: HIL 2026-03-20 (driving), HIL 2026-05-03 (low-beam fault comparison).";
+CM_ BO_ 1045 "0x415 (FRM — Footwell Module): Lamp status broadcast companion to 0x413, ~1 s period, DLC=7. Normal startup: B0=0x41 for first 2 frames (init step), then locks to 0x42 E7 81 32 F0 00 80 (B0 bits[1:0] increment once at startup, not a rolling counter). Fault startup: FF FF FF FF FF FF FF from +5.5s, resolves at +25s same as 0x413. B0 InitCounter (bits [1:0]): 0x01=initialising, 0x02=ready. Source: HIL 2026-03-20 (driving), HIL 2026-05-03 (low-beam fault comparison).";
 CM_ BO_ 1153 "0x481: BMW K-CAN Network Management alive frame — ACSM (Airbag Control Module, node 0x01). Source: MorGuux E90 K-CAN gist";
 CM_ BO_ 1216 "0x4C0 (XXX): BMW K-CAN Network Management alive message (52 frames); seen in t1.log";
 CM_ BO_ 1238 "0x4D6 (XXX): BMW K-CAN Network Management alive message (53 frames); seen in t1.log";
@@ -1448,7 +1457,7 @@ CM_ BO_ 1272 "0x4F8 (XXX): BMW K-CAN Network Management alive message (51 frames
 CM_ BO_ 1409 "0x581: BMW K-CAN Services frame — ACSM (Airbag Control Module, node 0x01). Also carries seatbelt indicator: byte 3 bit 0 = 0x28=light off, 0x29=light on. Source: loopybunny.co.uk/CarPC, MorGuux E90 K-CAN gist";
 CM_ BO_ 1472 "0x5C0: BMW K-CAN Services frame — CAS (Car Access System, node 0x40). Source: MorGuux E90 K-CAN gist";
 CM_ BO_ 1494 "0x5D6 (XXX): BMW K-CAN Services range message, rare (2 frames); seen in t1.log";
-CM_ BO_ 1506 "0x5E2 (ZBE — iDrive controller): Hard button press/release event frame. B0=0x01 constant. B1 state: 0x03=button pressed, 0x02=button released. B2=variable (likely a checksum or noise, no decoded meaning). B3-B7=0xFF constant. Transmits on state change (event-driven), NOT periodic. HIL-3 2026-03-24 observations: (1) t=2361889ms B1=0x03 (button pressed, held ~3.44s — likely long-press to enter CIC main menu from anywhere); (2) t=2365329ms B1=0x02 (released); (3) t=2366780ms B1=0x03 (normal 0.65s press); (4) t=2367429ms B1=0x02 (released); (5) t=2880966ms B1=0x03 (press, no release in log). Two frames sent 10ms apart at each press event (debounce confirmation). Most likely encodes MENU/NAV/TEL hard button on CIC panel — exact button identity TBC. Source: HIL-3 2026-03-24 (10minutes_run_Wheel_doors_tests.log)";
+CM_ BO_ 1506 "0x5E2 (ZBE — iDrive controller): Dual-role frame. (1) BUTTON EVENT (normal operation): B0=0x01, B1=0x03=pressed/0x02=released, B2=variable, B3-B7=0xFF. Event-driven on state change, two frames 10ms apart per press (debounce). Most likely MENU/NAV/TEL hard button. (2) FAULT NOTIFICATION (lamp fault only): B0=0x01, B1 alternates 0x02/0x03 (channel), B2=varying message code (CIC text message ID), B3-B7=0xFF. Appears at +9.7s in fault startup — 2 rapid frames (10ms) for left and right low beam separately, then further frames at ~500ms intervals as CIC renders messages. Absent in normal startup. The B1=0x02/0x03 alternation in fault context likely encodes different CIC display channels rather than button state. Source: HIL-3 2026-03-24 (button), HIL 2026-05-03 (low-beam fault).";
 CM_ BO_ 1511 "0x5E7 (ZBE — iDrive controller): ZBE operational state heartbeat, 2-second period. B0=0x99, B1=0xE1, B2=0xFE constant. B3 = rolling counter (increments +1 per 2s transmission). B4 = CIC/menu state flag: 0x06=home/idle screen (no active menu interaction), 0x01=CIC menu active (changed from 0x06 to 0x01 at t=2366232ms, ~4s after MENU hard button press). B5-B7=0xFF constant. HIL-3 2026-03-24: B4 remained 0x01 for the rest of the log after menu was entered (never returned to 0x06 within 9.8 min log). Source: HIL-3 2026-03-24 (10minutes_run_Wheel_doors_tests.log)";
 CM_ BO_ 1528 "0x5F8 (XXX): BMW K-CAN Services range message (11 frames); seen in t1.log";
 CM_ BO_ 672 "0x2A0 (CAS): Central locking control. Three frame types on same ID. (1) HEARTBEAT (~5s periodic): B0=B1=B2=0x88. B3=0x01 static. B4=rolling counter (increments by 2 per cycle, CAS auto-increments correctly regardless of injected commands). B5/B6/B7=current lock state (see below). Sending 88 88 88 wakes bus ~20s but triggers no action. (2) COMMAND BURST (3 rapid frames on keyfob/button press): B0=B1=command byte, B2=modifier. Command bytes: 0x11=unlock, 0x22=lock. B2=0x80 identifies trunk command (pattern: xx xx 80; B0=B1=0x88 for trunk burst). B3=central lock panic-disable: 0x00=enabled(normal), 0x04=disabled(panic lockout). NOTE: 10x rapid toggle triggers ~1min lockout of both cabin button and keyfob. (3) TRUNK: identified by B2=0x80. B5/B6/B7 lock state encoding (CONFIRMED HIL 2026-04-08): 0x40 0x06 0x00=unlocked by keyfob (simple), 0x44 0x05 0x04=locked by keyfob (simple), 0x84 0x02 0x00=comfort open by keyfob (windows opened), 0x84 0x02 0x04=comfort close by keyfob (windows closed), 0x40 0x0B 0x00=interior button unlock, 0x43 0x0B 0x03=interior button lock, 0x?? 0x0B 0xx=interior button (general pattern: B6=0x0B). Trunk lock state: B5=0x80. Interior cabin button and trunk button are NOT on K-CAN — CAS blocks K-CAN button signals after real keyfob lock. Sleep state (post ignition-off): B5/B6/B7=44 05 04. Per-door status NOT in this frame — see 0x0E2/0x0E6/0x0EA/0x0EE. Source: HIL 2026-03-22/23/24/2026-04-07/08.";
