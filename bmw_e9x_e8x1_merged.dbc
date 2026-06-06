@@ -244,6 +244,12 @@ BO_ 246 MirrorControl_0F6: 2 KGM
 
 BO_ 247 lateral_dynamics_ARS_VDM: 8 ARS
 
+BO_ 248 Door_Status: 1 Kombi
+ SG_ Door_Driver : 0|1@1+ (1,0) [0|1] "" CIC
+ SG_ Door_FrontPassenger : 2|1@1+ (1,0) [0|1] "" CIC
+ SG_ Door_RearRight : 4|1@1+ (1,0) [0|1] "" CIC
+ SG_ Door_RearLeft : 6|1@1+ (1,0) [0|1] "" CIC
+
 BO_ 249 Vertical_dynamics_VDM_ARS: 8 VDM
 
 BO_ 250 Control_window_lifter_FAT: 3 FRMFA
@@ -646,6 +652,7 @@ BO_ 642 Control_security_vehicle_2: 8 XXX
 BO_ 644 Control_remote_start_safety_vehicle: 8 CAS
 
 BO_ 646 Electrochromic_control: 8 FZD
+ SG_ AmbientLight : 0|8@1+ (1,0) [0|100] "" CIC
 
 BO_ 652 Pushbutton_vertical_dynamics: 8 GWS
 
@@ -842,6 +849,8 @@ BO_ 814 Status_climate_internal_control_info: 8 IHKA
  SG_ SolarSensor : 32|8@1+ (1,0) [0|255] "" CIC
 
 BO_ 816 Range_Mileage: 8 Kombi
+ SG_ Odometer_km : 0|24@1+ (1,0) [0|16777215] "km" CIC
+ SG_ RemainingRange_km : 48|16@1+ (0.1,0) [0|6553.5] "km" CIC
 
 BO_ 817 Programming_of_step_cruise_control: 8 CCC
 
@@ -892,10 +901,17 @@ BO_ 858 Appointment_Condition_Based_Service: 8 CCC
 BO_ 860 Status_onboard_computer: 8 Kombi
 
 BO_ 862 Onboard_computer_data_trip_data: 8 Kombi
+ SG_ TripHours : 0|8@1+ (1,0) [0|255] "h" CIC
+ SG_ TripMinutes : 16|8@1+ (1,0) [0|59] "min" CIC
+ SG_ TripDistance_km : 24|8@1+ (1,0) [0|255] "km" CIC
 
 BO_ 864 Data_onboard_computer_start_of_journey: 8 Kombi
 
 BO_ 866 Data_onboard_computer_average_values: 8 Kombi
+ SG_ AvgSpeed_BC2_kmh : 0|8@1+ (0.1,0) [0|25.5] "km/h" CIC
+ SG_ AvgConsumption_BC2 : 12|12@1+ (0.0625,0) [0|15.9] "l/100km" CIC
+ SG_ AvgSpeed_BC1_kmh : 24|8@1+ (0.1,0) [0|25.5] "km/h" CIC
+ SG_ AvgConsumption_BC1 : 36|12@1+ (0.0625,0) [0|15.9] "l/100km" CIC
 
 BO_ 868 Data_onboard_computer_arrival: 8 Kombi
 
