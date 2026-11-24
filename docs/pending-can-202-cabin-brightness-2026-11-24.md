@@ -22,10 +22,18 @@ The custom F30 LIN wheel backlight **must follow the same cluster brightness set
 1. Listen for valid 0x202 DLC=2 frames; accept only the eight confirmed B0 values initially; B1=FF is the observed baseline. No CAN transmission is needed.
 2. Translate the eight discrete levels to the verified LIN brightness-control behavior (existing wheel module already supports nonzero brightness commands). Calibrate actual LIN duty/brightness mapping on hardware; do not assume identical linear transfer functions between 0x202 and LIN.
 3. Preserve safe fallback at CAN startup, loss of brightness messages and sleep/wake; keep brightness separate from illumination enable/on/off, and never force the LEDs on merely because the last level is nonzero.
-4. Test each of the 8 levels with a stationary vehicle, checking monotonicity, min/max, no flicker, and whether 00 actually means fully off or minimum visible output on wheel.
+4. Test each of the 8 levels with a stationary vehicle, checking monotonicity, min/max, no flicker, and calibrating the minimum **visible** LIN brightness; do not use 00 as an automatic power-off command.
 5. Firmware must not change until the corresponding module implementation is planned/tested; this file documents the confirmed contract and requirement, not an implementation.
 
 ## DBC backlog
 Add or refine CAN ID 0x202 (decimal 514), DLC=2: an 8-bit unsigned `CabinIlluminationLevelRaw` at start bit 0, length 8, little-endian (`0|8@1+`, factor 1), value table 0/36/72/108/145/181/217/253 -> levels 0..7; second byte 0xFF observed constant/reserved (do not label checksum). Check the existing ID 514 declaration **before** editing; preserve its sender and existing signals unless evidence warrants changes. Add CM_ traceability and a parser/DBC validation check. Coordinate update of canonical `Maseg535/E90-and-e8x-DBC-mega-merge-project/bmw_e9x_e8x1_merged.dbc` and synchronized copy in `IDRIVE_NEW/dbc/`, plus clients that bundle a DBC (Android). Do not mark DBC task done until both are synced and tested.
 
 **Status:** documentation/queued only; DBC file not changed as part of this note.
+
+
+## Additional direct ZBE/iDrive joystick test (2026-11-24)
+The owner separately injected CAN 0x202 for **the iDrive joystick only**:
+- `00 FF` = minimum **visible**, nonzero illumination.
+- `FE FF` = visually same minimum illumination as `00 FF`.
+- `FF FF` = ignored (no visible brightness change).
+These are **joystick-only** results, not verified for all other lighting consumers, and `FE` is not one of the 8 cluster-selected levels. The reason FE aliases minimum and FF is ignored is unknown (special encoding, bounds/wrap, validity sentinel, etc. are hypotheses only). Keep the observed normal cluster 8-level table separate from the joystick edge-case table. For future firmware, do not interpret B0=00 as backlight OFF; keep on/off state separate from minimum dimming, and never extrapolate FE/FF behavior to the wheel LIN module without tests. DBC may record FE/FF as ZBE-specific observed edge cases in a comment, without declaring these standard brightness levels.
