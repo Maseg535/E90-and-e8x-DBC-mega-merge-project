@@ -131,9 +131,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-06-06 23:30:52</span>
+<span>Generated: 2026-11-27 14:21:45</span>
 <span>Messages: 387</span>
-<span>Signals: 440</span>
+<span>Signals: 441</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
@@ -7207,16 +7207,43 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 2</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>1 signals</span>
 </div>
 </div>
-<div class='comment'>0x202 (FRM — Footwell Module): Dimming status</div>
-<div class="hexrow"><span class='hb hb-unknown'>7E</span><span class='hb hb-unknown'>FF</span></div>
+<div class='comment'>0x202 (FRM — Footwell Module): Dimming status. DLC=2. B1=0xFF reserved (not a checksum — always 0xFF). ZBE edge cases: 0xFE 0xFF treated same as 0x00 0xFF (minimum visible brightness); 0xFF 0xFF frames ignored by ZBE. Source: docs/pending-can-202-cabin-brightness-2026-11-24.md</div>
+<div class="hexrow"><span class='hb hb-known'>7E</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>CabinBrightness</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>CabinBrightness</strong>
+<div class='signal-comment'>Cabin illumination level raw value. 8 discrete steps from FRM: 0x00=off, 0x24=12.5%, 0x48=25%, 0x6C=37.5%, 0x91=50%, 0xB5=62.5%, 0xD9=75%, 0xFD=100% (max). Values 0x01-0x23 and gaps between steps not normally transmitted.</div>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x00</span> <span class='enum-dec'>(0)</span> = Off</li>
+<li><span class='enum-hex'>0x24</span> <span class='enum-dec'>(36)</span> = 12.5%</li>
+<li><span class='enum-hex'>0x48</span> <span class='enum-dec'>(72)</span> = 25%</li>
+<li><span class='enum-hex'>0x6C</span> <span class='enum-dec'>(108)</span> = 37.5%</li>
+<li><span class='enum-hex'>0x91</span> <span class='enum-dec'>(145)</span> = 50%</li>
+<li><span class='enum-hex'>0xB5</span> <span class='enum-dec'>(181)</span> = 62.5%</li>
+<li><span class='enum-hex'>0xD9</span> <span class='enum-dec'>(217)</span> = 75%</li>
+<li><span class='enum-hex'>0xFD</span> <span class='enum-dec'>(253)</span> = 100% (max)</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 253]</code></td>
+<td data-label="Rx">CIC,ZBE</td>
+</tr>
 </tbody>
 </table>
 </section>
