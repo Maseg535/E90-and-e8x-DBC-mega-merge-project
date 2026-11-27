@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$DbcPath = '.\dbc\bmw_e9x_e8x1_merged.dbc',
     [string]$OutputPath = '.\docs\can_ids_reference.html'
 )

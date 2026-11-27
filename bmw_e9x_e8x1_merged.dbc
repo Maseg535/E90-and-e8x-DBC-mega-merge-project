@@ -35,9 +35,9 @@ BS_:
 BU_: EON RDC SZL VGSG Gate1 RFK FLA RAD1 CAS CID AHM HKL HUD EKP DWA DSC SM_BF GWS VDM DDE1 ACI CCC SM_FA CTM LDM RSE MRSZ VDA EDCK ZBE EGS ACC Kombi IHKA ARS ACSM FZD PGS NVC AFS DME FRMFA EMF FKA VSW EPS PDC DKG SMG EHC SZM KGM Diagnosetool_PT_CAN Diagnosetool_K_CAN_System Vector__XXX XXX ABS DIA FRM RAD TEL
 
 CM_ "Source <https://github.com/dzid26/opendbc-BMW-E8x-E9x>";
-CM_ "Some data copied from https://github.com/HeinrichG-V12/E65_ReverseEngineering/ and MSD81 document"
-CM_ "Tool32 reference https://www.bimmerforums.com/forum/showthread.php?2298830-E90-Can-bus-project-(E60-E65-E87-)&p=29628499#post29628499"
-CM_ "Some data copied from great MK60e5_Development_DBC.dbc: https://www.m5board.com/posts/7693749/"
+CM_ "Some data copied from https://github.com/HeinrichG-V12/E65_ReverseEngineering/ and MSD81 document";
+CM_ "Tool32 reference https://www.bimmerforums.com/forum/showthread.php?2298830-E90-Can-bus-project-(E60-E65-E87-)&p=29628499#post29628499";
+CM_ "Some data copied from great MK60e5_Development_DBC.dbc: https://www.m5board.com/posts/7693749/";
 CM_ "License MIT";
 CM_ "BMW E90 K-CAN 100 kbit/s";
 CM_ "Additional signals merged from https://github.com/nberlette/canbus";
@@ -243,6 +243,12 @@ BO_ 244 CLU3_VDA: 8 VDA
 BO_ 246 MirrorControl_0F6: 2 KGM
 
 BO_ 247 lateral_dynamics_ARS_VDM: 8 ARS
+
+BO_ 248 Door_Status: 1 Kombi
+ SG_ Door_Driver : 0|1@1+ (1,0) [0|1] "" CIC
+ SG_ Door_FrontPassenger : 2|1@1+ (1,0) [0|1] "" CIC
+ SG_ Door_RearRight : 4|1@1+ (1,0) [0|1] "" CIC
+ SG_ Door_RearLeft : 6|1@1+ (1,0) [0|1] "" CIC
 
 BO_ 249 Vertical_dynamics_VDM_ARS: 8 VDM
 
@@ -526,6 +532,7 @@ BO_ 512 CruiseControlStatus: 8 DME
 BO_ 513 Status_EMF_KCAN: 8 EMF
 
 BO_ 514 Dimming: 2 FRMFA
+ SG_ CabinBrightness : 0|8@1+ (1,0) [0|253] "" CIC,ZBE
 
 BO_ 517 Acoustic_request_Kombi: 8 Kombi
  SG_ GongCounter : 0|1@1+ (1,0) [0|1] "" Kombi
@@ -646,6 +653,7 @@ BO_ 642 Control_security_vehicle_2: 8 XXX
 BO_ 644 Control_remote_start_safety_vehicle: 8 CAS
 
 BO_ 646 Electrochromic_control: 8 FZD
+ SG_ AmbientLight : 0|8@1+ (1,0) [0|100] "" CIC
 
 BO_ 652 Pushbutton_vertical_dynamics: 8 GWS
 
@@ -842,6 +850,8 @@ BO_ 814 Status_climate_internal_control_info: 8 IHKA
  SG_ SolarSensor : 32|8@1+ (1,0) [0|255] "" CIC
 
 BO_ 816 Range_Mileage: 8 Kombi
+ SG_ Odometer_km : 0|24@1+ (1,0) [0|16777215] "km" CIC
+ SG_ RemainingRange_km : 48|16@1+ (0.1,0) [0|6553.5] "km" CIC
 
 BO_ 817 Programming_of_step_cruise_control: 8 CCC
 
@@ -892,10 +902,17 @@ BO_ 858 Appointment_Condition_Based_Service: 8 CCC
 BO_ 860 Status_onboard_computer: 8 Kombi
 
 BO_ 862 Onboard_computer_data_trip_data: 8 Kombi
+ SG_ TripHours : 0|8@1+ (1,0) [0|255] "h" CIC
+ SG_ TripMinutes : 16|8@1+ (1,0) [0|59] "min" CIC
+ SG_ TripDistance_km : 24|8@1+ (1,0) [0|255] "km" CIC
 
 BO_ 864 Data_onboard_computer_start_of_journey: 8 Kombi
 
 BO_ 866 Data_onboard_computer_average_values: 8 Kombi
+ SG_ AvgSpeed_BC2_kmh : 0|8@1+ (0.1,0) [0|25.5] "km/h" CIC
+ SG_ AvgConsumption_BC2 : 12|12@1+ (0.0625,0) [0|15.9] "l/100km" CIC
+ SG_ AvgSpeed_BC1_kmh : 24|8@1+ (0.1,0) [0|25.5] "km/h" CIC
+ SG_ AvgConsumption_BC1 : 36|12@1+ (0.0625,0) [0|15.9] "l/100km" CIC
 
 BO_ 868 Data_onboard_computer_arrival: 8 Kombi
 
@@ -1345,7 +1362,8 @@ CM_ SG_ 502 LeftTurn "Indicates left blinker or when steering returning left cle
 CM_ SG_ 502 RightTurn "Indicates right blinker or when steering returning right clears left blinker";
 CM_ SG_ 502 TurnSignalActive "Turn signal on or transitioning";
 CM_ SG_ 502 TurnSignalIdle "Turn signal off";
-CM_ BO_ 514 "0x202 (FRM — Footwell Module): Dimming status";
+CM_ BO_ 514 "0x202 (FRM — Footwell Module): Dimming status. DLC=2. B1=0xFF reserved (not a checksum — always 0xFF). ZBE edge cases: 0xFE 0xFF treated same as 0x00 0xFF (minimum visible brightness); 0xFF 0xFF frames ignored by ZBE. Source: docs/pending-can-202-cabin-brightness-2026-11-24.md";
+CM_ SG_ 514 CabinBrightness "Cabin illumination level raw value. 8 discrete steps from FRM: 0x00=off, 0x24=12.5%, 0x48=25%, 0x6C=37.5%, 0x91=50%, 0xB5=62.5%, 0xD9=75%, 0xFD=100% (max). Values 0x01-0x23 and gaps between steps not normally transmitted.";
 CM_ BO_ 517 "0x205 (Kombi): Acoustic gong request. FAULT-ONLY — absent in normal startup. Fires at +13s coinciding with 0x338/0x172 fault notification. B0 bit 0 (GongCounter) toggles 0xF1→0xF0 across 3 rapid frames — event-driven toggle rather than a periodic heartbeat. Correlates with the audible warning gong on low-beam fault detection. Source: HIL 2026-05-03 low-beam fault log.";
 CM_ BO_ 538 "0x21A (FRM — Footwell Module): Lighting and engine-running status. CORRECTION (keyless-restart log 2026-03-24): B0 bit7 is NOT KL15_Active — it is BRAKE_LIGHTS (brake pedal pressed). Evidence: bit7 clears to 0 immediately after start while engine is still running and KL15 is active (driver lifts foot off brake). The earlier correlation with ignition events was because diesel start requires brake pedal held, so brake-on and KL15-on events coincide. B0 bit0: reflects engine running state (1=engine running) but also correlates with dipped-beam (see full lighting decode). B0 bit2=SideLights. Confirmed B0 patterns: 0x04=sidelights_only (engine off, no brake), 0x84=brake+sidelights (brake pressed, engine off — restart prep), 0x85=brake+sidelights+engine_flag (cranking/just_started), 0x05=sidelights+engine_running_no_brake (normal driving), 0x05=also seen post-lock with engine on. B1=0x12 constant when KL15 active (from HIL-2). B2=0xF7 constant. [PARTIAL] Loopybunny exterior light decode (unconfirmed for this car): B0 lo-nibble: 0=all off, 4=sidelights/auto, 5=dip, 7=main. B1: 0=off, 1=reverse/tail, 16=interior, 18=interior+exterior. Source: loopybunny.co.uk/CarPC + HIL 2026-03-23 + keyless-restart 2026-03-24";
 CM_ BO_ 550 "0x226 (FZD): Rain sensor and automatic wiper speed. B0=WiperActivity (0x00=off, 0x55=interval/active wiper mode set by rain sensor). B1=0xFE constant. B2=0xFF constant. B3=RainIntensity (0x00=no rain, 0x4F=rain detected — rises before wiper activates). B4=0xF3 constant. Source: 5ninutes_Full_Run_Cycle.log HIL capture (5 state changes observed with AUTO wiper in rain)";
@@ -1552,6 +1570,7 @@ VAL_ 1777 UDS_ServiceId 16 "DiagnosticSessionControl_0x10" 17 "ECUReset_0x11" 20
 VAL_ 1777 UDS_SubFunction 1 "DefaultSession" 2 "ExtendedDiagnosticSession" 3 "ProgrammingSession" ;
 VAL_ 2015 OBD2_Mode 1 "Mode01_CurrentData" 2 "Mode02_FreezeFrame" 3 "Mode03_StoredDTCs" 4 "Mode04_ClearDTCs" 5 "Mode05_O2MonitorResults" 6 "Mode06_OnboardMonitor" 7 "Mode07_PendingDTCs" 9 "Mode09_VehicleInfo" ;
 VAL_ 2024 OBD2_ModeResp 65 "Mode01_Response_0x41" 66 "Mode02_Response_0x42" 67 "Mode03_Response_0x43" 70 "Mode06_Response_0x46" 71 "Mode07_Response_0x47" 73 "Mode09_Response_0x49" ;
+VAL_ 514 CabinBrightness 0 "Off" 36 "12.5%" 72 "25%" 108 "37.5%" 145 "50%" 181 "62.5%" 217 "75%" 253 "100% (max)" ;
 
 BA_DEF_  "DatabaseVersion" STRING ;
 BA_DEF_  "BusType" STRING ;

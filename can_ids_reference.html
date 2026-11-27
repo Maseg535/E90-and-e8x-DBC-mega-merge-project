@@ -131,9 +131,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <p>Static HTML generated from the merged BMW E8x/E9x DBC. Simple offline reference for CAN IDs, messages, and signals.</p>
 <div class="meta">
 <span>Source: bmw_e9x_e8x1_merged.dbc</span>
-<span>Generated: 2026-05-03 17:27:52</span>
-<span>Messages: 386</span>
-<span>Signals: 426</span>
+<span>Generated: 2026-11-27 14:21:45</span>
+<span>Messages: 387</span>
+<span>Signals: 441</span>
 </div>
 <div class="search-wrap">
 <input type="text" id="search" placeholder="Filter by hex ID (e.g. 0x1D2), name, or transmitter&hellip;" autocomplete="off">
@@ -146,7 +146,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 </section>
 <details class="toc">
-<summary>Message Index <span style='color:#64748b;font-weight:400;font-size:13px;'>(386 messages)</span></summary>
+<summary>Message Index <span style='color:#64748b;font-weight:400;font-size:13px;'>(387 messages)</span></summary>
 <div class="toc-body"><div class="toc-list">
 <a href='#msg-128' title='SYNC' style='color:#22c55e;'>0x080 · SYNC</a>
 <a href='#msg-133' title='Synchronization_SC_VDA'>0x085 · Synchronization_SC_VDA</a>
@@ -191,6 +191,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-244' title='CLU3_VDA'>0x0F4 · CLU3_VDA</a>
 <a href='#msg-246' title='MirrorControl_0F6' style='color:#22c55e;font-weight:700;'>0x0F6 · MirrorControl_0F6</a>
 <a href='#msg-247' title='lateral_dynamics_ARS_VDM'>0x0F7 · lateral_dynamics_ARS_VDM</a>
+<a href='#msg-248' title='Door_Status' style='color:#22c55e;'>0x0F8 · Door_Status</a>
 <a href='#msg-249' title='Vertical_dynamics_VDM_ARS'>0x0F9 · Vertical_dynamics_VDM_ARS</a>
 <a href='#msg-250' title='Control_window_lifter_FAT' style='color:#22c55e;font-weight:700;'>0x0FA · Control_window_lifter_FAT</a>
 <a href='#msg-251' title='Control_window_lifter_BFT' style='color:#22c55e;font-weight:700;'>0x0FB · Control_window_lifter_BFT</a>
@@ -314,7 +315,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-639' title='Status_central_locking_convertible_top'>0x27F · Status_central_locking_convertible_top</a>
 <a href='#msg-642' title='Control_security_vehicle_2'>0x282 · Control_security_vehicle_2</a>
 <a href='#msg-644' title='Control_remote_start_safety_vehicle'>0x284 · Control_remote_start_safety_vehicle</a>
-<a href='#msg-646' title='Electrochromic_control' style='font-weight:700;'>0x286 · Electrochromic_control</a>
+<a href='#msg-646' title='Electrochromic_control' style='color:#22c55e;font-weight:700;'>0x286 · Electrochromic_control</a>
 <a href='#msg-652' title='Pushbutton_vertical_dynamics'>0x28C · Pushbutton_vertical_dynamics</a>
 <a href='#msg-653' title='Operation_pushbutton_sport'>0x28D · Operation_pushbutton_sport</a>
 <a href='#msg-656' title='Control_response_hydrogen_vehicle'>0x290 · Control_response_hydrogen_vehicle</a>
@@ -413,9 +414,9 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <a href='#msg-847' title='Status_contact_handbrake' style='color:#22c55e;font-weight:700;'>0x34F · Status_contact_handbrake</a>
 <a href='#msg-858' title='Appointment_Condition_Based_Service'>0x35A · Appointment_Condition_Based_Service</a>
 <a href='#msg-860' title='Status_onboard_computer' style='font-weight:700;'>0x35C · Status_onboard_computer</a>
-<a href='#msg-862' title='Onboard_computer_data_trip_data' style='font-weight:700;'>0x35E · Onboard_computer_data_trip_data</a>
+<a href='#msg-862' title='Onboard_computer_data_trip_data' style='color:#22c55e;font-weight:700;'>0x35E · Onboard_computer_data_trip_data</a>
 <a href='#msg-864' title='Data_onboard_computer_start_of_journey' style='font-weight:700;'>0x360 · Data_onboard_computer_start_of_journey</a>
-<a href='#msg-866' title='Data_onboard_computer_average_values' style='font-weight:700;'>0x362 · Data_onboard_computer_average_values</a>
+<a href='#msg-866' title='Data_onboard_computer_average_values' style='color:#22c55e;font-weight:700;'>0x362 · Data_onboard_computer_average_values</a>
 <a href='#msg-868' title='Data_onboard_computer_arrival' style='font-weight:700;'>0x364 · Data_onboard_computer_arrival</a>
 <a href='#msg-869' title='Status_terminal_request'>0x365 · Status_terminal_request</a>
 <a href='#msg-870' title='Display_Kombination_external_display' style='color:#22c55e;font-weight:700;'>0x366 · Display_Kombination_external_display</a>
@@ -3464,6 +3465,90 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+</tbody>
+</table>
+</section>
+<section class='message' id='msg-248' data-search='0x0f8 248 door_status kombi' data-tier='2'>
+<div class="message-header">
+<div>
+<h2>0x0F8 &middot; Door_Status</h2>
+<div class='message-sub'>Decimal ID: 248 <span class='muted'>&middot;</span> Transmitter: Kombi</div>
+</div>
+<div class="badge-row">
+<span class='badge'>DLC 1</span>
+<span class='badge'>4 signals</span>
+</div>
+</div>
+<div class="hexrow"><span class='hb hb-known'>??</span></div>
+<div class='bytemap-label'>Byte layout</div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Door_Driver, Door_FrontPassenger, Door_RearRight, Door_RearLeft</div></div></div>
+<table>
+<thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Signal">
+<strong>Door_Driver</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit0</div>
+<div class='dbc-pos'>DBC: 0|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>Door_FrontPassenger</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit2</div>
+<div class='dbc-pos'>DBC: 2|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>Door_RearRight</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit4</div>
+<div class='dbc-pos'>DBC: 4|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>Door_RearLeft</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 bit6</div>
+<div class='dbc-pos'>DBC: 6|1</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 1]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -7122,16 +7207,43 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 2</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>1 signals</span>
 </div>
 </div>
-<div class='comment'>0x202 (FRM — Footwell Module): Dimming status</div>
-<div class="hexrow"><span class='hb hb-unknown'>7E</span><span class='hb hb-unknown'>FF</span></div>
+<div class='comment'>0x202 (FRM — Footwell Module): Dimming status. DLC=2. B1=0xFF reserved (not a checksum — always 0xFF). ZBE edge cases: 0xFE 0xFF treated same as 0x00 0xFF (minimum visible brightness); 0xFF 0xFF frames ignored by ZBE. Source: docs/pending-can-202-cabin-brightness-2026-11-24.md</div>
+<div class="hexrow"><span class='hb hb-known'>7E</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>CabinBrightness</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>CabinBrightness</strong>
+<div class='signal-comment'>Cabin illumination level raw value. 8 discrete steps from FRM: 0x00=off, 0x24=12.5%, 0x48=25%, 0x6C=37.5%, 0x91=50%, 0xB5=62.5%, 0xD9=75%, 0xFD=100% (max). Values 0x01-0x23 and gaps between steps not normally transmitted.</div>
+<ul class="enum-list">
+<li><span class='enum-hex'>0x00</span> <span class='enum-dec'>(0)</span> = Off</li>
+<li><span class='enum-hex'>0x24</span> <span class='enum-dec'>(36)</span> = 12.5%</li>
+<li><span class='enum-hex'>0x48</span> <span class='enum-dec'>(72)</span> = 25%</li>
+<li><span class='enum-hex'>0x6C</span> <span class='enum-dec'>(108)</span> = 37.5%</li>
+<li><span class='enum-hex'>0x91</span> <span class='enum-dec'>(145)</span> = 50%</li>
+<li><span class='enum-hex'>0xB5</span> <span class='enum-dec'>(181)</span> = 62.5%</li>
+<li><span class='enum-hex'>0xD9</span> <span class='enum-dec'>(217)</span> = 75%</li>
+<li><span class='enum-hex'>0xFD</span> <span class='enum-dec'>(253)</span> = 100% (max)</li>
+</ul>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 253]</code></td>
+<td data-label="Rx">CIC,ZBE</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -8521,7 +8633,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-646' data-search='0x286 646 electrochromic_control fzd' data-tier='1'>
+<section class='message' id='msg-646' data-search='0x286 646 electrochromic_control fzd' data-tier='3'>
 <div class="message-header">
 <div>
 <h2>0x286 &middot; Electrochromic_control</h2>
@@ -8529,15 +8641,31 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>1 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>00</span><span class='hb hb-unknown'>FF</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>AmbientLight</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>AmbientLight</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned</td>
+<td data-label="Scale">
+<div class='formula'>raw value</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 100]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -10842,16 +10970,48 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>2 signals</span>
 </div>
 </div>
 <div class='comment'>0x330 (Kombi): Range / mileage (odometer)</div>
-<div class="hexrow"><span class='hb hb-unknown'>CD</span><span class='hb hb-unknown'>3B</span><span class='hb hb-unknown'>04</span><span class='hb hb-unknown'>20</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>3B</span><span class='hb hb-unknown'>2C</span><span class='hb hb-unknown'>12</span></div>
+<div class="hexrow"><span class='hb hb-known'>CD</span><span class='hb hb-known'>3B</span><span class='hb hb-known'>04</span><span class='hb hb-unknown'>20</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>3B</span><span class='hb hb-known'>2C</span><span class='hb hb-known'>12</span></div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>Odometer_km</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>Odometer_km</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>Odometer_km</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B6</div><div class='byte-sigs'>RemainingRange_km</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B7</div><div class='byte-sigs'>RemainingRange_km</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>Odometer_km</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0..B2 (24b LE, 3 bytes)</div>
+<div class='dbc-pos'>DBC: 0|24</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: km</td>
+<td data-label="Scale">
+<div class='formula'>raw (km)</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 16777215]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>RemainingRange_km</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B6..B7 (16b LE, 2 bytes)</div>
+<div class='dbc-pos'>DBC: 48|16</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: km</td>
+<td data-label="Scale">
+<div class='formula'>raw &times; 0.1 = <em>km</em></div>
+<div class='dbc-scale'>Factor <code>0.1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 6553.5]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -11401,7 +11561,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-862' data-search='0x35e 862 onboard_computer_data_trip_data kombi' data-tier='1'>
+<section class='message' id='msg-862' data-search='0x35e 862 onboard_computer_data_trip_data kombi' data-tier='3'>
 <div class="message-header">
 <div>
 <h2>0x35E &middot; Onboard_computer_data_trip_data</h2>
@@ -11409,15 +11569,63 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>3 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>0D</span><span class='hb hb-unknown'>F0</span><span class='hb hb-unknown'>15</span><span class='hb hb-unknown'>93</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>F1</span><span class='hb hb-unknown'>D8</span><span class='hb hb-unknown'>FF</span></div>
+<div class="hexrow"><span class='hb hb-known'>0D</span><span class='hb hb-unknown'>F0</span><span class='hb hb-known'>15</span><span class='hb hb-known'>93</span><span class='hb hb-unknown'>00</span><span class='hb hb-unknown'>F1</span><span class='hb hb-unknown'>D8</span><span class='hb hb-unknown'>FF</span></div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>TripHours</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>TripMinutes</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>TripDistance_km</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>TripHours</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: h</td>
+<td data-label="Scale">
+<div class='formula'>raw (h)</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>TripMinutes</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B2 (full byte)</div>
+<div class='dbc-pos'>DBC: 16|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: min</td>
+<td data-label="Scale">
+<div class='formula'>raw (min)</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 59]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>TripDistance_km</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: km</td>
+<td data-label="Scale">
+<div class='formula'>raw (km)</div>
+<div class='dbc-scale'>Factor <code>1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 255]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -11441,7 +11649,7 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </tbody>
 </table>
 </section>
-<section class='message' id='msg-866' data-search='0x362 866 data_onboard_computer_average_values kombi' data-tier='1'>
+<section class='message' id='msg-866' data-search='0x362 866 data_onboard_computer_average_values kombi' data-tier='3'>
 <div class="message-header">
 <div>
 <h2>0x362 &middot; Data_onboard_computer_average_values</h2>
@@ -11449,15 +11657,79 @@ td code{font-family:Consolas,Monaco,monospace;background:#f8fafc;padding:2px 4px
 </div>
 <div class="badge-row">
 <span class='badge'>DLC 8</span>
-<span class='badge'>0 signals</span>
+<span class='badge'>4 signals</span>
 </div>
 </div>
-<div class="hexrow"><span class='hb hb-unknown'>93</span><span class='hb hb-unknown'>D0</span><span class='hb hb-unknown'>09</span><span class='hb hb-unknown'>98</span><span class='hb hb-unknown'>A0</span><span class='hb hb-unknown'>08</span><span class='hb hb-unknown'>E5</span><span class='hb hb-unknown'>??</span></div>
+<div class="hexrow"><span class='hb hb-known'>93</span><span class='hb hb-known'>D0</span><span class='hb hb-known'>09</span><span class='hb hb-known'>98</span><span class='hb hb-known'>A0</span><span class='hb hb-known'>08</span><span class='hb hb-unknown'>E5</span><span class='hb hb-unknown'>??</span></div>
 <div class='bytemap-label'>Byte layout</div>
-<div class="bytemap"><div class='byte-cell byte-empty'><div class='byte-idx'>B0</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B1</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B2</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B3</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B4</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B5</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
+<div class="bytemap"><div class='byte-cell byte-used'><div class='byte-idx'>B0</div><div class='byte-sigs'>AvgSpeed_BC2_kmh</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B1</div><div class='byte-sigs'>AvgConsumption_BC2</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B2</div><div class='byte-sigs'>AvgConsumption_BC2</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B3</div><div class='byte-sigs'>AvgSpeed_BC1_kmh</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B4</div><div class='byte-sigs'>AvgConsumption_BC1</div></div><div class='byte-cell byte-used'><div class='byte-idx'>B5</div><div class='byte-sigs'>AvgConsumption_BC1</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B6</div><div class='byte-sigs'>&mdash;</div></div><div class='byte-cell byte-empty'><div class='byte-idx'>B7</div><div class='byte-sigs'>&mdash;</div></div></div>
 <table>
 <thead><tr><th>Signal</th><th>Position</th><th>Format</th><th>Scale / Formula</th><th>Range</th><th>Receivers</th></tr></thead>
 <tbody>
+<tr>
+<td data-label="Signal">
+<strong>AvgSpeed_BC2_kmh</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B0 (full byte)</div>
+<div class='dbc-pos'>DBC: 0|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: km/h</td>
+<td data-label="Scale">
+<div class='formula'>raw &times; 0.1 = <em>km/h</em></div>
+<div class='dbc-scale'>Factor <code>0.1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 25.5]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>AvgConsumption_BC2</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B1..B2 (12b LE, 2 bytes)</div>
+<div class='dbc-pos'>DBC: 12|12</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: l/100km</td>
+<td data-label="Scale">
+<div class='formula'>raw &times; 0.0625 = <em>l/100km</em></div>
+<div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15.9]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>AvgSpeed_BC1_kmh</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B3 (full byte)</div>
+<div class='dbc-pos'>DBC: 24|8</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: km/h</td>
+<td data-label="Scale">
+<div class='formula'>raw &times; 0.1 = <em>km/h</em></div>
+<div class='dbc-scale'>Factor <code>0.1</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 25.5]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
+<tr>
+<td data-label="Signal">
+<strong>AvgConsumption_BC1</strong>
+</td>
+<td data-label="Position">
+<div class='human-pos'>B4..B5 (12b LE, 2 bytes)</div>
+<div class='dbc-pos'>DBC: 36|12</div>
+</td>
+<td data-label="Format">Intel (little-endian)<br>Unsigned<br>Unit: l/100km</td>
+<td data-label="Scale">
+<div class='formula'>raw &times; 0.0625 = <em>l/100km</em></div>
+<div class='dbc-scale'>Factor <code>0.0625</code> Offset <code>0</code></div>
+</td>
+<td data-label="Range"><code>[0 .. 15.9]</code></td>
+<td data-label="Rx">CIC</td>
+</tr>
 </tbody>
 </table>
 </section>
